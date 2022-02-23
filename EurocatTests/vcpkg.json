@@ -1,0 +1,8 @@
+{
+    "name": "eurocat-test",
+    "version": "0",
+    "dependencies": [
+        "nlohmann-json",
+        "gtest"
+    ]
+}

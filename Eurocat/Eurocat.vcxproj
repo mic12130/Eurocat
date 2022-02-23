@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{F45B6B38-FFC3-49F0-AA77-B5333B4E8DC2}</ProjectGuid>
+    <Keyword>MFCDLLProj</Keyword>
+    <RootNamespace>Eurocat</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+    <UseOfMfc>Dynamic</UseOfMfc>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(ProjectDir)bin\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)obj\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(ProjectDir)bin\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)obj\$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg">
+    <VcpkgEnableManifest>true</VcpkgEnableManifest>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <VcpkgTriplet>x86-windows-static-md</VcpkgTriplet>
+  </PropertyGroup>
+  <PropertyGroup Label="Vcpkg" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <VcpkgTriplet>x86-windows-static-md</VcpkgTriplet>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>base\pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <AdditionalDependencies>gdiplus.lib;winmm.lib;EuroScopePlugInDll.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\external\euroscope\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);$(ProjectDir)base\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <PostBuildEvent>
+      <Command>lib /NOLOGO /OUT:"$(TargetPath).lib" "$(IntermediateOutputPath)*.obj"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_WINDOWS;_DEBUG;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <ModuleDefinitionFile>.\Eurocat.def</ModuleDefinitionFile>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>base\pch.h</PrecompiledHeaderFile>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalIncludeDirectories>$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <AdditionalDependencies>gdiplus.lib;winmm.lib;EuroScopePlugInDll.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(ProjectDir)..\external\euroscope\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);$(ProjectDir)base\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <PostBuildEvent>
+      <Command>lib /NOLOGO /OUT:"$(TargetPath).lib" "$(IntermediateOutputPath)*.obj"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_WINDOWS;NDEBUG;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <ModuleDefinitionFile>.\Eurocat.def</ModuleDefinitionFile>
+    </Link>
+    <Midl>
+      <MkTypLibCompatible>false</MkTypLibCompatible>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </Midl>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="base\dllexport.cpp" />
+    <ClCompile Include="base\pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="common\OpData.cpp" />
+    <ClCompile Include="common\unit\AltitudeConverter.cpp" />
+    <ClCompile Include="common\unit\AltitudeFormatter.cpp" />
+    <ClCompile Include="common\unit\RflConverter.cpp" />
+    <ClCompile Include="common\unit\SpeedConverter.cpp" />
+    <ClCompile Include="common\unit\SpeedFormatter.cpp" />
+    <ClCompile Include="helper\GraphicsHelper.cpp" />
+    <ClCompile Include="hmi\cursor\CursorManager.cpp" />
+    <ClCompile Include="hmi\FlightPlanDisplayStateGenerator.cpp" />
+    <ClCompile Include="hmi\HmiService.cpp" />
+    <ClCompile Include="hmi\OptionButton.cpp" />
+    <ClCompile Include="hmi\OptionDialog.cpp" />
+    <ClCompile Include="hmi\track\action\AcidActionHandler.cpp" />
+    <ClCompile Include="hmi\track\action\CflActionHandler.cpp" />
+    <ClCompile Include="hmi\track\action\DestActionHandler.cpp" />
+    <ClCompile Include="hmi\track\action\GroundSpeedActionHandler.cpp" />
+    <ClCompile Include="hmi\track\action\LabelDataActionHandler.cpp" />
+    <ClCompile Include="hmi\track\action\RunwayActionHandler.cpp" />
+    <ClCompile Include="hmi\track\action\SymbolActionHandler.cpp" />
+    <ClCompile Include="hmi\track\AltitudeFilter.cpp" />
+    <ClCompile Include="hmi\track\FlashHelper.cpp" />
+    <ClCompile Include="hmi\track\FlightPlanDataProvider.cpp" />
+    <ClCompile Include="hmi\track\hist\HistRenderController.cpp" />
+    <ClCompile Include="hmi\track\hist\HistRenderer.cpp" />
+    <ClCompile Include="hmi\track\profile\TrackProfileManager.cpp" />
+    <ClCompile Include="hmi\track\RadarTargetDataProvider.cpp" />
+    <ClCompile Include="hmi\track\symbol\SymbolRenderController.cpp" />
+    <ClCompile Include="hmi\track\symbol\SymbolRenderer.cpp" />
+    <ClCompile Include="hmi\track\tag\alert\TagAlertData.cpp" />
+    <ClCompile Include="hmi\track\tag\alert\TagAlertRenderer.cpp" />
+    <ClCompile Include="hmi\track\tag\alert\WarningSelector.cpp" />
+    <ClCompile Include="hmi\track\tag\label\AccIndicatorLabel.cpp" />
+    <ClCompile Include="hmi\track\tag\label\AircraftTypeLabel.cpp" />
+    <ClCompile Include="hmi\track\tag\label\CflLabel.cpp" />
+    <ClCompile Include="hmi\track\tag\label\DestLabel.cpp" />
+    <ClCompile Include="hmi\track\tag\label\EmergencyAlertLabel.cpp" />
+    <ClCompile Include="hmi\track\tag\label\FlightPlanFallbackLabel.cpp" />
+    <ClCompile Include="hmi\track\tag\label\FlightPlanIdentLabel.cpp" />
+    <ClCompile Include="hmi\track\tag\label\FlightRuleIndicator.cpp" />
+    <ClCompile Include="hmi\track\tag\label\GroundSpeedLabel.cpp" />
+    <ClCompile Include="hmi\track\tag\label\IdentLabel.cpp" />
+    <ClCompile Include="hmi\track\tag\label\LabelDataLabel.cpp" />
+    <ClCompile Include="hmi\track\tag\label\LevelLabel.cpp" />
+    <ClCompile Include="hmi\track\tag\label\RunwayLabel.cpp" />
+    <ClCompile Include="hmi\track\tag\label\SpaceLabel.cpp" />
+    <ClCompile Include="hmi\track\tag\label\UncoupledIdentLabel.cpp" />
+    <ClCompile Include="hmi\track\tag\label\UnitIndicator1.cpp" />
+    <ClCompile Include="hmi\track\tag\label\UnitIndicator2.cpp" />
+    <ClCompile Include="hmi\track\tag\label\VsIndicatorLabel.cpp" />
+    <ClCompile Include="hmi\track\tag\label\WarningAlertLabel.cpp" />
+    <ClCompile Include="hmi\track\tag\label\WaypointLabel.cpp" />
+    <ClCompile Include="hmi\track\tag\label\WtcLabel.cpp" />
+    <ClCompile Include="hmi\track\tag\label_content\StringContent.cpp" />
+    <ClCompile Include="hmi\track\tag\TagLabelFactory.cpp" />
+    <ClCompile Include="hmi\track\tag\TagRenderController.cpp" />
+    <ClCompile Include="hmi\track\tag\TagRenderer.cpp" />
+    <ClCompile Include="hmi\track\TrackManager.cpp" />
+    <ClCompile Include="hmi\track\TrackObjectId.cpp" />
+    <ClCompile Include="hmi\track\vel\VelRenderController.cpp" />
+    <ClCompile Include="hmi\track\vel\VelRenderer.cpp" />
+    <ClCompile Include="hmi\unit\UnitDisplayManager.cpp" />
+    <ClCompile Include="plugin\extension\FlightPlanAttributeUpdater.cpp" />
+    <ClCompile Include="plugin\extension\FlightPlanProcessor.cpp" />
+    <ClCompile Include="plugin\input\EuroScopeInputManager.cpp" />
+    <ClCompile Include="plugin\input\PopupEdit.cpp" />
+    <ClCompile Include="plugin\input\PopupMenu.cpp" />
+    <ClCompile Include="plugin\input\EuroScopeInputBridge.cpp" />
+    <ClCompile Include="plugin\Plugin.cpp" />
+    <ClCompile Include="plugin\PluginApp.cpp" />
+    <ClCompile Include="plugin\PluginEnvironment.cpp" />
+    <ClCompile Include="plugin\PluginEventManager.cpp" />
+    <ClCompile Include="plugin\PluginService.cpp" />
+    <ClCompile Include="screen\GraphicsWrapper.cpp" />
+    <ClCompile Include="screen\Screen.cpp" />
+    <ClCompile Include="screen\ScreenWrapper.cpp" />
+    <ClCompile Include="screen\WindowScalingInfo.cpp" />
+    <ClCompile Include="system\SystemServiceManager.cpp" />
+    <ClCompile Include="tagitem\AcidTagItem.cpp" />
+    <ClCompile Include="tagitem\CflFunction.cpp" />
+    <ClCompile Include="tagitem\CflTagItem.cpp" />
+    <ClCompile Include="tagitem\OpDataFunction.cpp" />
+    <ClCompile Include="tagitem\OpDataTagItem.cpp" />
+    <ClCompile Include="tagitem\RflFunction.cpp" />
+    <ClCompile Include="tagitem\RflInIcaoFormatTagItem.cpp" />
+    <ClCompile Include="tagitem\RflTagItem.cpp" />
+    <ClCompile Include="tagitem\TagItemColor.cpp" />
+    <ClCompile Include="tagitem\TagItemService.cpp" />
+    <ClCompile Include="warning\BuiltinWarningChecker.cpp" />
+    <ClCompile Include="warning\DupeSquawkCheckDataProvider.cpp" />
+    <ClCompile Include="warning\DupeSquawkChecker.cpp" />
+    <ClCompile Include="warning\DupeSquawkCheckScheduler.cpp" />
+    <ClCompile Include="warning\WarningManager.cpp" />
+    <ClCompile Include="warning\WarningService.cpp" />
+    <ClCompile Include="window\LevelPopupMenu.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\CURSOR_INTERACTIVE.cur" />
+    <None Include="res\CURSOR_NORMAL.cur" />
+    <None Include="res\Eurocat.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="base\framework.h" />
+    <ClInclude Include="base\pch.h" />
+    <ClInclude Include="base\targetver.h" />
+    <ClInclude Include="base\versioninfo.h" />
+    <ClInclude Include="common\Coordinate.h" />
+    <ClInclude Include="common\FlightPlanState.h" />
+    <ClInclude Include="common\FlightPlanStateMaker.h" />
+    <ClInclude Include="common\OpData.h" />
+    <ClInclude Include="common\OpDataConverter.h" />
+    <ClInclude Include="common\unit\AltitudeConverter.h" />
+    <ClInclude Include="common\unit\AltitudeFormatter.h" />
+    <ClInclude Include="common\unit\RflConverter.h" />
+    <ClInclude Include="common\unit\RflModel.h" />
+    <ClInclude Include="common\unit\SpeedConverter.h" />
+    <ClInclude Include="common\unit\SpeedFormatter.h" />
+    <ClInclude Include="helper\CoordinateHelper.h" />
+    <ClInclude Include="helper\GraphicsHelper.h" />
+    <ClInclude Include="helper\StringHelper.h" />
+    <ClInclude Include="hmi\cursor\CursorManager.h" />
+    <ClInclude Include="hmi\cursor\CursorType.h" />
+    <ClInclude Include="hmi\cursor\ICursorManager.h" />
+    <ClInclude Include="hmi\FlightPlanDisplayState.h" />
+    <ClInclude Include="hmi\FlightPlanDisplayStateGenerator.h" />
+    <ClInclude Include="hmi\HmiService.h" />
+    <ClInclude Include="hmi\OptionButton.h" />
+    <ClInclude Include="hmi\OptionDialog.h" />
+    <ClInclude Include="hmi\track\action\AcidActionHandler.h" />
+    <ClInclude Include="hmi\track\action\CflActionHandler.h" />
+    <ClInclude Include="hmi\track\action\DestActionHandler.h" />
+    <ClInclude Include="hmi\track\action\EuroScopeFunctionHelper.h" />
+    <ClInclude Include="hmi\track\action\GroundSpeedActionHandler.h" />
+    <ClInclude Include="hmi\track\action\ITrackActionHandler.h" />
+    <ClInclude Include="hmi\track\action\LabelDataActionHandler.h" />
+    <ClInclude Include="hmi\track\action\RunwayActionHandler.h" />
+    <ClInclude Include="hmi\track\action\SymbolActionHandler.h" />
+    <ClInclude Include="hmi\track\AltitudeFilter.h" />
+    <ClInclude Include="hmi\track\FlashHelper.h" />
+    <ClInclude Include="hmi\track\FlightPlanDataProvider.h" />
+    <ClInclude Include="hmi\track\hist\HistRenderController.h" />
+    <ClInclude Include="hmi\track\hist\HistRenderer.h" />
+    <ClInclude Include="hmi\track\hist\IHistRenderer.h" />
+    <ClInclude Include="hmi\track\IAltitudeFilter.h" />
+    <ClInclude Include="hmi\track\IFlashHelper.h" />
+    <ClInclude Include="hmi\track\IFlightPlanDataProvider.h" />
+    <ClInclude Include="hmi\track\IRadarTargetDataProvider.h" />
+    <ClInclude Include="hmi\track\option\IdentDisplayMode.h" />
+    <ClInclude Include="hmi\track\option\OptionData.h" />
+    <ClInclude Include="hmi\track\profile\TrackProfile.h" />
+    <ClInclude Include="hmi\track\profile\TrackProfileManager.h" />
+    <ClInclude Include="hmi\track\RadarTargetDataProvider.h" />
+    <ClInclude Include="hmi\track\symbol\ISymbolRenderer.h" />
+    <ClInclude Include="hmi\track\symbol\SymbolRenderController.h" />
+    <ClInclude Include="hmi\track\symbol\SymbolRenderer.h" />
+    <ClInclude Include="hmi\track\tag\alert\BorderType.h" />
+    <ClInclude Include="hmi\track\tag\alert\EmergencyInfo.h" />
+    <ClInclude Include="hmi\track\tag\alert\TagAlertData.h" />
+    <ClInclude Include="hmi\track\tag\alert\TagAlertRenderer.h" />
+    <ClInclude Include="hmi\track\tag\alert\WarningInfo.h" />
+    <ClInclude Include="hmi\track\tag\alert\WarningSelector.h" />
+    <ClInclude Include="hmi\track\tag\alert\WarningType.h" />
+    <ClInclude Include="hmi\track\tag\alert\WarningTypeCollection.h" />
+    <ClInclude Include="hmi\track\tag\ITagRenderer.h" />
+    <ClInclude Include="hmi\track\tag\label\AccIndicatorLabel.h" />
+    <ClInclude Include="hmi\track\tag\label\AircraftTypeLabel.h" />
+    <ClInclude Include="hmi\track\tag\label\CflLabel.h" />
+    <ClInclude Include="hmi\track\tag\label\DestLabel.h" />
+    <ClInclude Include="hmi\track\tag\label\EmergencyAlertLabel.h" />
+    <ClInclude Include="hmi\track\tag\label\FlightPlanFallbackLabel.h" />
+    <ClInclude Include="hmi\track\tag\label\FlightPlanIdentLabel.h" />
+    <ClInclude Include="hmi\track\tag\label\FlightRuleIndicator.h" />
+    <ClInclude Include="hmi\track\tag\label\GroundSpeedLabel.h" />
+    <ClInclude Include="hmi\track\tag\label\IdentLabel.h" />
+    <ClInclude Include="hmi\track\tag\label\ITagLabel.h" />
+    <ClInclude Include="hmi\track\tag\label\LabelDataLabel.h" />
+    <ClInclude Include="hmi\track\tag\label\LevelLabel.h" />
+    <ClInclude Include="hmi\track\tag\label\RunwayLabel.h" />
+    <ClInclude Include="hmi\track\tag\label\SpaceLabel.h" />
+    <ClInclude Include="hmi\track\tag\label\UncoupledIdentLabel.h" />
+    <ClInclude Include="hmi\track\tag\label\UnitIndicator1.h" />
+    <ClInclude Include="hmi\track\tag\label\UnitIndicator2.h" />
+    <ClInclude Include="hmi\track\tag\label\VsIndicatorLabel.h" />
+    <ClInclude Include="hmi\track\tag\label\WarningAlertLabel.h" />
+    <ClInclude Include="hmi\track\tag\label\WaypointLabel.h" />
+    <ClInclude Include="hmi\track\tag\label\WtcLabel.h" />
+    <ClInclude Include="hmi\track\tag\label_content\ITagLabelContent.h" />
+    <ClInclude Include="hmi\track\tag\label_content\StringContent.h" />
+    <ClInclude Include="hmi\track\tag\render_data\AltFilterOverrideCheck.h" />
+    <ClInclude Include="hmi\track\tag\render_data\CoupledTrackTagData.h" />
+    <ClInclude Include="hmi\track\tag\render_data\ExtendedLabelCalc.h" />
+    <ClInclude Include="hmi\track\tag\render_data\FlightPlanTrackTagData.h" />
+    <ClInclude Include="hmi\track\tag\render_data\IdentDisplayModeCalc.h" />
+    <ClInclude Include="hmi\track\tag\render_data\ITagDataProvider.h" />
+    <ClInclude Include="hmi\track\tag\render_data\SharedLabelCalc.h" />
+    <ClInclude Include="hmi\track\tag\render_data\UncoupledTrackTagData.h" />
+    <ClInclude Include="hmi\track\tag\RepositionHelper.h" />
+    <ClInclude Include="hmi\track\tag\TagLabelCollection.h" />
+    <ClInclude Include="hmi\track\tag\TagLabelFactory.h" />
+    <ClInclude Include="hmi\track\tag\TagRenderController.h" />
+    <ClInclude Include="hmi\track\tag\TagRenderer.h" />
+    <ClInclude Include="hmi\track\TrackColor.h" />
+    <ClInclude Include="hmi\track\TrackManager.h" />
+    <ClInclude Include="hmi\track\TrackObjectId.h" />
+    <ClInclude Include="hmi\track\TrackObjectIdExtraction.h" />
+    <ClInclude Include="hmi\track\TrackObjectIdSuffix.h" />
+    <ClInclude Include="hmi\track\vel\IVelRenderer.h" />
+    <ClInclude Include="hmi\track\vel\VelRenderController.h" />
+    <ClInclude Include="hmi\track\vel\VelRenderer.h" />
+    <ClInclude Include="hmi\unit\UnitDisplayMode.h" />
+    <ClInclude Include="hmi\unit\UnitDisplayManager.h" />
+    <ClInclude Include="plugin\extension\FlightPlanAttribute.h" />
+    <ClInclude Include="plugin\extension\FlightPlanAttributeUpdater.h" />
+    <ClInclude Include="plugin\extension\FlightPlanProcessor.h" />
+    <ClInclude Include="plugin\FlightPlanHelper.h" />
+    <ClInclude Include="plugin\IFlightPlanEventHandler.h" />
+    <ClInclude Include="plugin\input\EuroScopeInputManager.h" />
+    <ClInclude Include="plugin\input\EuroScopeInputRetriever.h" />
+    <ClInclude Include="plugin\input\PopupEditDelegate.h" />
+    <ClInclude Include="plugin\input\PopupEdit.h" />
+    <ClInclude Include="plugin\input\PopupMenu.h" />
+    <ClInclude Include="plugin\input\PopupMenuDelegate.h" />
+    <ClInclude Include="plugin\input\PopupMenuItem.h" />
+    <ClInclude Include="plugin\input\EuroScopeInputBridge.h" />
+    <ClInclude Include="plugin\IRadarTargetEventHandler.h" />
+    <ClInclude Include="plugin\IFunctionHandler.h" />
+    <ClInclude Include="plugin\ITagItemProvider.h" />
+    <ClInclude Include="plugin\ITimedEventHandler.h" />
+    <ClInclude Include="plugin\Plugin.h" />
+    <ClInclude Include="plugin\PluginApp.h" />
+    <ClInclude Include="plugin\PluginEnvironment.h" />
+    <ClInclude Include="plugin\PluginEventManager.h" />
+    <ClInclude Include="plugin\PluginFunctionId.h" />
+    <ClInclude Include="plugin\PluginService.h" />
+    <ClInclude Include="plugin\PluginTagItemId.h" />
+    <ClInclude Include="res\Resource.h" />
+    <ClInclude Include="screen\GraphicsWrapper.h" />
+    <ClInclude Include="screen\IScreenEventHandler.h" />
+    <ClInclude Include="screen\MouseButton.h" />
+    <ClInclude Include="screen\MouseInputArgs.h" />
+    <ClInclude Include="screen\Screen.h" />
+    <ClInclude Include="screen\ScreenObjectType.h" />
+    <ClInclude Include="screen\ScreenWrapper.h" />
+    <ClInclude Include="screen\WindowScalingInfo.h" />
+    <ClInclude Include="system\SystemService.h" />
+    <ClInclude Include="system\SystemServiceManager.h" />
+    <ClInclude Include="tagitem\AcidTagItem.h" />
+    <ClInclude Include="tagitem\CflFunction.h" />
+    <ClInclude Include="tagitem\CflTagItem.h" />
+    <ClInclude Include="tagitem\OpDataFunction.h" />
+    <ClInclude Include="tagitem\OpDataTagItem.h" />
+    <ClInclude Include="tagitem\RflFunction.h" />
+    <ClInclude Include="tagitem\RflInIcaoFormatTagItem.h" />
+    <ClInclude Include="tagitem\RflTagItem.h" />
+    <ClInclude Include="tagitem\TagItemColor.h" />
+    <ClInclude Include="tagitem\TagItemService.h" />
+    <ClInclude Include="warning\BuiltinWarningChecker.h" />
+    <ClInclude Include="warning\DupeSquawkCheckDataProvider.h" />
+    <ClInclude Include="warning\DupeSquawkChecker.h" />
+    <ClInclude Include="warning\DupeSquawkCheckScheduler.h" />
+    <ClInclude Include="warning\IDupeSquawkCheckDataProvider.h" />
+    <ClInclude Include="warning\RadarTargetWarningInfo.h" />
+    <ClInclude Include="warning\SquawkData.h" />
+    <ClInclude Include="warning\WarningManager.h" />
+    <ClInclude Include="warning\WarningService.h" />
+    <ClInclude Include="window\LevelPopupMenu.h" />
+    <ClInclude Include="window\LevelPopupMenuDelegate.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="res\Eurocat.rc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="common\unit\AltitudeFormatterTest.cpp">
+      <Filter>common\unit</Filter>
+    </ClCompile>
+    <ClCompile Include="common\unit\RflConverterTest.cpp">
+      <Filter>common\unit</Filter>
+    </ClCompile>
+    <ClCompile Include="common\unit\SpeedConverterTest.cpp">
+      <Filter>common\unit</Filter>
+    </ClCompile>
+    <ClCompile Include="common\unit\SpeedFormatterTest.cpp">
+      <Filter>common\unit</Filter>
+    </ClCompile>
+    <ClCompile Include="common\unit\AltitudeConverterTest.cpp">
+      <Filter>common\unit</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\AltitudeFilterTest.cpp">
+      <Filter>hmi\track</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\TrackObjectIdTest.cpp">
+      <Filter>hmi\track</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\hist\HistRenderControllerTest.cpp">
+      <Filter>hmi\track\hist</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\symbol\SymbolRenderControllerTest.cpp">
+      <Filter>hmi\track\symbol</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\vel\VelRenderControllerTest.cpp">
+      <Filter>hmi\track\vel</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\ExtendedLabelCalcTest.cpp">
+      <Filter>hmi\track\tag</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\IdentDisplayModeCalcTest.cpp">
+      <Filter>hmi\track\tag</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\SharedLabelCalcTest.cpp">
+      <Filter>hmi\track\tag</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\TagLabelFactoryTest.cpp">
+      <Filter>hmi\track\tag</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\TagRenderControllerTest.cpp">
+      <Filter>hmi\track\tag</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\WarningSelectorTest.cpp">
+      <Filter>hmi\track\tag</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\label\AccIndicatorLabelTest.cpp">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\label\CflLabelTest.cpp">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\label\GroundSpeedLabelTest.cpp">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\label\LevelLabelTest.cpp">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\label\UnitIndicator1Test.cpp">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\label\WaypointLabelTest.cpp">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="screen\TestScreen.h">
+      <Filter>screen</Filter>
+    </ClInclude>
+    <ClInclude Include="screen\TestGraphics.h">
+      <Filter>screen</Filter>
+    </ClInclude>
+    <ClInclude Include="screen\TestScreenWrapper.h">
+      <Filter>screen</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\MockAltitudeFilter.h">
+      <Filter>hmi\track</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\MockFlashHelper.h">
+      <Filter>hmi\track</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\MockFlightPlanDataProvider.h">
+      <Filter>hmi\track</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\MockRadarTargetDataProvider.h">
+      <Filter>hmi\track</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\hist\MockHistRenderer.h">
+      <Filter>hmi\track\hist</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\symbol\MockSymbolRenderer.h">
+      <Filter>hmi\track\symbol</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\vel\MockVelRenderer.h">
+      <Filter>hmi\track\vel</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\MockTagDataProvider.h">
+      <Filter>hmi\track\tag</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\MockTagRenderer.h">
+      <Filter>hmi\track\tag</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\label\StringContentUtil.h">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="screen">
+      <UniqueIdentifier>{e27395d4-e013-47c5-a36a-c0479e843e91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{a11daa42-a4fa-4852-aab4-d0b455a48e6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common\unit">
+      <UniqueIdentifier>{68e75bab-8177-400f-ba82-2330316602eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hmi">
+      <UniqueIdentifier>{024a596a-5ba4-4b0f-829e-e0163b10cfa5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hmi\track">
+      <UniqueIdentifier>{26bf2df0-45fd-4e99-8bfc-2d18ff5eccc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hmi\track\hist">
+      <UniqueIdentifier>{edaa7ee9-e98d-4db7-954c-53ecef2e512c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hmi\track\vel">
+      <UniqueIdentifier>{974897a3-90a7-460f-a1ce-570c72db56eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hmi\track\tag">
+      <UniqueIdentifier>{818e91ce-5237-4d30-8e40-028d326d34df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hmi\track\symbol">
+      <UniqueIdentifier>{2dfcfa8e-f31c-4e78-8f76-d35a54f34ede}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hmi\track\tag\label">
+      <UniqueIdentifier>{60c9189d-bcf4-46b4-a48e-628d4270756d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

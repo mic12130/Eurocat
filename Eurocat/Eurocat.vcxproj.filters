@@ -1,0 +1,895 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="res">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="base">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="plugin">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="screen">
+      <UniqueIdentifier>{711d9e0f-292f-43b0-b047-f2362a2a04e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="helper">
+      <UniqueIdentifier>{b18996c4-3e90-4569-b88d-e90c29bd6058}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="window">
+      <UniqueIdentifier>{e9beed08-ba0a-46ef-881f-92e937e62c41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="plugin\extension">
+      <UniqueIdentifier>{57ada369-d8b2-4b89-a65b-7691c5c198b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="plugin\input">
+      <UniqueIdentifier>{5e4d2cf3-3431-405b-8a24-b1ba966ad979}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="system">
+      <UniqueIdentifier>{fd19d0f0-b487-4abd-9568-fc8a6639bab5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hmi">
+      <UniqueIdentifier>{307351a9-8ef0-4891-98be-46b7a0d05f7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{68e36412-42cf-4391-af6e-c5a272986754}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common\unit">
+      <UniqueIdentifier>{dd9f4bfd-bb6c-4c12-9fa6-f93293d080c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hmi\cursor">
+      <UniqueIdentifier>{be3ac73b-771b-4330-a2b2-583c099202b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="tagitem">
+      <UniqueIdentifier>{84ba7fee-9bd0-41c9-b8a7-069358006ee4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hmi\unit">
+      <UniqueIdentifier>{6b79ba3e-42fa-40ae-b0de-d58d41044b19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hmi\track">
+      <UniqueIdentifier>{86986be1-9065-49f2-b735-04f56474c5ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hmi\track\action">
+      <UniqueIdentifier>{b2d364a9-c6be-4700-83ba-a2311f22147f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hmi\track\hist">
+      <UniqueIdentifier>{0990a1e8-3be1-4689-932e-74b5a2c610c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hmi\track\symbol">
+      <UniqueIdentifier>{8ad38eee-2932-4561-828c-d0bf8effe823}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hmi\track\option">
+      <UniqueIdentifier>{224648ae-88ca-43f1-bcff-ba81f1753f20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hmi\track\profile">
+      <UniqueIdentifier>{ed2dcae0-e689-4943-9fdf-3207609f44d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hmi\track\tag">
+      <UniqueIdentifier>{6220f2bb-dfed-45f8-89b8-09fef8871f25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hmi\track\vel">
+      <UniqueIdentifier>{e72c3828-1408-4e8b-8586-13fc19c25cac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hmi\track\tag\alert">
+      <UniqueIdentifier>{3442267c-bab1-48eb-be28-43b148e56834}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hmi\track\tag\label">
+      <UniqueIdentifier>{124ddb34-39a3-4e8f-98a9-0ef76781d413}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hmi\track\tag\label_content">
+      <UniqueIdentifier>{2e7efd11-3766-4ae5-af86-a598f701dfa7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="hmi\track\tag\render_data">
+      <UniqueIdentifier>{20923046-6bee-42d8-b297-76228219816d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="warning">
+      <UniqueIdentifier>{9b0e9714-f235-4789-91f8-a45b53d2a7bb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\Eurocat.rc2">
+      <Filter>res</Filter>
+    </None>
+    <None Include="res\CURSOR_INTERACTIVE.cur">
+      <Filter>res</Filter>
+    </None>
+    <None Include="res\CURSOR_NORMAL.cur">
+      <Filter>res</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="res\Resource.h">
+      <Filter>res</Filter>
+    </ClInclude>
+    <ClInclude Include="base\pch.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\targetver.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\framework.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="base\versioninfo.h">
+      <Filter>base</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\Plugin.h">
+      <Filter>plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\IRadarTargetEventHandler.h">
+      <Filter>plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\IFunctionHandler.h">
+      <Filter>plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\ITagItemProvider.h">
+      <Filter>plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\IFlightPlanEventHandler.h">
+      <Filter>plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\PluginApp.h">
+      <Filter>plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="screen\Screen.h">
+      <Filter>screen</Filter>
+    </ClInclude>
+    <ClInclude Include="screen\MouseButton.h">
+      <Filter>screen</Filter>
+    </ClInclude>
+    <ClInclude Include="screen\GraphicsWrapper.h">
+      <Filter>screen</Filter>
+    </ClInclude>
+    <ClInclude Include="helper\GraphicsHelper.h">
+      <Filter>helper</Filter>
+    </ClInclude>
+    <ClInclude Include="helper\StringHelper.h">
+      <Filter>helper</Filter>
+    </ClInclude>
+    <ClInclude Include="helper\CoordinateHelper.h">
+      <Filter>helper</Filter>
+    </ClInclude>
+    <ClInclude Include="screen\IScreenEventHandler.h">
+      <Filter>screen</Filter>
+    </ClInclude>
+    <ClInclude Include="screen\ScreenObjectType.h">
+      <Filter>screen</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\PluginFunctionId.h">
+      <Filter>plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="window\LevelPopupMenu.h">
+      <Filter>window</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\extension\FlightPlanAttributeUpdater.h">
+      <Filter>plugin\extension</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\extension\FlightPlanAttribute.h">
+      <Filter>plugin\extension</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\PluginEnvironment.h">
+      <Filter>plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\input\PopupMenu.h">
+      <Filter>plugin\input</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\input\PopupMenuItem.h">
+      <Filter>plugin\input</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\input\EuroScopeInputBridge.h">
+      <Filter>plugin\input</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\input\PopupEdit.h">
+      <Filter>plugin\input</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\input\EuroScopeInputManager.h">
+      <Filter>plugin\input</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\input\EuroScopeInputRetriever.h">
+      <Filter>plugin\input</Filter>
+    </ClInclude>
+    <ClInclude Include="system\SystemServiceManager.h">
+      <Filter>system</Filter>
+    </ClInclude>
+    <ClInclude Include="system\SystemService.h">
+      <Filter>system</Filter>
+    </ClInclude>
+    <ClInclude Include="screen\MouseInputArgs.h">
+      <Filter>screen</Filter>
+    </ClInclude>
+    <ClInclude Include="screen\ScreenWrapper.h">
+      <Filter>screen</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\PluginService.h">
+      <Filter>plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\PluginEventManager.h">
+      <Filter>plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\ITimedEventHandler.h">
+      <Filter>plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\HmiService.h">
+      <Filter>hmi</Filter>
+    </ClInclude>
+    <ClInclude Include="common\FlightPlanState.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\FlightPlanStateMaker.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\Coordinate.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\unit\RflConverter.h">
+      <Filter>common\unit</Filter>
+    </ClInclude>
+    <ClInclude Include="common\unit\RflModel.h">
+      <Filter>common\unit</Filter>
+    </ClInclude>
+    <ClInclude Include="common\unit\SpeedConverter.h">
+      <Filter>common\unit</Filter>
+    </ClInclude>
+    <ClInclude Include="common\unit\SpeedFormatter.h">
+      <Filter>common\unit</Filter>
+    </ClInclude>
+    <ClInclude Include="common\unit\AltitudeConverter.h">
+      <Filter>common\unit</Filter>
+    </ClInclude>
+    <ClInclude Include="common\unit\AltitudeFormatter.h">
+      <Filter>common\unit</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\cursor\CursorType.h">
+      <Filter>hmi\cursor</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\cursor\ICursorManager.h">
+      <Filter>hmi\cursor</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\cursor\CursorManager.h">
+      <Filter>hmi\cursor</Filter>
+    </ClInclude>
+    <ClInclude Include="tagitem\TagItemService.h">
+      <Filter>tagitem</Filter>
+    </ClInclude>
+    <ClInclude Include="tagitem\OpDataTagItem.h">
+      <Filter>tagitem</Filter>
+    </ClInclude>
+    <ClInclude Include="tagitem\OpDataFunction.h">
+      <Filter>tagitem</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\PluginTagItemId.h">
+      <Filter>plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\input\PopupEditDelegate.h">
+      <Filter>plugin\input</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\input\PopupMenuDelegate.h">
+      <Filter>plugin\input</Filter>
+    </ClInclude>
+    <ClInclude Include="window\LevelPopupMenuDelegate.h">
+      <Filter>window</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\unit\UnitDisplayMode.h">
+      <Filter>hmi\unit</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\unit\UnitDisplayManager.h">
+      <Filter>hmi\unit</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\OptionButton.h">
+      <Filter>hmi</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\OptionDialog.h">
+      <Filter>hmi</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\extension\FlightPlanProcessor.h">
+      <Filter>plugin\extension</Filter>
+    </ClInclude>
+    <ClInclude Include="tagitem\CflTagItem.h">
+      <Filter>tagitem</Filter>
+    </ClInclude>
+    <ClInclude Include="tagitem\CflFunction.h">
+      <Filter>tagitem</Filter>
+    </ClInclude>
+    <ClInclude Include="tagitem\RflTagItem.h">
+      <Filter>tagitem</Filter>
+    </ClInclude>
+    <ClInclude Include="tagitem\RflInIcaoFormatTagItem.h">
+      <Filter>tagitem</Filter>
+    </ClInclude>
+    <ClInclude Include="tagitem\RflFunction.h">
+      <Filter>tagitem</Filter>
+    </ClInclude>
+    <ClInclude Include="tagitem\AcidTagItem.h">
+      <Filter>tagitem</Filter>
+    </ClInclude>
+    <ClInclude Include="tagitem\TagItemColor.h">
+      <Filter>tagitem</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\FlightPlanDisplayState.h">
+      <Filter>hmi</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\FlightPlanDisplayStateGenerator.h">
+      <Filter>hmi</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\FlightPlanHelper.h">
+      <Filter>plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\IAltitudeFilter.h">
+      <Filter>hmi\track</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\IFlashHelper.h">
+      <Filter>hmi\track</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\IFlightPlanDataProvider.h">
+      <Filter>hmi\track</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\IRadarTargetDataProvider.h">
+      <Filter>hmi\track</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\RadarTargetDataProvider.h">
+      <Filter>hmi\track</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\TrackColor.h">
+      <Filter>hmi\track</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\TrackManager.h">
+      <Filter>hmi\track</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\TrackObjectId.h">
+      <Filter>hmi\track</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\TrackObjectIdExtraction.h">
+      <Filter>hmi\track</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\TrackObjectIdSuffix.h">
+      <Filter>hmi\track</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\AltitudeFilter.h">
+      <Filter>hmi\track</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\FlashHelper.h">
+      <Filter>hmi\track</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\FlightPlanDataProvider.h">
+      <Filter>hmi\track</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\action\DestActionHandler.h">
+      <Filter>hmi\track\action</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\action\EuroScopeFunctionHelper.h">
+      <Filter>hmi\track\action</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\action\GroundSpeedActionHandler.h">
+      <Filter>hmi\track\action</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\action\ITrackActionHandler.h">
+      <Filter>hmi\track\action</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\action\LabelDataActionHandler.h">
+      <Filter>hmi\track\action</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\action\RunwayActionHandler.h">
+      <Filter>hmi\track\action</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\action\SymbolActionHandler.h">
+      <Filter>hmi\track\action</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\action\AcidActionHandler.h">
+      <Filter>hmi\track\action</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\action\CflActionHandler.h">
+      <Filter>hmi\track\action</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\hist\HistRenderController.h">
+      <Filter>hmi\track\hist</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\hist\HistRenderer.h">
+      <Filter>hmi\track\hist</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\hist\IHistRenderer.h">
+      <Filter>hmi\track\hist</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\option\IdentDisplayMode.h">
+      <Filter>hmi\track\option</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\option\OptionData.h">
+      <Filter>hmi\track\option</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\profile\TrackProfileManager.h">
+      <Filter>hmi\track\profile</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\profile\TrackProfile.h">
+      <Filter>hmi\track\profile</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\symbol\SymbolRenderController.h">
+      <Filter>hmi\track\symbol</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\symbol\SymbolRenderer.h">
+      <Filter>hmi\track\symbol</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\symbol\ISymbolRenderer.h">
+      <Filter>hmi\track\symbol</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\vel\VelRenderController.h">
+      <Filter>hmi\track\vel</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\vel\VelRenderer.h">
+      <Filter>hmi\track\vel</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\vel\IVelRenderer.h">
+      <Filter>hmi\track\vel</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\TagLabelFactory.h">
+      <Filter>hmi\track\tag</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\TagRenderController.h">
+      <Filter>hmi\track\tag</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\TagRenderer.h">
+      <Filter>hmi\track\tag</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\ITagRenderer.h">
+      <Filter>hmi\track\tag</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\RepositionHelper.h">
+      <Filter>hmi\track\tag</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\TagLabelCollection.h">
+      <Filter>hmi\track\tag</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\alert\TagAlertData.h">
+      <Filter>hmi\track\tag\alert</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\alert\TagAlertRenderer.h">
+      <Filter>hmi\track\tag\alert</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\alert\WarningInfo.h">
+      <Filter>hmi\track\tag\alert</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\alert\WarningSelector.h">
+      <Filter>hmi\track\tag\alert</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\alert\BorderType.h">
+      <Filter>hmi\track\tag\alert</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\alert\EmergencyInfo.h">
+      <Filter>hmi\track\tag\alert</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\label\AircraftTypeLabel.h">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\label\CflLabel.h">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\label\DestLabel.h">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\label\EmergencyAlertLabel.h">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\label\FlightPlanFallbackLabel.h">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\label\FlightPlanIdentLabel.h">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\label\FlightRuleIndicator.h">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\label\GroundSpeedLabel.h">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\label\IdentLabel.h">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\label\ITagLabel.h">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\label\LabelDataLabel.h">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\label\LevelLabel.h">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\label\RunwayLabel.h">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\label\SpaceLabel.h">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\label\UncoupledIdentLabel.h">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\label\UnitIndicator1.h">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\label\UnitIndicator2.h">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\label\VsIndicatorLabel.h">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\label\WarningAlertLabel.h">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\label\WaypointLabel.h">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\label\WtcLabel.h">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\label\AccIndicatorLabel.h">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\label_content\StringContent.h">
+      <Filter>hmi\track\tag\label_content</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\label_content\ITagLabelContent.h">
+      <Filter>hmi\track\tag\label_content</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\render_data\CoupledTrackTagData.h">
+      <Filter>hmi\track\tag\render_data</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\render_data\ExtendedLabelCalc.h">
+      <Filter>hmi\track\tag\render_data</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\render_data\FlightPlanTrackTagData.h">
+      <Filter>hmi\track\tag\render_data</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\render_data\IdentDisplayModeCalc.h">
+      <Filter>hmi\track\tag\render_data</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\render_data\ITagDataProvider.h">
+      <Filter>hmi\track\tag\render_data</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\render_data\SharedLabelCalc.h">
+      <Filter>hmi\track\tag\render_data</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\render_data\UncoupledTrackTagData.h">
+      <Filter>hmi\track\tag\render_data</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\render_data\AltFilterOverrideCheck.h">
+      <Filter>hmi\track\tag\render_data</Filter>
+    </ClInclude>
+    <ClInclude Include="warning\BuiltinWarningChecker.h">
+      <Filter>warning</Filter>
+    </ClInclude>
+    <ClInclude Include="warning\DupeSquawkCheckScheduler.h">
+      <Filter>warning</Filter>
+    </ClInclude>
+    <ClInclude Include="warning\DupeSquawkCheckDataProvider.h">
+      <Filter>warning</Filter>
+    </ClInclude>
+    <ClInclude Include="warning\IDupeSquawkCheckDataProvider.h">
+      <Filter>warning</Filter>
+    </ClInclude>
+    <ClInclude Include="warning\SquawkData.h">
+      <Filter>warning</Filter>
+    </ClInclude>
+    <ClInclude Include="warning\DupeSquawkChecker.h">
+      <Filter>warning</Filter>
+    </ClInclude>
+    <ClInclude Include="warning\WarningService.h">
+      <Filter>warning</Filter>
+    </ClInclude>
+    <ClInclude Include="warning\WarningManager.h">
+      <Filter>warning</Filter>
+    </ClInclude>
+    <ClInclude Include="warning\RadarTargetWarningInfo.h">
+      <Filter>warning</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\alert\WarningType.h">
+      <Filter>hmi\track\tag\alert</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\alert\WarningTypeCollection.h">
+      <Filter>hmi\track\tag\alert</Filter>
+    </ClInclude>
+    <ClInclude Include="screen\WindowScalingInfo.h">
+      <Filter>screen</Filter>
+    </ClInclude>
+    <ClInclude Include="common\OpDataConverter.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="common\OpData.h">
+      <Filter>common</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="res\Eurocat.rc">
+      <Filter>res</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="base\pch.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="base\dllexport.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="plugin\Plugin.cpp">
+      <Filter>plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="plugin\PluginApp.cpp">
+      <Filter>plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="screen\Screen.cpp">
+      <Filter>screen</Filter>
+    </ClCompile>
+    <ClCompile Include="screen\GraphicsWrapper.cpp">
+      <Filter>screen</Filter>
+    </ClCompile>
+    <ClCompile Include="helper\GraphicsHelper.cpp">
+      <Filter>helper</Filter>
+    </ClCompile>
+    <ClCompile Include="window\LevelPopupMenu.cpp">
+      <Filter>window</Filter>
+    </ClCompile>
+    <ClCompile Include="plugin\extension\FlightPlanAttributeUpdater.cpp">
+      <Filter>plugin\extension</Filter>
+    </ClCompile>
+    <ClCompile Include="plugin\PluginEnvironment.cpp">
+      <Filter>plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="plugin\input\EuroScopeInputBridge.cpp">
+      <Filter>plugin\input</Filter>
+    </ClCompile>
+    <ClCompile Include="plugin\input\PopupEdit.cpp">
+      <Filter>plugin\input</Filter>
+    </ClCompile>
+    <ClCompile Include="plugin\input\PopupMenu.cpp">
+      <Filter>plugin\input</Filter>
+    </ClCompile>
+    <ClCompile Include="plugin\input\EuroScopeInputManager.cpp">
+      <Filter>plugin\input</Filter>
+    </ClCompile>
+    <ClCompile Include="system\SystemServiceManager.cpp">
+      <Filter>system</Filter>
+    </ClCompile>
+    <ClCompile Include="screen\ScreenWrapper.cpp">
+      <Filter>screen</Filter>
+    </ClCompile>
+    <ClCompile Include="plugin\PluginService.cpp">
+      <Filter>plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="plugin\PluginEventManager.cpp">
+      <Filter>plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\HmiService.cpp">
+      <Filter>hmi</Filter>
+    </ClCompile>
+    <ClCompile Include="common\unit\RflConverter.cpp">
+      <Filter>common\unit</Filter>
+    </ClCompile>
+    <ClCompile Include="common\unit\SpeedConverter.cpp">
+      <Filter>common\unit</Filter>
+    </ClCompile>
+    <ClCompile Include="common\unit\SpeedFormatter.cpp">
+      <Filter>common\unit</Filter>
+    </ClCompile>
+    <ClCompile Include="common\unit\AltitudeConverter.cpp">
+      <Filter>common\unit</Filter>
+    </ClCompile>
+    <ClCompile Include="common\unit\AltitudeFormatter.cpp">
+      <Filter>common\unit</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\cursor\CursorManager.cpp">
+      <Filter>hmi\cursor</Filter>
+    </ClCompile>
+    <ClCompile Include="tagitem\TagItemService.cpp">
+      <Filter>tagitem</Filter>
+    </ClCompile>
+    <ClCompile Include="tagitem\OpDataTagItem.cpp">
+      <Filter>tagitem</Filter>
+    </ClCompile>
+    <ClCompile Include="tagitem\OpDataFunction.cpp">
+      <Filter>tagitem</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\unit\UnitDisplayManager.cpp">
+      <Filter>hmi\unit</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\OptionButton.cpp">
+      <Filter>hmi</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\OptionDialog.cpp">
+      <Filter>hmi</Filter>
+    </ClCompile>
+    <ClCompile Include="plugin\extension\FlightPlanProcessor.cpp">
+      <Filter>plugin\extension</Filter>
+    </ClCompile>
+    <ClCompile Include="tagitem\CflTagItem.cpp">
+      <Filter>tagitem</Filter>
+    </ClCompile>
+    <ClCompile Include="tagitem\CflFunction.cpp">
+      <Filter>tagitem</Filter>
+    </ClCompile>
+    <ClCompile Include="tagitem\RflTagItem.cpp">
+      <Filter>tagitem</Filter>
+    </ClCompile>
+    <ClCompile Include="tagitem\RflInIcaoFormatTagItem.cpp">
+      <Filter>tagitem</Filter>
+    </ClCompile>
+    <ClCompile Include="tagitem\RflFunction.cpp">
+      <Filter>tagitem</Filter>
+    </ClCompile>
+    <ClCompile Include="tagitem\AcidTagItem.cpp">
+      <Filter>tagitem</Filter>
+    </ClCompile>
+    <ClCompile Include="tagitem\TagItemColor.cpp">
+      <Filter>tagitem</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\FlightPlanDisplayStateGenerator.cpp">
+      <Filter>hmi</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\RadarTargetDataProvider.cpp">
+      <Filter>hmi\track</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\TrackManager.cpp">
+      <Filter>hmi\track</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\TrackObjectId.cpp">
+      <Filter>hmi\track</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\AltitudeFilter.cpp">
+      <Filter>hmi\track</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\FlashHelper.cpp">
+      <Filter>hmi\track</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\FlightPlanDataProvider.cpp">
+      <Filter>hmi\track</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\action\DestActionHandler.cpp">
+      <Filter>hmi\track\action</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\action\GroundSpeedActionHandler.cpp">
+      <Filter>hmi\track\action</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\action\LabelDataActionHandler.cpp">
+      <Filter>hmi\track\action</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\action\RunwayActionHandler.cpp">
+      <Filter>hmi\track\action</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\action\SymbolActionHandler.cpp">
+      <Filter>hmi\track\action</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\action\AcidActionHandler.cpp">
+      <Filter>hmi\track\action</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\action\CflActionHandler.cpp">
+      <Filter>hmi\track\action</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\hist\HistRenderer.cpp">
+      <Filter>hmi\track\hist</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\hist\HistRenderController.cpp">
+      <Filter>hmi\track\hist</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\profile\TrackProfileManager.cpp">
+      <Filter>hmi\track\profile</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\symbol\SymbolRenderer.cpp">
+      <Filter>hmi\track\symbol</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\symbol\SymbolRenderController.cpp">
+      <Filter>hmi\track\symbol</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\vel\VelRenderer.cpp">
+      <Filter>hmi\track\vel</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\vel\VelRenderController.cpp">
+      <Filter>hmi\track\vel</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\TagLabelFactory.cpp">
+      <Filter>hmi\track\tag</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\TagRenderController.cpp">
+      <Filter>hmi\track\tag</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\TagRenderer.cpp">
+      <Filter>hmi\track\tag</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\alert\TagAlertRenderer.cpp">
+      <Filter>hmi\track\tag\alert</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\alert\WarningSelector.cpp">
+      <Filter>hmi\track\tag\alert</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\alert\TagAlertData.cpp">
+      <Filter>hmi\track\tag\alert</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\label\CflLabel.cpp">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\label\DestLabel.cpp">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\label\EmergencyAlertLabel.cpp">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\label\FlightPlanFallbackLabel.cpp">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\label\FlightPlanIdentLabel.cpp">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\label\FlightRuleIndicator.cpp">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\label\GroundSpeedLabel.cpp">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\label\IdentLabel.cpp">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\label\LabelDataLabel.cpp">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\label\LevelLabel.cpp">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\label\RunwayLabel.cpp">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\label\SpaceLabel.cpp">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\label\UncoupledIdentLabel.cpp">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\label\UnitIndicator1.cpp">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\label\UnitIndicator2.cpp">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\label\VsIndicatorLabel.cpp">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\label\WarningAlertLabel.cpp">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\label\WaypointLabel.cpp">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\label\WtcLabel.cpp">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\label\AccIndicatorLabel.cpp">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\label\AircraftTypeLabel.cpp">
+      <Filter>hmi\track\tag\label</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\label_content\StringContent.cpp">
+      <Filter>hmi\track\tag\label_content</Filter>
+    </ClCompile>
+    <ClCompile Include="warning\BuiltinWarningChecker.cpp">
+      <Filter>warning</Filter>
+    </ClCompile>
+    <ClCompile Include="warning\DupeSquawkCheckScheduler.cpp">
+      <Filter>warning</Filter>
+    </ClCompile>
+    <ClCompile Include="warning\DupeSquawkCheckDataProvider.cpp">
+      <Filter>warning</Filter>
+    </ClCompile>
+    <ClCompile Include="warning\DupeSquawkChecker.cpp">
+      <Filter>warning</Filter>
+    </ClCompile>
+    <ClCompile Include="warning\WarningService.cpp">
+      <Filter>warning</Filter>
+    </ClCompile>
+    <ClCompile Include="warning\WarningManager.cpp">
+      <Filter>warning</Filter>
+    </ClCompile>
+    <ClCompile Include="screen\WindowScalingInfo.cpp">
+      <Filter>screen</Filter>
+    </ClCompile>
+    <ClCompile Include="common\OpData.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
