@@ -72,6 +72,7 @@
     <ClInclude Include="screen\TestScreenWrapper.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="common\OpDataConverterTest.cpp" />
     <ClCompile Include="common\unit\AltitudeConverterTest.cpp" />
     <ClCompile Include="common\unit\AltitudeFormatterTest.cpp" />
     <ClCompile Include="common\unit\RflConverterTest.cpp" />
