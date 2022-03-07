@@ -14,39 +14,28 @@ namespace Eurocat::Hmi::Track
 		virtual ~ISymbolRenderer() = default;
 		virtual void RenderSsrSymbol(
 			Common::Coordinate coord,
-			Gdiplus::Color color,
-			Screen::ScreenWrapper& screen,
-			Screen::GraphicsWrapper& graphics
+			Gdiplus::Color color
 		) = 0;
 		virtual void RenderPsrSymbol(
 			Common::Coordinate coord,
-			Gdiplus::Color color,
-			Screen::ScreenWrapper& screen,
-			Screen::GraphicsWrapper& graphics
+			Gdiplus::Color color
 		) = 0;
 		virtual void RenderGroundTrackSymbol(
 			Common::Coordinate coord,
-			Gdiplus::Color color,
-			Screen::ScreenWrapper& screen,
-			Screen::GraphicsWrapper& graphics
+			Gdiplus::Color color
 		) = 0;
 		virtual void RenderFlightPlanTrackSymbol(
 			Common::Coordinate coord,
-			Gdiplus::Color color,
-			Screen::ScreenWrapper& screen,
-			Screen::GraphicsWrapper& graphics
+			Gdiplus::Color color
 		) = 0;
 		virtual void RenderSelectedSymbol(
 			Common::Coordinate coord,
-			Gdiplus::Color color,
-			Screen::ScreenWrapper& screen,
-			Screen::GraphicsWrapper& graphics
+			Gdiplus::Color color
 		) = 0;
 		virtual void AddScreenObject(
 			Common::Coordinate coord, 
 			CString objectId, 
-			CString message, 
-			Screen::ScreenWrapper& screen
+			CString message
 		) = 0;
 	};
 }

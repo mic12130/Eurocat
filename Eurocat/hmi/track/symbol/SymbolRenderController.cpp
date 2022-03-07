@@ -10,8 +10,8 @@
 
 namespace Eurocat::Hmi::Track
 {
-	SymbolRenderController::SymbolRenderController()
-		: SymbolRenderController(std::make_shared<SymbolRenderer>(), FlashHelper::Regular())
+	SymbolRenderController::SymbolRenderController(Screen::ScreenWrapper& screen, Screen::GraphicsWrapper& graphics)
+		: SymbolRenderController(std::make_shared<SymbolRenderer>(screen, graphics), FlashHelper::Regular())
 	{
 	}
 
@@ -20,59 +20,57 @@ namespace Eurocat::Hmi::Track
 	{
 	}
 
-	void SymbolRenderController::OnRenderSsrTrack(IRadarTargetDataProvider& rt, Gdiplus::Color color, const OptionData& option, bool isSelected, CString trackProfileId, Screen::ScreenWrapper& screen, Screen::GraphicsWrapper& graphics)
+	void SymbolRenderController::OnRenderSsrTrack(IRadarTargetDataProvider& rt, Gdiplus::Color color, const OptionData& option, bool isSelected, CString trackProfileId)
 	{
 		auto ssrSymbolColor = (rt.IsModeI() && flashHelper->ShouldRender()) ? TrackColor::kCyan : color;
 
-		renderer->RenderSsrSymbol(rt.GetPosition(), ssrSymbolColor, screen, graphics);
+		renderer->RenderSsrSymbol(rt.GetPosition(), ssrSymbolColor);
 
 		if (option.hidePsrSymbol == false)
 		{
-			renderer->RenderPsrSymbol(rt.GetPosition(), color, screen, graphics);
+			renderer->RenderPsrSymbol(rt.GetPosition(), color);
 		}
 
 		if (isSelected)
 		{
-			renderer->RenderSelectedSymbol(rt.GetPosition(), color, screen, graphics);
+			renderer->RenderSelectedSymbol(rt.GetPosition(), color);
 		}
 
 		renderer->AddScreenObject(
 			rt.GetPosition(),
 			TrackObjectId::Generate(trackProfileId, TrackObjectIdSuffix::kSymbol),
-			"",
-			screen
+			""
 		);
 	}
 
-	void SymbolRenderController::OnRenderPsrTrack(IRadarTargetDataProvider& rt, Gdiplus::Color color, const OptionData& option, Screen::ScreenWrapper& screen, Screen::GraphicsWrapper& graphics)
+	void SymbolRenderController::OnRenderPsrTrack(IRadarTargetDataProvider& rt, Gdiplus::Color color, const OptionData& option)
 	{
 		// We will not validate option.hidePsrSymbol here
 		// Instead, it should be done before this controller's owner calling this function
-		renderer->RenderPsrSymbol(rt.GetPosition(), color, screen, graphics);
+		renderer->RenderPsrSymbol(rt.GetPosition(), color);
 	}
 
-	void SymbolRenderController::OnRenderGroundTrack(IRadarTargetDataProvider& rt, const CString& callsign, Gdiplus::Color color, Screen::ScreenWrapper& screen, Screen::GraphicsWrapper& graphics)
+	void SymbolRenderController::OnRenderGroundTrack(IRadarTargetDataProvider& rt, const CString& callsign, Gdiplus::Color color)
 	{
 		CString msg;
 		msg.Format("%s [GROUND]", callsign.GetString());
-		renderer->RenderGroundTrackSymbol(rt.GetPosition(), color, screen, graphics);
-		renderer->AddScreenObject(rt.GetPosition(), TrackObjectId::kNoActionObjectId, msg, screen);
+		renderer->RenderGroundTrackSymbol(rt.GetPosition(), color);
+		renderer->AddScreenObject(rt.GetPosition(), TrackObjectId::kNoActionObjectId, msg);
 	}
 
-	void SymbolRenderController::OnRenderFlightPlanTrack(IFlightPlanDataProvider& fp, Gdiplus::Color color, bool isSelected, CString trackProfileId, Screen::ScreenWrapper& screen, Screen::GraphicsWrapper& graphics)
+	void SymbolRenderController::OnRenderFlightPlanTrack(IFlightPlanDataProvider& fp, Gdiplus::Color color, bool isSelected, CString trackProfileId)
 	{
-		renderer->RenderFlightPlanTrackSymbol(fp.GetFlightPlanTrackPosition(), color, screen, graphics);
+		renderer->RenderFlightPlanTrackSymbol(fp.GetFlightPlanTrackPosition(), color);
 
 		if (isSelected)
 		{
-			renderer->RenderSelectedSymbol(fp.GetFlightPlanTrackPosition(), color, screen, graphics);
+			renderer->RenderSelectedSymbol(fp.GetFlightPlanTrackPosition(), color);
 		}
 
 		renderer->AddScreenObject(
 			fp.GetFlightPlanTrackPosition(),
 			TrackObjectId::Generate(trackProfileId, TrackObjectIdSuffix::kSymbol),
-			"",
-			screen
+			""
 		);
 	}
 }

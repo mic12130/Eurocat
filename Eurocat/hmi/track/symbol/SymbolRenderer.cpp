@@ -3,7 +3,6 @@
 #include "hmi/track/symbol/SymbolRenderer.h"
 
 #include "helper/CoordinateHelper.h"
-#include "hmi/track/TrackColor.h"
 #include "screen/ScreenObjectType.h"
 
 using namespace Gdiplus;
@@ -12,7 +11,12 @@ using namespace Eurocat::Screen;
 
 namespace Eurocat::Hmi::Track
 {
-	void SymbolRenderer::RenderSsrSymbol(Common::Coordinate coord, Gdiplus::Color color, Screen::ScreenWrapper& screen, Screen::GraphicsWrapper& graphics)
+	SymbolRenderer::SymbolRenderer(Screen::ScreenWrapper& screen, Screen::GraphicsWrapper& graphics)
+		: screen(screen), graphics(graphics)
+	{
+	}
+
+	void SymbolRenderer::RenderSsrSymbol(Common::Coordinate coord, Gdiplus::Color color)
 	{
 		PointF px = GetPx(coord, screen);
 		Pen pen(color, REAL(2));
@@ -22,8 +26,7 @@ namespace Eurocat::Hmi::Track
 		graphics.SetAntialias(false);
 	}
 
-	void SymbolRenderer::RenderPsrSymbol(Common::Coordinate coord, Gdiplus::Color color,
-		Screen::ScreenWrapper& screen, Screen::GraphicsWrapper& graphics)
+	void SymbolRenderer::RenderPsrSymbol(Common::Coordinate coord, Gdiplus::Color color)
 	{
 		PointF px = GetPx(coord, screen);
 		Pen pen(color, REAL(1));
@@ -34,7 +37,7 @@ namespace Eurocat::Hmi::Track
 		graphics.SetAntialias(false);
 	}
 
-	void SymbolRenderer::RenderGroundTrackSymbol(Common::Coordinate coord, Gdiplus::Color color, Screen::ScreenWrapper& screen, Screen::GraphicsWrapper& graphics)
+	void SymbolRenderer::RenderGroundTrackSymbol(Common::Coordinate coord, Gdiplus::Color color)
 	{
 		PointF px = GetPx(coord, screen);
 		Pen pen(color, REAL(2));
@@ -44,7 +47,7 @@ namespace Eurocat::Hmi::Track
 		graphics.SetAntialias(false);
 	}
 
-	void SymbolRenderer::RenderFlightPlanTrackSymbol(Common::Coordinate coord, Gdiplus::Color color, Screen::ScreenWrapper& screen, Screen::GraphicsWrapper& graphics)
+	void SymbolRenderer::RenderFlightPlanTrackSymbol(Common::Coordinate coord, Gdiplus::Color color)
 	{
 		PointF px = GetPx(coord, screen);
 		Pen pen(color, REAL(2));
@@ -61,7 +64,7 @@ namespace Eurocat::Hmi::Track
 		graphics.SetAntialias(false);
 	}
 
-	void SymbolRenderer::RenderSelectedSymbol(Common::Coordinate coord, Gdiplus::Color color, Screen::ScreenWrapper& screen, Screen::GraphicsWrapper& graphics)
+	void SymbolRenderer::RenderSelectedSymbol(Common::Coordinate coord, Gdiplus::Color color)
 	{
 		PointF px = GetPx(coord, screen);
 		Pen pen(color, REAL(2));
@@ -82,7 +85,7 @@ namespace Eurocat::Hmi::Track
 		graphics.SetAntialias(false);
 	}
 
-	void SymbolRenderer::AddScreenObject(Common::Coordinate coord, CString objectId, CString message, Screen::ScreenWrapper& screen)
+	void SymbolRenderer::AddScreenObject(Common::Coordinate coord, CString objectId, CString message)
 	{
 		PointF px = GetPx(coord, screen);
 		CRect area(int(px.X) - 6, int(px.Y) - 6, int(px.X) + 6, int(px.Y) + 6);

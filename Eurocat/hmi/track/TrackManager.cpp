@@ -55,7 +55,7 @@ namespace Eurocat::Hmi::Track
 
 		// Render controllers of track components
 		auto altitudeFilter = std::make_shared<AltitudeFilter>(option);
-		SymbolRenderController symbolRenderController;
+		SymbolRenderController symbolRenderController(screen, graphics);
 		TagRenderController tagRenderController(altitudeFilter);
 		VelRenderController velRenderController;
 		HistRenderController histRenderController;
@@ -88,7 +88,7 @@ namespace Eurocat::Hmi::Track
 					auto color = TrackColor::GetTrackColor(fpProvider, profile.isIql);
 					bool isSelected = IsSelected(fpProvider);
 
-					symbolRenderController.OnRenderFlightPlanTrack(fpProvider, color, isSelected, profile.id, screen, graphics);
+					symbolRenderController.OnRenderFlightPlanTrack(fpProvider, color, isSelected, profile.id);
 					tagRenderController.OnRenderFlightPlanTrack(tagData, color, screen, graphics);
 				}
 			}
@@ -115,7 +115,7 @@ namespace Eurocat::Hmi::Track
 				CString callsign = rt.GetCallsign();
 				auto color = TrackColor::GetGroundTrackColor();
 
-				symbolRenderController.OnRenderGroundTrack(rtProvider, callsign, color, screen, graphics);
+				symbolRenderController.OnRenderGroundTrack(rtProvider, callsign, color);
 			}
 			else
 			{
@@ -134,7 +134,7 @@ namespace Eurocat::Hmi::Track
 						auto color = TrackColor::GetTrackColor(fpProvider, profile.isIql);
 						bool isSelected = IsSelected(fpProvider);
 
-						symbolRenderController.OnRenderSsrTrack(rtProvider, color, option, isSelected, profile.id, screen, graphics);
+						symbolRenderController.OnRenderSsrTrack(rtProvider, color, option, isSelected, profile.id);
 						tagRenderController.OnRenderCoupledTrack(rtProvider, tagData, color, screen, graphics);
 						velRenderController.OnRenderSsrTrack(rtProvider, profile, option, color, screen, graphics);
 						histRenderController.OnRenderSsrTrack(rtProvider, option, color, screen, graphics);
@@ -150,7 +150,7 @@ namespace Eurocat::Hmi::Track
 						auto color = TrackColor::GetUncoupledTrackColor(profile.isIql);
 						bool isSelected = IsSelected(rtProvider);
 
-						symbolRenderController.OnRenderSsrTrack(rtProvider, color, option, isSelected, profile.id, screen, graphics);
+						symbolRenderController.OnRenderSsrTrack(rtProvider, color, option, isSelected, profile.id);
 						tagRenderController.OnRenderUncoupledTrack(rtProvider, tagData, color, screen, graphics);
 						velRenderController.OnRenderSsrTrack(rtProvider, profile, option, color, screen, graphics);
 						histRenderController.OnRenderSsrTrack(rtProvider, option, color, screen, graphics);
@@ -164,7 +164,7 @@ namespace Eurocat::Hmi::Track
 						auto rtProvider = RadarTargetDataProvider(rt);
 						auto color = TrackColor::GetPsrTrackColor();
 
-						symbolRenderController.OnRenderPsrTrack(rtProvider, color, option, screen, graphics);
+						symbolRenderController.OnRenderPsrTrack(rtProvider, color, option);
 					}
 				}
 			}
