@@ -85,11 +85,11 @@ namespace Eurocat::Hmi::Track
 		graphics.SetAntialias(false);
 	}
 
-	void SymbolRenderer::AddScreenObject(Common::Coordinate coord, CString objectId, CString message)
+	void SymbolRenderer::AddScreenObject(Common::Coordinate coord, const SymbolObjectInfo& info)
 	{
 		PointF px = GetPx(coord, screen);
 		CRect area(int(px.X) - 6, int(px.Y) - 6, int(px.X) + 6, int(px.Y) + 6);
-		screen.AddScreenObject(ScreenObjectType::kTrack, objectId, area, false, message);
+		screen.AddScreenObject(ScreenObjectType::kTrack, info.objectId, area, false, info.message);
 	}
 
 	Gdiplus::PointF SymbolRenderer::GetPx(Common::Coordinate coord, Screen::ScreenWrapper& screen)

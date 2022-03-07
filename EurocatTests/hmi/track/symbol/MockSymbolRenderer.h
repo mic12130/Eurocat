@@ -14,6 +14,6 @@ namespace Eurocat::Hmi::Track
 		MOCK_METHOD(void, RenderGroundTrackSymbol, (Common::Coordinate, Gdiplus::Color), (override));
 		MOCK_METHOD(void, RenderFlightPlanTrackSymbol, (Common::Coordinate, Gdiplus::Color), (override));
 		MOCK_METHOD(void, RenderSelectedSymbol, (Common::Coordinate, Gdiplus::Color), (override));
-		MOCK_METHOD(void, AddScreenObject, (Common::Coordinate, CString, CString), (override));
+		MOCK_METHOD(void, AddScreenObject, (Common::Coordinate, const SymbolObjectInfo&), (override));
 	};
 }

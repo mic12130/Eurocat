@@ -243,6 +243,7 @@
     <ClCompile Include="hmi\track\hist\HistRenderer.cpp" />
     <ClCompile Include="hmi\track\profile\TrackProfileManager.cpp" />
     <ClCompile Include="hmi\track\RadarTargetDataProvider.cpp" />
+    <ClCompile Include="hmi\track\symbol\SymbolObjectInfoFactory.cpp" />
     <ClCompile Include="hmi\track\symbol\SymbolRenderController.cpp" />
     <ClCompile Include="hmi\track\symbol\SymbolRenderer.cpp" />
     <ClCompile Include="hmi\track\tag\alert\TagAlertData.cpp" />
@@ -369,6 +370,8 @@
     <ClInclude Include="hmi\track\profile\TrackProfileManager.h" />
     <ClInclude Include="hmi\track\RadarTargetDataProvider.h" />
     <ClInclude Include="hmi\track\symbol\ISymbolRenderer.h" />
+    <ClInclude Include="hmi\track\symbol\SymbolObjectInfoFactory.h" />
+    <ClInclude Include="hmi\track\symbol\SymbolObjectInfo.h" />
     <ClInclude Include="hmi\track\symbol\SymbolRenderController.h" />
     <ClInclude Include="hmi\track\symbol\SymbolRenderer.h" />
     <ClInclude Include="hmi\track\tag\alert\BorderType.h" />

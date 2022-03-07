@@ -596,6 +596,12 @@
     <ClInclude Include="common\OpData.h">
       <Filter>common</Filter>
     </ClInclude>
+    <ClInclude Include="hmi\track\symbol\SymbolObjectInfo.h">
+      <Filter>hmi\track\symbol</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\symbol\SymbolObjectInfoFactory.h">
+      <Filter>hmi\track\symbol</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="res\Eurocat.rc">
@@ -890,6 +896,9 @@
     </ClCompile>
     <ClCompile Include="common\OpData.cpp">
       <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\symbol\SymbolObjectInfoFactory.cpp">
+      <Filter>hmi\track\symbol</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

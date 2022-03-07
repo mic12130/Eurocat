@@ -53,6 +53,7 @@ namespace Eurocat::Hmi::Track
 		MockRadarTargetDataProvider rt;
 		OptionData option;
 		Gdiplus::Color color = Gdiplus::Color::Blue;
+		const SymbolObjectInfo symbolObjectInfo = SymbolObjectInfo("", "");
 		TestScreenWrapper screen;
 		TestGraphics graphics;
 		std::shared_ptr<MockSymbolRenderer> renderer = std::make_shared<MockSymbolRenderer>();
@@ -70,7 +71,7 @@ namespace Eurocat::Hmi::Track
 		EXPECT_CALL(*renderer, AddScreenObject)
 			.Times(1);
 
-		MakeController().OnRenderSsrTrack(rt, color, option, false, "22");
+		MakeController().OnRenderSsrTrack(rt, color, option, false, symbolObjectInfo);
 	}
 
 	TEST_F(SymbolRenderControllerTest, CanRenderSelectedSymbolForSsrTrack)
@@ -78,7 +79,7 @@ namespace Eurocat::Hmi::Track
 		EXPECT_CALL(*renderer, RenderSelectedSymbol)
 			.Times(1);
 
-		MakeController().OnRenderSsrTrack(rt, color, option, true, "22");
+		MakeController().OnRenderSsrTrack(rt, color, option, true, symbolObjectInfo);
 	}
 
 	TEST_F(SymbolRenderControllerTest, SsrSymbolInCyanWhenIdentAndFlashingToOn)
@@ -95,7 +96,7 @@ namespace Eurocat::Hmi::Track
 		EXPECT_CALL(*renderer, RenderSelectedSymbol(_, color))
 			.Times(1);
 
-		MakeController().OnRenderSsrTrack(rt, color, option, true, "22");
+		MakeController().OnRenderSsrTrack(rt, color, option, true, symbolObjectInfo);
 	}
 
 	TEST_F(SymbolRenderControllerTest, SsrSymbolInGeneralColorWhenIdentAndFlashingToOff)
@@ -111,7 +112,7 @@ namespace Eurocat::Hmi::Track
 		EXPECT_CALL(*renderer, RenderSelectedSymbol(_, color))
 			.Times(1);
 
-		MakeController().OnRenderSsrTrack(rt, color, option, true, "22");
+		MakeController().OnRenderSsrTrack(rt, color, option, true, symbolObjectInfo);
 	}
 
 	TEST_F(SymbolRenderControllerTest, CanHidePsrSymbolForSsrTrack)
@@ -120,7 +121,7 @@ namespace Eurocat::Hmi::Track
 		EXPECT_CALL(*renderer, RenderPsrSymbol)
 			.Times(0);
 
-		MakeController().OnRenderSsrTrack(rt, color, option, true, "22");
+		MakeController().OnRenderSsrTrack(rt, color, option, true, symbolObjectInfo);
 	}
 
 	TEST_F(SymbolRenderControllerTest, RendersForPsrTrack)
@@ -128,9 +129,9 @@ namespace Eurocat::Hmi::Track
 		EXPECT_CALL(*renderer, RenderPsrSymbol)
 			.Times(1);
 		EXPECT_CALL(*renderer, AddScreenObject)
-			.Times(0);
+			.Times(1);
 
-		MakeController().OnRenderPsrTrack(rt, color, option);
+		MakeController().OnRenderPsrTrack(rt, color, option, symbolObjectInfo);
 	}
 
 	TEST_F(SymbolRenderControllerTest, RendersForGroundTrack)
@@ -140,7 +141,7 @@ namespace Eurocat::Hmi::Track
 		EXPECT_CALL(*renderer, AddScreenObject)
 			.Times(1);
 
-		MakeController().OnRenderGroundTrack(rt, "ABC123", color);
+		MakeController().OnRenderGroundTrack(rt, color, symbolObjectInfo);
 	}
 
 	TEST_F(SymbolRenderControllerTest, RendersForFlightPlanTrack)
@@ -152,7 +153,7 @@ namespace Eurocat::Hmi::Track
 		EXPECT_CALL(*renderer, AddScreenObject)
 			.Times(1);
 
-		MakeController().OnRenderFlightPlanTrack(fp, color, false, "22");
+		MakeController().OnRenderFlightPlanTrack(fp, color, false, symbolObjectInfo);
 	}
 
 	TEST_F(SymbolRenderControllerTest, CanRenderSelectedSymbolForFlightPlanTrack)
@@ -160,6 +161,6 @@ namespace Eurocat::Hmi::Track
 		EXPECT_CALL(*renderer, RenderSelectedSymbol)
 			.Times(1);
 
-		MakeController().OnRenderFlightPlanTrack(fp, color, true, "22");
+		MakeController().OnRenderFlightPlanTrack(fp, color, true, symbolObjectInfo);
 	}
 }

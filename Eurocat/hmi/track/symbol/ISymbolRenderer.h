@@ -2,9 +2,7 @@
 
 #include "hmi/track/IRadarTargetDataProvider.h"
 #include "hmi/track/IFlightPlanDataProvider.h"
-#include "screen/ScreenWrapper.h"
-#include "screen/GraphicsWrapper.h"
-#include "hmi/track/IFlashHelper.h"
+#include "hmi/track/symbol/SymbolObjectInfo.h"
 
 namespace Eurocat::Hmi::Track
 {
@@ -34,8 +32,7 @@ namespace Eurocat::Hmi::Track
 		) = 0;
 		virtual void AddScreenObject(
 			Common::Coordinate coord, 
-			CString objectId, 
-			CString message
+			const SymbolObjectInfo& info
 		) = 0;
 	};
 }

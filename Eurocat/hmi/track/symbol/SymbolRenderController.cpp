@@ -5,8 +5,6 @@
 #include "hmi/track/FlashHelper.h"
 #include "hmi/track/symbol/SymbolRenderer.h"
 #include "hmi/track/TrackColor.h"
-#include "hmi/track/TrackObjectId.h"
-#include "hmi/track/TrackObjectIdSuffix.h"
 
 namespace Eurocat::Hmi::Track
 {
@@ -20,7 +18,7 @@ namespace Eurocat::Hmi::Track
 	{
 	}
 
-	void SymbolRenderController::OnRenderSsrTrack(IRadarTargetDataProvider& rt, Gdiplus::Color color, const OptionData& option, bool isSelected, CString trackProfileId)
+	void SymbolRenderController::OnRenderSsrTrack(IRadarTargetDataProvider& rt, Gdiplus::Color color, const OptionData& option, bool isSelected, const SymbolObjectInfo& symbolObjectInfo)
 	{
 		auto ssrSymbolColor = (rt.IsModeI() && flashHelper->ShouldRender()) ? TrackColor::kCyan : color;
 
@@ -36,29 +34,24 @@ namespace Eurocat::Hmi::Track
 			renderer->RenderSelectedSymbol(rt.GetPosition(), color);
 		}
 
-		renderer->AddScreenObject(
-			rt.GetPosition(),
-			TrackObjectId::Generate(trackProfileId, TrackObjectIdSuffix::kSymbol),
-			""
-		);
+		renderer->AddScreenObject(rt.GetPosition(), symbolObjectInfo);
 	}
 
-	void SymbolRenderController::OnRenderPsrTrack(IRadarTargetDataProvider& rt, Gdiplus::Color color, const OptionData& option)
+	void SymbolRenderController::OnRenderPsrTrack(IRadarTargetDataProvider& rt, Gdiplus::Color color, const OptionData& option, const SymbolObjectInfo& symbolObjectInfo)
 	{
 		// We will not validate option.hidePsrSymbol here
 		// Instead, it should be done before this controller's owner calling this function
 		renderer->RenderPsrSymbol(rt.GetPosition(), color);
+		renderer->AddScreenObject(rt.GetPosition(), symbolObjectInfo);
 	}
 
-	void SymbolRenderController::OnRenderGroundTrack(IRadarTargetDataProvider& rt, const CString& callsign, Gdiplus::Color color)
+	void SymbolRenderController::OnRenderGroundTrack(IRadarTargetDataProvider& rt, Gdiplus::Color color, const SymbolObjectInfo& symbolObjectInfo)
 	{
-		CString msg;
-		msg.Format("%s [GROUND]", callsign.GetString());
 		renderer->RenderGroundTrackSymbol(rt.GetPosition(), color);
-		renderer->AddScreenObject(rt.GetPosition(), TrackObjectId::kNoActionObjectId, msg);
+		renderer->AddScreenObject(rt.GetPosition(), symbolObjectInfo);
 	}
 
-	void SymbolRenderController::OnRenderFlightPlanTrack(IFlightPlanDataProvider& fp, Gdiplus::Color color, bool isSelected, CString trackProfileId)
+	void SymbolRenderController::OnRenderFlightPlanTrack(IFlightPlanDataProvider& fp, Gdiplus::Color color, bool isSelected, const SymbolObjectInfo& symbolObjectInfo)
 	{
 		renderer->RenderFlightPlanTrackSymbol(fp.GetFlightPlanTrackPosition(), color);
 
@@ -67,10 +60,6 @@ namespace Eurocat::Hmi::Track
 			renderer->RenderSelectedSymbol(fp.GetFlightPlanTrackPosition(), color);
 		}
 
-		renderer->AddScreenObject(
-			fp.GetFlightPlanTrackPosition(),
-			TrackObjectId::Generate(trackProfileId, TrackObjectIdSuffix::kSymbol),
-			""
-		);
+		renderer->AddScreenObject(fp.GetFlightPlanTrackPosition(), symbolObjectInfo);
 	}
 }

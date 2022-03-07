@@ -12,6 +12,8 @@
 #include "hmi/track/tag/RepositionHelper.h"
 #include "hmi/track/vel/VelRenderController.h"
 #include "hmi/track/hist/HistRenderController.h"
+#include "hmi/track/symbol/SymbolRenderController.h"
+#include "hmi/track/symbol/SymbolObjectInfoFactory.h"
 #include "hmi/track/action/SymbolActionHandler.h"
 #include "hmi/track/action/AcidActionHandler.h"
 #include "hmi/track/action/CflActionHandler.h"
@@ -59,6 +61,7 @@ namespace Eurocat::Hmi::Track
 		TagRenderController tagRenderController(altitudeFilter);
 		VelRenderController velRenderController;
 		HistRenderController histRenderController;
+		SymbolObjectInfoFactory symbolObjectInfoFactory;
 
 		// We will only look for flight plan tracks when FPASD enabled
 		if (option.showFlightPlanTracks)
@@ -87,8 +90,9 @@ namespace Eurocat::Hmi::Track
 					auto tagData = FlightPlanTrackTagData(fpProvider, profile, option, unit);
 					auto color = TrackColor::GetTrackColor(fpProvider, profile.isIql);
 					bool isSelected = IsSelected(fpProvider);
+					auto symbolObjectInfo = symbolObjectInfoFactory.MakeForFlightPlanTrack(fp, profile);
 
-					symbolRenderController.OnRenderFlightPlanTrack(fpProvider, color, isSelected, profile.id);
+					symbolRenderController.OnRenderFlightPlanTrack(fpProvider, color, isSelected, symbolObjectInfo);
 					tagRenderController.OnRenderFlightPlanTrack(tagData, color, screen, graphics);
 				}
 			}
@@ -114,8 +118,9 @@ namespace Eurocat::Hmi::Track
 				auto rtProvider = RadarTargetDataProvider(rt);
 				CString callsign = rt.GetCallsign();
 				auto color = TrackColor::GetGroundTrackColor();
+				auto symbolObjectInfo = symbolObjectInfoFactory.MakeForGroundTrack(rt);
 
-				symbolRenderController.OnRenderGroundTrack(rtProvider, callsign, color);
+				symbolRenderController.OnRenderGroundTrack(rtProvider, color, symbolObjectInfo);
 			}
 			else
 			{
@@ -133,8 +138,9 @@ namespace Eurocat::Hmi::Track
 						auto tagData = CoupledTrackTagData(rtProvider, fpProvider, profile, option, unit);
 						auto color = TrackColor::GetTrackColor(fpProvider, profile.isIql);
 						bool isSelected = IsSelected(fpProvider);
+						auto symbolObjectInfo = symbolObjectInfoFactory.MakeForCoupledTrack(coupledFp, profile);
 
-						symbolRenderController.OnRenderSsrTrack(rtProvider, color, option, isSelected, profile.id);
+						symbolRenderController.OnRenderSsrTrack(rtProvider, color, option, isSelected, symbolObjectInfo);
 						tagRenderController.OnRenderCoupledTrack(rtProvider, tagData, color, screen, graphics);
 						velRenderController.OnRenderSsrTrack(rtProvider, profile, option, color, screen, graphics);
 						histRenderController.OnRenderSsrTrack(rtProvider, option, color, screen, graphics);
@@ -149,8 +155,9 @@ namespace Eurocat::Hmi::Track
 						auto tagData = UncoupledTrackTagData(rtProvider, profile, option, unit);
 						auto color = TrackColor::GetUncoupledTrackColor(profile.isIql);
 						bool isSelected = IsSelected(rtProvider);
+						auto symbolObjectInfo = symbolObjectInfoFactory.MakeForUncoupledTrack(profile);
 
-						symbolRenderController.OnRenderSsrTrack(rtProvider, color, option, isSelected, profile.id);
+						symbolRenderController.OnRenderSsrTrack(rtProvider, color, option, isSelected, symbolObjectInfo);
 						tagRenderController.OnRenderUncoupledTrack(rtProvider, tagData, color, screen, graphics);
 						velRenderController.OnRenderSsrTrack(rtProvider, profile, option, color, screen, graphics);
 						histRenderController.OnRenderSsrTrack(rtProvider, option, color, screen, graphics);
@@ -163,8 +170,9 @@ namespace Eurocat::Hmi::Track
 					{
 						auto rtProvider = RadarTargetDataProvider(rt);
 						auto color = TrackColor::GetPsrTrackColor();
+						auto symbolObjectInfo = symbolObjectInfoFactory.MakeForPsrTrack();
 
-						symbolRenderController.OnRenderPsrTrack(rtProvider, color, option);
+						symbolRenderController.OnRenderPsrTrack(rtProvider, color, option, symbolObjectInfo);
 					}
 				}
 			}

@@ -4,6 +4,7 @@
 #include "hmi/track/IRadarTargetDataProvider.h"
 #include "hmi/track/IFlightPlanDataProvider.h"
 #include "screen/GraphicsWrapper.h"
+#include "screen/ScreenWrapper.h"
 
 namespace Eurocat::Hmi::Track
 {
@@ -16,7 +17,7 @@ namespace Eurocat::Hmi::Track
 		void RenderGroundTrackSymbol(Common::Coordinate coord, Gdiplus::Color color) override;
 		void RenderFlightPlanTrackSymbol(Common::Coordinate coord, Gdiplus::Color color) override;
 		void RenderSelectedSymbol(Common::Coordinate coord, Gdiplus::Color color) override;
-		void AddScreenObject(Common::Coordinate coord, CString objectId, CString message) override;
+		void AddScreenObject(Common::Coordinate coord, const SymbolObjectInfo& info) override;
 
 	private:
 		Screen::ScreenWrapper& screen;
