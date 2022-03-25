@@ -6,8 +6,10 @@
 #include "plugin/PluginEnvironment.h"
 #include "plugin/FlightPlanHelper.h"
 #include "window/LevelPopupMenu.h"
+#include "plugin/extension/CflData.h"
 
 using namespace Eurocat::Plugin;
+using namespace Eurocat::Plugin::Extension;
 using namespace Eurocat::Common::Unit;
 using namespace Eurocat::Hmi::Unit;
 using namespace Eurocat::Window;
@@ -41,16 +43,16 @@ namespace Eurocat::TagItem
 		callsignForPopup = fp.GetCallsign();
 	}
 
-	void CflFunction::OnSelectLevel(int level, Hmi::Unit::UnitDisplayMode unit)
+	void CflFunction::OnSelectLevel(std::optional<int> level, Hmi::Unit::UnitDisplayMode unit)
 	{
 		auto fp = PluginEnvironment::Shared().GetPlugin().FlightPlanSelect(callsignForPopup);
-		int levelToSet = level;
+		auto levelToSet = level;
 
-		if (unit == UnitDisplayMode::Metric)
+		if (unit == UnitDisplayMode::Metric && level.has_value())
 		{
-			levelToSet = AltitudeConverter::MeterToFeet(levelToSet);
+			levelToSet = AltitudeConverter::MeterToFeet(level.value());
 		}
 
-		fp.GetControllerAssignedData().SetClearedAltitude(levelToSet);
+		CflData::SetForFlightPlan(fp, levelToSet);
 	}
 }

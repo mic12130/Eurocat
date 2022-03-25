@@ -6,9 +6,11 @@
 #include "common/FlightPlanStateMaker.h"
 #include "common/OpData.h"
 #include "hmi/FlightPlanDisplayStateGenerator.h"
+#include "plugin/extension/CflData.h"
 
 using namespace Eurocat::Hmi;
 using namespace Eurocat::Common;
+using namespace Eurocat::Plugin::Extension;
 
 namespace Eurocat::Hmi::Track
 {
@@ -51,9 +53,9 @@ namespace Eurocat::Hmi::Track
 		return fp.GetFlightPlanData().GetArrivalRwy();
 	}
 
-	int FlightPlanDataProvider::GetCfl()
+	std::optional<int> FlightPlanDataProvider::GetCfl()
 	{
-		return fp.GetControllerAssignedData().GetClearedAltitude();
+		return CflData::GetForFlightPlan(fp);
 	}
 
 	char FlightPlanDataProvider::GetWtc()

@@ -9,6 +9,6 @@ namespace Eurocat::Window
 	{
 	public:
 		virtual ~LevelPopupMenuDelegate() = default;
-		virtual void OnSelectLevel(int level, Hmi::Unit::UnitDisplayMode unit) = 0;
+		virtual void OnSelectLevel(std::optional<int> level, Hmi::Unit::UnitDisplayMode unit) = 0;
 	};
 }

@@ -602,6 +602,9 @@
     <ClInclude Include="hmi\track\symbol\SymbolObjectInfoFactory.h">
       <Filter>hmi\track\symbol</Filter>
     </ClInclude>
+    <ClInclude Include="plugin\extension\CflData.h">
+      <Filter>plugin\extension</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="res\Eurocat.rc">
@@ -899,6 +902,9 @@
     </ClCompile>
     <ClCompile Include="hmi\track\symbol\SymbolObjectInfoFactory.cpp">
       <Filter>hmi\track\symbol</Filter>
+    </ClCompile>
+    <ClCompile Include="plugin\extension\CflData.cpp">
+      <Filter>plugin\extension</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

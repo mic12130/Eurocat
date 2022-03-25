@@ -34,6 +34,30 @@ namespace Eurocat::Hmi::Track
 		EXPECT_STREQ(GetStringContent(label)->string, L"0420"); // 4200 meters = 13780 feets
 	}
 
+	TEST(CflLabelTest, NoneWithImerialConfig)
+	{
+		MockFlightPlanDataProvider fp;
+		EXPECT_CALL(fp, GetCfl)
+			.Times(1)
+			.WillOnce(Return(std::nullopt));
+
+		auto label = std::make_shared<CflLabel>(fp, UnitDisplayMode::Imperial);
+
+		EXPECT_STREQ(GetStringContent(label)->string, L"   ");
+	}
+
+	TEST(CflLabelTest, NoneWithMetricConfig)
+	{
+		MockFlightPlanDataProvider fp;
+		EXPECT_CALL(fp, GetCfl)
+			.Times(1)
+			.WillOnce(Return(std::nullopt));
+
+		auto label = std::make_shared<CflLabel>(fp, UnitDisplayMode::Metric);
+
+		EXPECT_STREQ(GetStringContent(label)->string, L"    ");
+	}
+
 	TEST(CflLabelTest, HighlightsWhenCflNotAcknowledged)
 	{
 		MockFlightPlanDataProvider fp;

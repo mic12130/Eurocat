@@ -11,7 +11,7 @@ namespace Eurocat::TagItem
 	public:
 		CflFunction(Hmi::Unit::UnitDisplayManager& unitDisplayManager);
 		void OnFunctionCall(int functionId, CString itemString, POINT point, RECT area) override;
-		void OnSelectLevel(int level, Hmi::Unit::UnitDisplayMode unit) override;
+		void OnSelectLevel(std::optional<int> level, Hmi::Unit::UnitDisplayMode unit) override;
 
 	private:
 		Hmi::Unit::UnitDisplayManager& unitDisplayManager;

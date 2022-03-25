@@ -6,10 +6,12 @@
 #include "common/unit/AltitudeConverter.h"
 #include "plugin/PluginEnvironment.h"
 #include "plugin/FlightPlanHelper.h"
+#include "plugin/extension/CflData.h"
 
 using namespace Eurocat::Window;
 using namespace Eurocat::Hmi::Unit;
 using namespace Eurocat::Plugin;
+using namespace Eurocat::Plugin::Extension;
 using namespace Eurocat::Screen;
 using namespace Eurocat::Common::Unit;
 
@@ -67,19 +69,19 @@ namespace Eurocat::Hmi::Track
 		}
 	}
 
-	void CflActionHandler::OnSelectLevel(int level, Hmi::Unit::UnitDisplayMode unit)
+	void CflActionHandler::OnSelectLevel(std::optional<int> level, Hmi::Unit::UnitDisplayMode unit)
 	{
-		int feets = level;
+		auto levelToSet = level;
 
-		if (unit == UnitDisplayMode::Metric)
+		if (unit == UnitDisplayMode::Metric && level.has_value())
 		{
-			feets = AltitudeConverter::MeterToFeet(level);
+			levelToSet = AltitudeConverter::MeterToFeet(level.value());
 		}
 
 		if (auto fp = PluginEnvironment::Shared().GetPlugin().FlightPlanSelect(callsignForPopup);
 			fp.IsValid())
 		{
-			fp.GetControllerAssignedData().SetClearedAltitude(feets);
+			CflData::SetForFlightPlan(fp, levelToSet);
 		}
 	}
 }

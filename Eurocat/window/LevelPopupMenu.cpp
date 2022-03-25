@@ -10,7 +10,7 @@ using namespace Eurocat::Hmi::Unit;
 
 namespace Eurocat::Window
 {
-	LevelPopupMenu::LevelPopupMenu(int currentLevel, Hmi::Unit::UnitDisplayMode unit)
+	LevelPopupMenu::LevelPopupMenu(std::optional<int> currentLevel, Hmi::Unit::UnitDisplayMode unit)
 		: unit(unit)
 	{
 		AltitudeFormatter formatter(unit);
@@ -28,13 +28,25 @@ namespace Eurocat::Window
 		for (auto& level : levels)
 		{
 			CString str = formatter.StringFromAltitude(level);
-			AddItem(PopupMenuItem(str, abs(level - currentLevel) < 100));
+			AddItem(PopupMenuItem(str, abs(level - currentLevel.value_or(-999)) < 100));
 		}
+
+		AddItem(PopupMenuItem("NONE", currentLevel.has_value() == false));
 	}
 
 	void LevelPopupMenu::OnRetrieveEuroScopeInput(CString str, POINT point, RECT rect)
 	{
 		PopupMenu::OnRetrieveEuroScopeInput(str, point, rect);
+
+		if (str == "NONE")
+		{
+			if (auto d = levelPopupDelegate.lock())
+			{
+				d->OnSelectLevel(std::nullopt, unit);
+			}
+
+			return;
+		}
 
 		int level = 0;
 

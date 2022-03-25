@@ -16,7 +16,7 @@ namespace Eurocat::Hmi::Track
 			Screen::MouseButton button,
 			POINT point, RECT area
 		) override;
-		void OnSelectLevel(int level, Hmi::Unit::UnitDisplayMode unit) override;
+		void OnSelectLevel(std::optional<int> level, Hmi::Unit::UnitDisplayMode unit) override;
 
 	private:
 		Hmi::Unit::UnitDisplayManager& unitDisplayManager;

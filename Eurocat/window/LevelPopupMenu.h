@@ -9,7 +9,7 @@ namespace Eurocat::Window
 	class LevelPopupMenu : public Plugin::Input::PopupMenu
 	{
 	public:
-		LevelPopupMenu(int currentLevel, Hmi::Unit::UnitDisplayMode unit);
+		LevelPopupMenu(std::optional<int> currentLevel, Hmi::Unit::UnitDisplayMode unit);
 		void OnRetrieveEuroScopeInput(CString str, POINT point, RECT rect) override;
 
 		// Set this instead of the original PopupMenu::delegate

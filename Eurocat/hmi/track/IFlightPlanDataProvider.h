@@ -19,7 +19,7 @@ namespace Eurocat::Hmi::Track
 		virtual CString GetAircraftType() = 0;
 		virtual CString GetDestination() = 0;
 		virtual CString GetArrivalRunway() = 0;
-		virtual int GetCfl() = 0;
+		virtual std::optional<int> GetCfl() = 0;
 		virtual int GetRfl() = 0;
 		virtual char GetWtc() = 0;
 		virtual std::vector<CString> GetWaypointsAhead(int preferredCount) = 0;

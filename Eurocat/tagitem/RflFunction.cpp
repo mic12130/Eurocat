@@ -41,10 +41,10 @@ namespace Eurocat::TagItem
 		callsignForPopup = fp.GetCallsign();
 	}
 
-	void RflFunction::OnSelectLevel(int level, Hmi::Unit::UnitDisplayMode unit)
+	void RflFunction::OnSelectLevel(std::optional<int> level, Hmi::Unit::UnitDisplayMode unit)
 	{
 		auto fp = PluginEnvironment::Shared().GetPlugin().FlightPlanSelect(callsignForPopup);
-		int levelToSet = level;
+		int levelToSet = level.value_or(0); // Convert NONE selection to 0 as RFL cannot be none
 
 		if (unit == UnitDisplayMode::Metric)
 		{

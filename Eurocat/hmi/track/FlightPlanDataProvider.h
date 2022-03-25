@@ -15,7 +15,7 @@ namespace Eurocat::Hmi::Track
 		CString GetAircraftType() override;
 		CString GetDestination() override;
 		CString GetArrivalRunway() override;
-		int GetCfl() override;
+		std::optional<int> GetCfl() override;
 		char GetWtc() override;
 		std::vector<CString> GetWaypointsAhead(int preferredCount) override;
 		Common::Coordinate GetFlightPlanTrackPosition()override;

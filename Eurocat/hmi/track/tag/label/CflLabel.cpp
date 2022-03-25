@@ -19,27 +19,34 @@ namespace Eurocat::Hmi::Track
 
 	std::shared_ptr<ITagLabelContent> CflLabel::GetTagLabelContent()
 	{
-		int feets = data.GetCfl();
-		bool isRevValue = (feets == 1 || feets == 2); // Treats reversed values as invalid
+		auto feets = data.GetCfl();
+		bool isNone = feets == std::nullopt;
 		AltitudeFormatter formatter(unit);
 		CString str;
 
-		if (unit == UnitDisplayMode::Imperial)
+		if (isNone)
 		{
-			if (feets > 99999 || feets < 0 || isRevValue)
+			if (unit == UnitDisplayMode::Imperial)
+				str = "   ";
+			else if (unit == UnitDisplayMode::Metric)
+				str = "    ";
+		}
+		else if (unit == UnitDisplayMode::Imperial)
+		{
+			if (feets.value() > 99999 || feets.value() < 0)
 			{
 				str = "   ";
 			}
 			else
 			{
-				str = formatter.StringFromAltitude(feets);
+				str = formatter.StringFromAltitude(feets.value());
 			}
 		}
 		else if (unit == UnitDisplayMode::Metric)
 		{
-			int meters = AltitudeConverter::FeetToMeter(feets);
+			int meters = AltitudeConverter::FeetToMeter(feets.value());
 
-			if (meters > 99999 || meters < 0 || isRevValue)
+			if (meters > 99999 || meters < 0 || isNone)
 			{
 				str = "    ";
 			}

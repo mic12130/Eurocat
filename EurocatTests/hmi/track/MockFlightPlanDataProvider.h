@@ -16,7 +16,7 @@ namespace Eurocat::Hmi::Track
 		MOCK_METHOD(CString, GetAircraftType, (), (override));
 		MOCK_METHOD(CString, GetDestination, (), (override));
 		MOCK_METHOD(CString, GetArrivalRunway, (), (override));
-		MOCK_METHOD(int, GetCfl, (), (override));
+		MOCK_METHOD(std::optional<int>, GetCfl, (), (override));
 		MOCK_METHOD(int, GetRfl, (), (override));
 		MOCK_METHOD(char, GetWtc, (), (override));
 		MOCK_METHOD(std::vector<CString>, GetWaypointsAhead, (int), (override));

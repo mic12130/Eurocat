@@ -279,6 +279,7 @@
     <ClCompile Include="hmi\track\vel\VelRenderController.cpp" />
     <ClCompile Include="hmi\track\vel\VelRenderer.cpp" />
     <ClCompile Include="hmi\unit\UnitDisplayManager.cpp" />
+    <ClCompile Include="plugin\extension\CflData.cpp" />
     <ClCompile Include="plugin\extension\FlightPlanAttributeUpdater.cpp" />
     <ClCompile Include="plugin\extension\FlightPlanProcessor.cpp" />
     <ClCompile Include="plugin\input\EuroScopeInputManager.cpp" />
@@ -430,6 +431,7 @@
     <ClInclude Include="hmi\track\vel\VelRenderer.h" />
     <ClInclude Include="hmi\unit\UnitDisplayMode.h" />
     <ClInclude Include="hmi\unit\UnitDisplayManager.h" />
+    <ClInclude Include="plugin\extension\CflData.h" />
     <ClInclude Include="plugin\extension\FlightPlanAttribute.h" />
     <ClInclude Include="plugin\extension\FlightPlanAttributeUpdater.h" />
     <ClInclude Include="plugin\extension\FlightPlanProcessor.h" />
