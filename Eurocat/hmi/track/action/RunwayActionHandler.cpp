@@ -93,12 +93,12 @@ namespace Eurocat::Hmi::Track
 			element.IsValid();
 			element = plugin.SectorFileElementSelectNext(element, EuroScopePlugIn::SECTOR_ELEMENT_RUNWAY))
 		{
-			// During the testing, it looked like an ES API issue that GetAirportName()
-			// would always return airport ICAO with an extra space behind (e.g. "ZBAA "),
-			// so a trim will be applied here
-			CString apt = CString(element.GetAirportName()).Trim();
+			// It looks like an ES API issue that GetAirportName() would always
+			// return with a space appended (e.g. "ZSSS HONGQIAO ", "ZBAA ")
+			// No impact on codes below, just a reminder :)
+			CString apt = element.GetAirportName();
 
-			if (apt == icao)
+			if (apt.Left(4) == icao)
 			{
 				if (element.IsElementActive(false, 0))
 				{
