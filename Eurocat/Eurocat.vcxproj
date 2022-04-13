@@ -370,6 +370,7 @@
     <ClInclude Include="hmi\track\profile\TrackProfile.h" />
     <ClInclude Include="hmi\track\profile\TrackProfileManager.h" />
     <ClInclude Include="hmi\track\RadarTargetDataProvider.h" />
+    <ClInclude Include="hmi\track\RenderableTrack.h" />
     <ClInclude Include="hmi\track\symbol\ISymbolRenderer.h" />
     <ClInclude Include="hmi\track\symbol\SymbolObjectInfoFactory.h" />
     <ClInclude Include="hmi\track\symbol\SymbolObjectInfo.h" />

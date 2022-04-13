@@ -28,9 +28,10 @@ namespace Eurocat::Hmi::Track
 		int GetAssignedHeading() override;
 		int GetAssignedSpeed() override;
 		int GetAssignedMach() override;
+		CString GetPilotName() override;
 
 	private:
-		EuroScopePlugIn::CFlightPlan& fp;
+		EuroScopePlugIn::CFlightPlan fp;
 		Plugin::Extension::FlightPlanAttribute& fpAttribute;
 	};
 }

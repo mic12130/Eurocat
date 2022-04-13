@@ -41,4 +41,11 @@ namespace Eurocat::Hmi
 
 		return result;
 	}
+
+	bool FlightPlanDisplayStateGenerator::IsAcceptedReminding(const Plugin::Extension::FlightPlanAttribute& fpAttribute)
+	{
+		return fpAttribute.currentState == FlightPlanState::Uncontrolled &&
+			(fpAttribute.lastState == FlightPlanState::Controlled || fpAttribute.lastState == FlightPlanState::HandedOver) &&
+			CTimeSpan(CTime::GetCurrentTime() - fpAttribute.lastStateUpdateTime).GetTotalSeconds() <= 15;
+	}
 }

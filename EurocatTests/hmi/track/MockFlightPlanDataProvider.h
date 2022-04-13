@@ -28,5 +28,6 @@ namespace Eurocat::Hmi::Track
 		MOCK_METHOD(int, GetAssignedHeading, (), (override));
 		MOCK_METHOD(int, GetAssignedSpeed, (), (override));
 		MOCK_METHOD(int, GetAssignedMach, (), (override));
+		MOCK_METHOD(CString, GetPilotName, (), (override));
 	};
 }

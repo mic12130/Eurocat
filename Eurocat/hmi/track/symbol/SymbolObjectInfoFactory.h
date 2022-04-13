@@ -12,8 +12,8 @@ namespace Eurocat::Hmi::Track
 	public:
 		SymbolObjectInfo MakeForPsrTrack();
 		SymbolObjectInfo MakeForUncoupledTrack(const TrackProfile& profile);
-		SymbolObjectInfo MakeForCoupledTrack(EuroScopePlugIn::CFlightPlan& fp, const TrackProfile& profile);
-		SymbolObjectInfo MakeForFlightPlanTrack(EuroScopePlugIn::CFlightPlan& fp, const TrackProfile& profile);
-		SymbolObjectInfo MakeForGroundTrack(EuroScopePlugIn::CRadarTarget& rt);
+		SymbolObjectInfo MakeForCoupledTrack(IFlightPlanDataProvider& fp, const TrackProfile& profile);
+		SymbolObjectInfo MakeForFlightPlanTrack(IFlightPlanDataProvider& fp, const TrackProfile& profile);
+		SymbolObjectInfo MakeForGroundTrack();
 	};
 }

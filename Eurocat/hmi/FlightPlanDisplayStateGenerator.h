@@ -12,5 +12,6 @@ namespace Eurocat::Hmi
 			const EuroScopePlugIn::CFlightPlan& fp, 
 			const Plugin::Extension::FlightPlanAttribute& fpAttribute
 		) -> FlightPlanDisplayState;
+		static bool IsAcceptedReminding(const Plugin::Extension::FlightPlanAttribute& fpAttribute);
 	};
 }

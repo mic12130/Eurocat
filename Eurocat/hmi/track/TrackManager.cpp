@@ -24,6 +24,7 @@
 #include "hmi/track/tag/render_data/CoupledTrackTagData.h"
 #include "hmi/track/tag/render_data/FlightPlanTrackTagData.h"
 #include "hmi/track/tag/render_data/UncoupledTrackTagData.h"
+#include "hmi/FlightPlanDisplayStateGenerator.h"
 #include "screen/ScreenObjectType.h"
 #include "plugin/PluginEnvironment.h"
 #include "hmi/cursor/CursorManager.h"
@@ -37,7 +38,7 @@ using namespace Eurocat::Hmi::Track;
 namespace Eurocat::Hmi::Track
 {
 	TrackManager::TrackManager(Unit::UnitDisplayManager& unitDisplayManager)
-	: unitDisplayManager(unitDisplayManager)
+		: unitDisplayManager(unitDisplayManager)
 	{
 		actionHandlerMap = {
 			{ TrackObjectIdSuffix::kSymbol, std::make_shared<SymbolActionHandler>(trackProfileManager, repositioningProfileId) },
@@ -54,14 +55,7 @@ namespace Eurocat::Hmi::Track
 	{
 		auto& plugin = PluginEnvironment::Shared().GetPlugin();
 		auto radarArea = screen.GetRadarArea();
-
-		// Render controllers of track components
-		auto altitudeFilter = std::make_shared<AltitudeFilter>(option);
-		SymbolRenderController symbolRenderController(screen, graphics);
-		TagRenderController tagRenderController(altitudeFilter);
-		VelRenderController velRenderController;
-		HistRenderController histRenderController;
-		SymbolObjectInfoFactory symbolObjectInfoFactory;
+		std::vector<RenderableTrack> renderableTracks;
 
 		// We will only look for flight plan tracks when FPASD enabled
 		if (option.showFlightPlanTracks)
@@ -83,17 +77,9 @@ namespace Eurocat::Hmi::Track
 					fp.GetCorrelatedRadarTarget().IsValid() == false)
 				{
 					// FP Track
-
-					auto fpProvider = FlightPlanDataProvider(fp, PluginEnvironment::Shared().AttributeForFlightPlan(fp));
-					auto profile = trackProfileManager.GetOrCreateProfileForFlightPlanTrack(fpProvider.GetCallsign());
-					auto unit = GetUnit(fpProvider);
-					auto tagData = FlightPlanTrackTagData(fpProvider, profile, option, unit);
-					auto color = TrackColor::GetTrackColor(fpProvider, profile.isIql);
-					bool isSelected = IsSelected(fpProvider);
-					auto symbolObjectInfo = symbolObjectInfoFactory.MakeForFlightPlanTrack(fp, profile);
-
-					symbolRenderController.OnRenderFlightPlanTrack(fpProvider, color, isSelected, symbolObjectInfo);
-					tagRenderController.OnRenderFlightPlanTrack(tagData, color, screen, graphics);
+					auto& fpAttribute = PluginEnvironment::Shared().AttributeForFlightPlan(fp);
+					auto fpData = std::make_shared<FlightPlanDataProvider>(fp, fpAttribute);
+					renderableTracks.emplace_back(fp.GetCallsign(), RenderableTrack::Type::FlightPlanTrack, fpData, nullptr);
 				}
 			}
 		}
@@ -110,17 +96,13 @@ namespace Eurocat::Hmi::Track
 			{
 				continue;
 			}
+			
+			auto rtData = std::make_shared<RadarTargetDataProvider>(rt);
 
 			if (rt.GetGS() < kGroundTrafficMaxSpeed)
 			{
 				// Ground traffic
-
-				auto rtProvider = RadarTargetDataProvider(rt);
-				CString callsign = rt.GetCallsign();
-				auto color = TrackColor::GetGroundTrackColor();
-				auto symbolObjectInfo = symbolObjectInfoFactory.MakeForGroundTrack(rt);
-
-				symbolRenderController.OnRenderGroundTrack(rtProvider, color, symbolObjectInfo);
+				renderableTracks.emplace_back(rt.GetCallsign(), RenderableTrack::Type::Ground, nullptr, rtData);
 			}
 			else
 			{
@@ -130,53 +112,27 @@ namespace Eurocat::Hmi::Track
 					if (auto coupledFp = rt.GetCorrelatedFlightPlan(); coupledFp.IsValid())
 					{
 						// Coupled
+						auto& fpAttribute = PluginEnvironment::Shared().AttributeForFlightPlan(coupledFp);
+						auto fpData = std::make_shared<FlightPlanDataProvider>(coupledFp, fpAttribute);
 
-						auto fpProvider = FlightPlanDataProvider(coupledFp, PluginEnvironment::Shared().AttributeForFlightPlan((coupledFp)));
-						auto rtProvider = RadarTargetDataProvider(rt);
-						auto profile = trackProfileManager.GetOrCreateProfileForCoupledTrack(fpProvider.GetCallsign(), rtProvider.GetTargetId());
-						auto unit = GetUnit(rtProvider);
-						auto tagData = CoupledTrackTagData(rtProvider, fpProvider, profile, option, unit);
-						auto color = TrackColor::GetTrackColor(fpProvider, profile.isIql);
-						bool isSelected = IsSelected(fpProvider);
-						auto symbolObjectInfo = symbolObjectInfoFactory.MakeForCoupledTrack(coupledFp, profile);
-
-						symbolRenderController.OnRenderSsrTrack(rtProvider, color, option, isSelected, symbolObjectInfo);
-						tagRenderController.OnRenderCoupledTrack(rtProvider, tagData, color, screen, graphics);
-						velRenderController.OnRenderSsrTrack(rtProvider, profile, option, color, screen, graphics);
-						histRenderController.OnRenderSsrTrack(rtProvider, option, color, screen, graphics);
+						renderableTracks.emplace_back(rt.GetCallsign(), RenderableTrack::Type::Coupled, fpData, rtData);
 					}
 					else
 					{
 						// Uncoupled
-
-						auto rtProvider = RadarTargetDataProvider(rt);
-						auto profile = trackProfileManager.GetOrCreateProfileForUncoupledTrack(rtProvider.GetTargetId());
-						auto unit = GetUnit(rtProvider);
-						auto tagData = UncoupledTrackTagData(rtProvider, profile, option, unit);
-						auto color = TrackColor::GetUncoupledTrackColor(profile.isIql);
-						bool isSelected = IsSelected(rtProvider);
-						auto symbolObjectInfo = symbolObjectInfoFactory.MakeForUncoupledTrack(profile);
-
-						symbolRenderController.OnRenderSsrTrack(rtProvider, color, option, isSelected, symbolObjectInfo);
-						tagRenderController.OnRenderUncoupledTrack(rtProvider, tagData, color, screen, graphics);
-						velRenderController.OnRenderSsrTrack(rtProvider, profile, option, color, screen, graphics);
-						histRenderController.OnRenderSsrTrack(rtProvider, option, color, screen, graphics);
+						renderableTracks.emplace_back(rt.GetCallsign(), RenderableTrack::Type::Uncoupled, nullptr, rtData);
 					}
 				}
 				else
 				{
 					// PSR
-					if (option.hidePsrSymbol == false)
-					{
-						auto rtProvider = RadarTargetDataProvider(rt);
-						auto color = TrackColor::GetPsrTrackColor();
-						auto symbolObjectInfo = symbolObjectInfoFactory.MakeForPsrTrack();
-
-						symbolRenderController.OnRenderPsrTrack(rtProvider, color, option, symbolObjectInfo);
-					}
+					renderableTracks.emplace_back(rt.GetCallsign(), RenderableTrack::Type::Primary, nullptr, rtData);
 				}
 			}
 		}
+
+		std::sort(renderableTracks.begin(), renderableTracks.end());
+		RenderTracks(renderableTracks, screen, graphics);
 	}
 
 	void TrackManager::OnOverScreenObject(Screen::ScreenWrapper& screen, Screen::MouseInputArgs& args)
@@ -257,6 +213,86 @@ namespace Eurocat::Hmi::Track
 	TrackProfileManager& TrackManager::GetTrackProfileManager()
 	{
 		return trackProfileManager;
+	}
+
+	void TrackManager::RenderTracks(std::vector<RenderableTrack>& tracks, Screen::ScreenWrapper& screen, Screen::GraphicsWrapper& graphics)
+	{
+		// Render controllers of track components
+		auto altitudeFilter = std::make_shared<AltitudeFilter>(option);
+		SymbolRenderController symbolRenderController(screen, graphics);
+		TagRenderController tagRenderController(altitudeFilter);
+		VelRenderController velRenderController;
+		HistRenderController histRenderController;
+		SymbolObjectInfoFactory symbolObjectInfoFactory;
+
+		for (auto& track : tracks)
+		{
+			if (track.type == RenderableTrack::Type::Ground)
+			{
+				auto& rt = *track.rt;
+				CString callsign = rt.GetTargetId();
+				auto color = TrackColor::GetGroundTrackColor();
+				auto symbolObjectInfo = symbolObjectInfoFactory.MakeForGroundTrack();
+
+				symbolRenderController.OnRenderGroundTrack(rt, color, symbolObjectInfo);
+			}
+			else if (track.type == RenderableTrack::Type::Primary)
+			{
+				if (option.hidePsrSymbol == false)
+				{
+					auto& rt = *track.rt;
+					auto color = TrackColor::GetPsrTrackColor();
+					auto symbolObjectInfo = symbolObjectInfoFactory.MakeForPsrTrack();
+
+					symbolRenderController.OnRenderPsrTrack(rt, color, option, symbolObjectInfo);
+				}
+			}
+			else if (track.type == RenderableTrack::Type::Uncoupled)
+			{
+				auto& rt = *track.rt;
+				auto profile = trackProfileManager.GetOrCreateProfileForUncoupledTrack(rt.GetTargetId());
+				auto unit = GetUnit(rt);
+				auto tagData = UncoupledTrackTagData(rt, profile, option, unit);
+				auto color = TrackColor::GetUncoupledTrackColor(profile.isIql);
+				bool isSelected = IsSelected(rt);
+				auto symbolObjectInfo = symbolObjectInfoFactory.MakeForUncoupledTrack(profile);
+
+				symbolRenderController.OnRenderSsrTrack(rt, color, option, isSelected, symbolObjectInfo);
+				tagRenderController.OnRenderUncoupledTrack(rt, tagData, color, screen, graphics);
+				velRenderController.OnRenderSsrTrack(rt, profile, option, color, screen, graphics);
+				histRenderController.OnRenderSsrTrack(rt, option, color, screen, graphics);
+			}
+			else if (track.type == RenderableTrack::Type::Coupled)
+			{
+				auto& fp = *track.fp;
+				auto& rt = *track.rt;
+				auto profile = trackProfileManager.GetOrCreateProfileForCoupledTrack(fp.GetCallsign(), rt.GetTargetId());
+				auto unit = GetUnit(rt);
+				auto tagData = CoupledTrackTagData(rt, fp, profile, option, unit);
+				auto color = TrackColor::GetTrackColor(fp, profile.isIql);
+				bool isSelected = IsSelected(fp);
+				auto symbolObjectInfo = symbolObjectInfoFactory.MakeForCoupledTrack(fp, profile);
+
+				symbolRenderController.OnRenderSsrTrack(rt, color, option, isSelected, symbolObjectInfo);
+				tagRenderController.OnRenderCoupledTrack(rt, tagData, color, screen, graphics);
+				velRenderController.OnRenderSsrTrack(rt, profile, option, color, screen, graphics);
+				histRenderController.OnRenderSsrTrack(rt, option, color, screen, graphics);
+			}
+			else if (track.type == RenderableTrack::Type::FlightPlanTrack)
+			{
+				auto& fp = *track.fp;
+				auto& rt = *track.rt;
+				auto profile = trackProfileManager.GetOrCreateProfileForFlightPlanTrack(fp.GetCallsign());
+				auto unit = GetUnit(fp);
+				auto tagData = FlightPlanTrackTagData(fp, profile, option, unit);
+				auto color = TrackColor::GetTrackColor(fp, profile.isIql);
+				bool isSelected = IsSelected(fp);
+				auto symbolObjectInfo = symbolObjectInfoFactory.MakeForFlightPlanTrack(fp, profile);
+
+				symbolRenderController.OnRenderFlightPlanTrack(fp, color, isSelected, symbolObjectInfo);
+				tagRenderController.OnRenderFlightPlanTrack(tagData, color, screen, graphics);
+			}
+		}
 	}
 
 	bool TrackManager::InRange(POINT px, RECT rect)

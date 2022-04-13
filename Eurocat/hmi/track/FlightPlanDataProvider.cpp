@@ -33,9 +33,7 @@ namespace Eurocat::Hmi::Track
 
 	bool FlightPlanDataProvider::IsAcceptedReminding()
 	{
-		return fpAttribute.currentState == FlightPlanState::Uncontrolled &&
-			(fpAttribute.lastState == FlightPlanState::Controlled || fpAttribute.lastState == FlightPlanState::HandedOver) &&
-			CTimeSpan(CTime::GetCurrentTime() - fpAttribute.lastStateUpdateTime).GetTotalSeconds() <= 15;
+		return FlightPlanDisplayStateGenerator::IsAcceptedReminding(fpAttribute);
 	}
 
 	CString FlightPlanDataProvider::GetAircraftType()
@@ -142,5 +140,9 @@ namespace Eurocat::Hmi::Track
 	int FlightPlanDataProvider::GetAssignedMach()
 	{
 		return fp.GetControllerAssignedData().GetAssignedMach();
+	}
+	CString FlightPlanDataProvider::GetPilotName()
+	{
+		return fp.GetPilotName();
 	}
 }

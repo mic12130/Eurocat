@@ -21,6 +21,6 @@ namespace Eurocat::Hmi::Track
 		double GetHeading() override;
 
 	private:
-		EuroScopePlugIn::CRadarTarget& rt;
+		EuroScopePlugIn::CRadarTarget rt;
 	};
 }

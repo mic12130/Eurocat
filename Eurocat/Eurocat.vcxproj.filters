@@ -605,6 +605,9 @@
     <ClInclude Include="plugin\extension\CflData.h">
       <Filter>plugin\extension</Filter>
     </ClInclude>
+    <ClInclude Include="hmi\track\RenderableTrack.h">
+      <Filter>hmi\track</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="res\Eurocat.rc">

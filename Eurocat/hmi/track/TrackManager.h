@@ -8,6 +8,7 @@
 #include "hmi/track/option/OptionData.h"
 #include "hmi/track/symbol/SymbolRenderController.h"
 #include "hmi/track/action/ITrackActionHandler.h"
+#include "hmi/track/RenderableTrack.h"
 
 namespace Eurocat::Plugin
 {
@@ -28,6 +29,9 @@ namespace Eurocat::Hmi::Track
 		TrackProfileManager& GetTrackProfileManager();
 
 	private:
+		void RenderTracks(
+			std::vector<RenderableTrack>& tracks, 
+			Screen::ScreenWrapper& screen, Screen::GraphicsWrapper& graphics);
 		bool InRange(POINT px, RECT rect);
 		bool IsSelected(IRadarTargetDataProvider& rt);
 		bool IsSelected(IFlightPlanDataProvider& fp);

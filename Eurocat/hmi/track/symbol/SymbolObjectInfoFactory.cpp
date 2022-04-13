@@ -14,58 +14,39 @@ namespace Eurocat::Hmi::Track
 
 	SymbolObjectInfo SymbolObjectInfoFactory::MakeForUncoupledTrack(const TrackProfile& profile)
 	{
-		return SymbolObjectInfo(TrackObjectId::Generate(profile.id, TrackObjectIdSuffix::kSymbol), "");
+		return SymbolObjectInfo(TrackObjectId::Generate(profile.id, TrackObjectIdSuffix::kSymbol), "Uncoupled");
 	}
 
-	SymbolObjectInfo SymbolObjectInfoFactory::MakeForCoupledTrack(EuroScopePlugIn::CFlightPlan& fp, const TrackProfile& profile)
+	SymbolObjectInfo SymbolObjectInfoFactory::MakeForCoupledTrack(IFlightPlanDataProvider& fp, const TrackProfile& profile)
 	{
 		CString msg;
 		CString pilotName = "No Name";
 
-		if (fp.IsValid())
+		if (CString fetchedPilotName = fp.GetPilotName(); !fetchedPilotName.IsEmpty())
 		{
-			if (CString fetchedPilotName = fp.GetPilotName(); !fetchedPilotName.IsEmpty())
-			{
-				pilotName = fetchedPilotName;
-			}
+			pilotName = fetchedPilotName;
 		}
 
 		msg.Format("%s (%s) (%s)", fp.GetCallsign(), "Callsign", pilotName.GetString());
 		return SymbolObjectInfo(TrackObjectId::Generate(profile.id, TrackObjectIdSuffix::kSymbol), msg);
 	}
 
-	SymbolObjectInfo SymbolObjectInfoFactory::MakeForFlightPlanTrack(EuroScopePlugIn::CFlightPlan& fp, const TrackProfile& profile)
+	SymbolObjectInfo SymbolObjectInfoFactory::MakeForFlightPlanTrack(IFlightPlanDataProvider& fp, const TrackProfile& profile)
 	{
 		CString msg;
 		CString pilotName = "No Name";
 
-		if (fp.IsValid())
+		if (CString fetchedPilotName = fp.GetPilotName(); !fetchedPilotName.IsEmpty())
 		{
-			if (CString fetchedPilotName = fp.GetPilotName(); !fetchedPilotName.IsEmpty())
-			{
-				pilotName = fetchedPilotName;
-			}
+			pilotName = fetchedPilotName;
 		}
 
 		msg.Format("%s (%s) (%s)", fp.GetCallsign(), "Callsign", pilotName.GetString());
 		return SymbolObjectInfo(TrackObjectId::Generate(profile.id, TrackObjectIdSuffix::kSymbol), msg);
 	}
 
-	SymbolObjectInfo SymbolObjectInfoFactory::MakeForGroundTrack(EuroScopePlugIn::CRadarTarget& rt)
+	SymbolObjectInfo SymbolObjectInfoFactory::MakeForGroundTrack()
 	{
-		CString msg;
-		CString pilotName = "No Name";
-		auto fp = rt.GetCorrelatedFlightPlan();
-
-		if (fp.IsValid())
-		{
-			if (CString fetchedPilotName = fp.GetPilotName(); !fetchedPilotName.IsEmpty())
-			{
-				pilotName = fetchedPilotName;
-			}
-		}
-		
-		msg.Format("%s (%s) (%s) [GROUND]", rt.GetCallsign(), "Callsign", pilotName.GetString());
-		return { TrackObjectId::kNoActionObjectId, msg };
+		return { TrackObjectId::kNoActionObjectId, "Ground" };
 	}
 }

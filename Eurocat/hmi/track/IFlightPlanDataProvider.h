@@ -31,5 +31,6 @@ namespace Eurocat::Hmi::Track
 		virtual int GetAssignedHeading() = 0;
 		virtual int GetAssignedSpeed() = 0;
 		virtual int GetAssignedMach() = 0;
+		virtual CString GetPilotName() = 0;
 	};
 }
