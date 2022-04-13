@@ -99,7 +99,7 @@ namespace Eurocat::Hmi::Track
 			
 			auto rtData = std::make_shared<RadarTargetDataProvider>(rt);
 
-			if (rt.GetGS() < kGroundTrafficMaxSpeed)
+			if (rt.GetPosition().GetReportedGS() < kGroundTrafficMaxSpeed)
 			{
 				// Ground traffic
 				renderableTracks.emplace_back(rt.GetCallsign(), RenderableTrack::Type::Ground, nullptr, rtData);
