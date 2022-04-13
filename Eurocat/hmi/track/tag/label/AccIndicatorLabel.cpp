@@ -19,7 +19,7 @@ namespace Eurocat::Hmi::Track
 		// Returns if historical GS is not accessible
 		if (previousGs.empty())
 		{
-			return std::make_shared<StringContent>("");
+			return std::make_shared<StringContent>(" ");
 		}
 
 		if (gs > previousGs[0])
@@ -32,6 +32,6 @@ namespace Eurocat::Hmi::Track
 			return std::make_shared<StringContent>("L");
 		}
 
-		return std::make_shared<StringContent>("");
+		return std::make_shared<StringContent>(" ");
 	}
 }

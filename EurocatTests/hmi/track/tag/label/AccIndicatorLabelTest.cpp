@@ -45,7 +45,7 @@ namespace Eurocat::Hmi::Track
 
 		auto label = std::make_shared<AccIndicatorLabel>(rt);
 
-		EXPECT_STREQ(GetStringContent(label)->string, L"");
+		EXPECT_STREQ(GetStringContent(label)->string, L" ");
 	}
 
 	TEST(AccIndicatorLabelTest, NoHistoricalGroundSpeedAvailable)
@@ -58,6 +58,6 @@ namespace Eurocat::Hmi::Track
 
 		auto label = std::make_shared<AccIndicatorLabel>(rt);
 
-		EXPECT_STREQ(GetStringContent(label)->string, L"");
+		EXPECT_STREQ(GetStringContent(label)->string, L" ");
 	}
 }
