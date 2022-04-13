@@ -25,7 +25,7 @@ namespace Eurocat::Hmi::Track
 	{
 	}
 
-	void StringContent::Render(Gdiplus::PointF& point, Gdiplus::Color color, CString trackProfileId, Screen::ScreenWrapper& screen, Screen::GraphicsWrapper& graphics)
+	void StringContent::Render(const Gdiplus::PointF& point, Gdiplus::Color color, Screen::GraphicsWrapper& graphics)
 	{
 		if (string == "")
 		{
@@ -44,14 +44,7 @@ namespace Eurocat::Hmi::Track
 			graphics.FillRectangle(rect, backgroundBrush);
 		}
 
-		point.X += rect.Width;
 		graphics.DrawString(string, rect, brush);
-
-		if (objectIdSuffix != "")
-		{
-			CString objectId = TrackObjectId::Generate(trackProfileId, objectIdSuffix);
-			screen.AddScreenObject(ScreenObjectType::kTrack, objectId, GraphicsHelper::ConvertRectToCRect(rect), false, "");
-		}
 
 		if (hasUnderline)
 		{
@@ -60,6 +53,25 @@ namespace Eurocat::Hmi::Track
 			PointF dest = PointF(rect.GetRight(), rect.GetBottom() + 1);
 			graphics.DrawLine(origin, dest, pen);
 		}
+	}
+
+	void StringContent::AddScreenObject(const Gdiplus::PointF& point, CString trackProfileId, Screen::ScreenWrapper& screen, Screen::GraphicsWrapper& graphics)
+	{
+		SizeF size = GetSize(graphics);
+		RectF rect(point.X, point.Y, size.Width, size.Height);
+
+		if (objectIdSuffix != "")
+		{
+			CString objectId = TrackObjectId::Generate(trackProfileId, objectIdSuffix);
+			screen.AddScreenObject(ScreenObjectType::kTrack, objectId, GraphicsHelper::ConvertRectToCRect(rect), false, "");
+		}
+	}
+
+	void StringContent::MovePoint(Gdiplus::PointF& point, Screen::GraphicsWrapper& graphics)
+	{
+		SizeF size = GetSize(graphics);
+		RectF rect(point.X, point.Y, size.Width, size.Height);
+		point.X += rect.Width;
 	}
 
 	Gdiplus::SizeF StringContent::GetSize(Screen::GraphicsWrapper& graphics)

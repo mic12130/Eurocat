@@ -23,10 +23,8 @@ namespace Eurocat::Hmi::Track
 			return;
 		}
 
-		if (tagData.GetIsFlashing() && FlashHelper::Regular()->ShouldRender() == false)
-		{
-			return;
-		}
+		// When flashing off, labels are invisible but screen objects will be added still
+		bool isLabelHidden = tagData.GetIsFlashing() && FlashHelper::Regular()->ShouldRender() == false;
 
 		TagLabelCollection labelCollection = tagData.GetLabels();
 		auto tagOffset = tagData.GetOffset();
@@ -51,7 +49,13 @@ namespace Eurocat::Hmi::Track
 		{
 			for each (auto label in labelLine)
 			{
-				label->Render(tempPoint, color, tagData.GetProfileId(), screen, graphics);
+				if (!isLabelHidden)
+				{
+					label->Render(tempPoint, color, graphics);
+				}
+
+				label->AddScreenObject(tempPoint, tagData.GetProfileId(), screen, graphics);
+				label->MovePoint(tempPoint, graphics);
 			}
 
 			// Set px to the beginning of the next line
@@ -88,7 +92,7 @@ namespace Eurocat::Hmi::Track
 	}
 
 	Gdiplus::REAL TagRenderer::GetLabelWidth(
-		const std::vector<std::vector<std::shared_ptr<ITagLabelContent>>>& labelContents, 
+		const std::vector<std::vector<std::shared_ptr<ITagLabelContent>>>& labelContents,
 		Screen::GraphicsWrapper& graphics)
 	{
 		REAL labelWidth = 0;
@@ -112,7 +116,7 @@ namespace Eurocat::Hmi::Track
 	}
 
 	Gdiplus::REAL TagRenderer::GetLabelHeight(
-		const std::vector<std::vector<std::shared_ptr<ITagLabelContent>>>& labelContents, 
+		const std::vector<std::vector<std::shared_ptr<ITagLabelContent>>>& labelContents,
 		Screen::GraphicsWrapper& graphics)
 	{
 		REAL result = float(labelContents.size()) * kLineSeparation;
@@ -141,7 +145,7 @@ namespace Eurocat::Hmi::Track
 	}
 
 	void TagRenderer::RenderRepositioning(Common::Coordinate coord, ITagDataProvider& tagData,
-	                                      Screen::ScreenWrapper& screen, Screen::GraphicsWrapper& graphics)
+		Screen::ScreenWrapper& screen, Screen::GraphicsWrapper& graphics)
 	{
 		// Available Degrees: 0, 22.5, 45, 67.5...157.5, 180
 		// Available Length: 30, 60, 100 (in px)

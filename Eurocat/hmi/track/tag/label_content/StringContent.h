@@ -16,12 +16,17 @@ namespace Eurocat::Hmi::Track
 			std::optional<Gdiplus::Color> backgroundColor = std::nullopt
 		);
 		void Render(
-			Gdiplus::PointF& point,
+			const Gdiplus::PointF& point,
 			Gdiplus::Color color,
+			Screen::GraphicsWrapper& graphics
+		) override;
+		void AddScreenObject(
+			const Gdiplus::PointF& point,
 			CString trackProfileId,
 			Screen::ScreenWrapper& screen,
 			Screen::GraphicsWrapper& graphics
 		) override;
+		void MovePoint(Gdiplus::PointF& point, Screen::GraphicsWrapper& graphics) override;
 		Gdiplus::SizeF GetSize(Screen::GraphicsWrapper& graphics) override;
 		bool IsEmpty() override;
 
