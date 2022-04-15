@@ -70,8 +70,11 @@ namespace Eurocat::Hmi::Track
 		TagAlertRenderer().RenderAlert(alertData, alertRect, screen, graphics);
 
 		// Leader line between target point and tag anchor
-		Pen pen(color);
-		graphics.DrawLine(positionPx, anchor, pen);
+		if (!isLabelHidden)
+		{
+			Pen pen(color);
+			graphics.DrawLine(positionPx, anchor, pen);
+		}
 	}
 
 	auto TagRenderer::GetLabelContents(TagLabelCollection labelCollection) -> std::vector<std::vector<std::shared_ptr<ITagLabelContent>>>
