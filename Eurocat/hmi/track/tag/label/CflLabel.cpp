@@ -44,7 +44,7 @@ namespace Eurocat::Hmi::Track
 		}
 		else if (unit == UnitDisplayMode::Metric)
 		{
-			int meters = AltitudeConverter::FeetToMeter(feets.value());
+			int meters = AltitudeConverter::FeetToMeter(feets.value()) / 100 * 100;
 
 			if (meters > 99999 || meters < 0 || isNone)
 			{

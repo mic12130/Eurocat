@@ -29,7 +29,7 @@ namespace Eurocat::TagItem
 
 		if (unit == UnitDisplayMode::Metric)
 		{
-			level = AltitudeConverter::FeetToMeter(level);
+			level = (AltitudeConverter::FeetToMeter(level) / 100) * 100;
 		}
 
 		CString str = formatter.StringFromAltitude(level);
