@@ -63,17 +63,16 @@ namespace Eurocat::Hmi::Track
 			tempPoint.Y += kLineSeparation;
 		}
 
-		// Alert
-		TagAlertData alertData = tagData.GetAlertData();
-		RectF alertRect(labelOrigin.X, labelOrigin.Y, labelWidth, labelHeight);
-
-		TagAlertRenderer().RenderAlert(alertData, alertRect, screen, graphics);
-
-		// Leader line between target point and tag anchor
 		if (!isLabelHidden)
 		{
+			// Leader line between target point and tag anchor
 			Pen pen(color);
 			graphics.DrawLine(positionPx, anchor, pen);
+
+			// Alert
+			RectF alertRect(labelOrigin.X, labelOrigin.Y, labelWidth, labelHeight);
+			TagAlertData alertData = tagData.GetAlertData();
+			TagAlertRenderer().RenderAlert(alertData, alertRect, screen, graphics);
 		}
 	}
 
