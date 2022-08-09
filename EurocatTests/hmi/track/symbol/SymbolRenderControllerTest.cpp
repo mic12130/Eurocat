@@ -7,8 +7,8 @@
 #include "../MockFlashHelper.h"
 #include "../MockRadarTargetDataProvider.h"
 #include "../MockFlightPlanDataProvider.h"
-#include "../../screen/TestScreenWrapper.h"
-#include "../../screen/TestGraphics.h"
+#include "../../../screen/TestScreenWrapper.h"
+#include "../../../screen/TestGraphics.h"
 
 using ::testing::Return;
 using ::testing::_;

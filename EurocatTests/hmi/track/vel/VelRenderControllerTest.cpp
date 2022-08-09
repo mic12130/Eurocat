@@ -5,8 +5,8 @@
 #include "hmi/track/profile/TrackProfile.h"
 #include "MockVelRenderer.h"
 #include "../MockRadarTargetDataProvider.h"
-#include "../../screen/TestScreenWrapper.h"
-#include "../../screen/TestGraphics.h"
+#include "../../../screen/TestScreenWrapper.h"
+#include "../../../screen/TestGraphics.h"
 
 using ::testing::Return;
 using namespace Eurocat::Screen;
