@@ -4,10 +4,11 @@
 
 #include "common/unit/AltitudeConverter.h"
 #include "common/unit/AltitudeFormatter.h"
-#include "plugin/PluginEnvironment.h"
+#include "plugin/extension/FlightPlanAttributeContainer.h"
 #include "tagitem/TagItemColor.h"
 
 using namespace Eurocat::Plugin;
+using namespace Eurocat::Plugin::Extension;
 using namespace Eurocat::Common::Unit;
 using namespace Eurocat::Hmi::Unit;
 
@@ -22,7 +23,7 @@ namespace Eurocat::TagItem
 		EuroScopePlugIn::CRadarTarget radarTarget,
 		int itemCode, char itemString[16], int* colorCode, COLORREF* rgb)
 	{
-		auto fpAttribute = PluginEnvironment::Shared().AttributeForFlightPlan(flightPlan);
+		auto fpAttribute = FlightPlanAttributeContainer::Shared().AttributeForFlightPlan(flightPlan);
 		int level = flightPlan.GetControllerAssignedData().GetClearedAltitude();
 		UnitDisplayMode unit = unitDisplayManager.GetUnitForFlightPlan(flightPlan.GetCallsign());
 		AltitudeFormatter formatter(unit);

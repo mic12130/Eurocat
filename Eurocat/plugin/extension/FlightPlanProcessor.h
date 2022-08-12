@@ -1,8 +1,8 @@
 #pragma once
 
-#include "plugin/PluginEnvironment.h"
 #include "plugin/IFlightPlanEventHandler.h"
 #include "plugin/ITimedEventHandler.h"
+#include "plugin/Plugin.h"
 
 namespace Eurocat::Plugin::Extension
 {
@@ -13,12 +13,12 @@ namespace Eurocat::Plugin::Extension
 	class FlightPlanProcessor : public ITimedEventHandler
 	{
 	public:
-		FlightPlanProcessor(PluginEnvironment& pluginEnv);
+		FlightPlanProcessor(EurocatPlugin& plugin);
 		void OnTimedEvent(int counter) override;
 
 	private:
-		void PassAssignedDataToLabelDataIfNeeded(EuroScopePlugIn::CFlightPlan& fp);
+		EurocatPlugin& plugin;
 
-		PluginEnvironment& pluginEnv;
+		void PassAssignedDataToLabelDataIfNeeded(EuroScopePlugIn::CFlightPlan& fp);
 	};
 }

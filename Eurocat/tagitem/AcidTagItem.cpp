@@ -2,10 +2,10 @@
 
 #include "tagitem/AcidTagItem.h"
 
-#include "plugin/PluginEnvironment.h"
+#include "plugin/extension/FlightPlanAttributeContainer.h"
 #include "tagitem/TagItemColor.h"
 
-using namespace Eurocat::Plugin;
+using namespace Eurocat::Plugin::Extension;
 using namespace Eurocat::Common;
 
 namespace Eurocat::TagItem
@@ -20,7 +20,7 @@ namespace Eurocat::TagItem
 			strcpy_s(itemString, 16, "--------");
 		}
 
-		auto fpAttribute = PluginEnvironment::Shared().AttributeForFlightPlan(flightPlan);
+		auto fpAttribute = FlightPlanAttributeContainer::Shared().AttributeForFlightPlan(flightPlan);
 
 		strcpy_s(itemString, 16, flightPlan.GetCallsign());
 		*colorCode = EuroScopePlugIn::TAG_COLOR_RGB_DEFINED;

@@ -4,7 +4,7 @@
 
 #include "hmi/track/action/EuroScopeFunctionHelper.h"
 #include "plugin/input/PopupMenu.h"
-#include "plugin/PluginEnvironment.h"
+#include "system/SystemManager.h"
 #include "plugin/FlightPlanHelper.h"
 
 using namespace Eurocat::Screen;
@@ -21,7 +21,7 @@ namespace Eurocat::Hmi::Track
 	{
 		if (button == MouseButton::Left)
 		{
-			auto fp = PluginEnvironment::Shared().GetPlugin().FlightPlanSelect(trackProfile.flightPlanId.value());
+			auto fp = SystemManager::Shared().GetPlugin().FlightPlanSelect(trackProfile.flightPlanId.value());
 
 			if (!FlightPlanHelper::IsWritable(fp))
 			{
@@ -50,7 +50,7 @@ namespace Eurocat::Hmi::Track
 
 	void RunwayActionHandler::OnSelectItem(Plugin::Input::PopupMenuItem item, POINT point, RECT rect)
 	{
-		auto fp = PluginEnvironment::Shared().GetPlugin().FlightPlanSelect(callsignForPopup);
+		auto fp = SystemManager::Shared().GetPlugin().FlightPlanSelect(callsignForPopup);
 
 		if (!fp.IsValid())
 		{
@@ -86,7 +86,7 @@ namespace Eurocat::Hmi::Track
 
 	std::vector<CString> RunwayActionHandler::GetActiveArrivalRunways(CString icao)
 	{
-		auto& plugin = PluginEnvironment::Shared().GetPlugin();
+		auto& plugin = SystemManager::Shared().GetPlugin();
 		std::vector<CString> result;
 
 		for (auto element = plugin.SectorFileElementSelectFirst(EuroScopePlugIn::SECTOR_ELEMENT_RUNWAY);

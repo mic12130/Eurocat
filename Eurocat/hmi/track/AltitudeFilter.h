@@ -9,11 +9,10 @@ namespace Eurocat::Hmi::Track
 	{
 	public:
 		AltitudeFilter(OptionData& option);
-		bool InRange(IRadarTargetDataProvider& rt, Plugin::PluginEnvironment& pluginEnv) override;
+		bool InRange(IRadarTargetDataProvider& rt, Plugin::EurocatPlugin& plugin) override;
 		bool InRange(int altitude);
 
 	private:
-		Plugin::PluginEnvironment& pluginEnv;
 		OptionData& option;
 	};
 }

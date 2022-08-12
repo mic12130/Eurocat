@@ -131,9 +131,6 @@
     <ClInclude Include="plugin\IFlightPlanEventHandler.h">
       <Filter>plugin</Filter>
     </ClInclude>
-    <ClInclude Include="plugin\PluginApp.h">
-      <Filter>plugin</Filter>
-    </ClInclude>
     <ClInclude Include="screen\Screen.h">
       <Filter>screen</Filter>
     </ClInclude>
@@ -170,9 +167,6 @@
     <ClInclude Include="plugin\extension\FlightPlanAttribute.h">
       <Filter>plugin\extension</Filter>
     </ClInclude>
-    <ClInclude Include="plugin\PluginEnvironment.h">
-      <Filter>plugin</Filter>
-    </ClInclude>
     <ClInclude Include="plugin\input\PopupMenu.h">
       <Filter>plugin\input</Filter>
     </ClInclude>
@@ -191,29 +185,17 @@
     <ClInclude Include="plugin\input\EuroScopeInputRetriever.h">
       <Filter>plugin\input</Filter>
     </ClInclude>
-    <ClInclude Include="system\SystemServiceManager.h">
-      <Filter>system</Filter>
-    </ClInclude>
-    <ClInclude Include="system\SystemService.h">
-      <Filter>system</Filter>
-    </ClInclude>
     <ClInclude Include="screen\MouseInputArgs.h">
       <Filter>screen</Filter>
     </ClInclude>
     <ClInclude Include="screen\ScreenWrapper.h">
       <Filter>screen</Filter>
     </ClInclude>
-    <ClInclude Include="plugin\PluginService.h">
-      <Filter>plugin</Filter>
-    </ClInclude>
     <ClInclude Include="plugin\PluginEventManager.h">
       <Filter>plugin</Filter>
     </ClInclude>
     <ClInclude Include="plugin\ITimedEventHandler.h">
       <Filter>plugin</Filter>
-    </ClInclude>
-    <ClInclude Include="hmi\HmiService.h">
-      <Filter>hmi</Filter>
     </ClInclude>
     <ClInclude Include="common\FlightPlanState.h">
       <Filter>common</Filter>
@@ -251,7 +233,7 @@
     <ClInclude Include="hmi\cursor\CursorManager.h">
       <Filter>hmi\cursor</Filter>
     </ClInclude>
-    <ClInclude Include="tagitem\TagItemService.h">
+    <ClInclude Include="tagitem\TagItemManager.h">
       <Filter>tagitem</Filter>
     </ClInclude>
     <ClInclude Include="tagitem\OpDataTagItem.h">
@@ -572,9 +554,6 @@
     <ClInclude Include="warning\DupeSquawkChecker.h">
       <Filter>warning</Filter>
     </ClInclude>
-    <ClInclude Include="warning\WarningService.h">
-      <Filter>warning</Filter>
-    </ClInclude>
     <ClInclude Include="warning\WarningManager.h">
       <Filter>warning</Filter>
     </ClInclude>
@@ -608,6 +587,15 @@
     <ClInclude Include="hmi\track\RenderableTrack.h">
       <Filter>hmi\track</Filter>
     </ClInclude>
+    <ClInclude Include="system\SystemManager.h">
+      <Filter>plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\HmiManager.h">
+      <Filter>plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\extension\FlightPlanAttributeContainer.h">
+      <Filter>plugin</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="res\Eurocat.rc">
@@ -622,9 +610,6 @@
       <Filter>base</Filter>
     </ClCompile>
     <ClCompile Include="plugin\Plugin.cpp">
-      <Filter>plugin</Filter>
-    </ClCompile>
-    <ClCompile Include="plugin\PluginApp.cpp">
       <Filter>plugin</Filter>
     </ClCompile>
     <ClCompile Include="screen\Screen.cpp">
@@ -642,9 +627,6 @@
     <ClCompile Include="plugin\extension\FlightPlanAttributeUpdater.cpp">
       <Filter>plugin\extension</Filter>
     </ClCompile>
-    <ClCompile Include="plugin\PluginEnvironment.cpp">
-      <Filter>plugin</Filter>
-    </ClCompile>
     <ClCompile Include="plugin\input\EuroScopeInputBridge.cpp">
       <Filter>plugin\input</Filter>
     </ClCompile>
@@ -657,20 +639,11 @@
     <ClCompile Include="plugin\input\EuroScopeInputManager.cpp">
       <Filter>plugin\input</Filter>
     </ClCompile>
-    <ClCompile Include="system\SystemServiceManager.cpp">
-      <Filter>system</Filter>
-    </ClCompile>
     <ClCompile Include="screen\ScreenWrapper.cpp">
       <Filter>screen</Filter>
     </ClCompile>
-    <ClCompile Include="plugin\PluginService.cpp">
-      <Filter>plugin</Filter>
-    </ClCompile>
     <ClCompile Include="plugin\PluginEventManager.cpp">
       <Filter>plugin</Filter>
-    </ClCompile>
-    <ClCompile Include="hmi\HmiService.cpp">
-      <Filter>hmi</Filter>
     </ClCompile>
     <ClCompile Include="common\unit\RflConverter.cpp">
       <Filter>common\unit</Filter>
@@ -690,7 +663,7 @@
     <ClCompile Include="hmi\cursor\CursorManager.cpp">
       <Filter>hmi\cursor</Filter>
     </ClCompile>
-    <ClCompile Include="tagitem\TagItemService.cpp">
+    <ClCompile Include="tagitem\TagItemManager.cpp">
       <Filter>tagitem</Filter>
     </ClCompile>
     <ClCompile Include="tagitem\OpDataTagItem.cpp">
@@ -891,9 +864,6 @@
     <ClCompile Include="warning\DupeSquawkChecker.cpp">
       <Filter>warning</Filter>
     </ClCompile>
-    <ClCompile Include="warning\WarningService.cpp">
-      <Filter>warning</Filter>
-    </ClCompile>
     <ClCompile Include="warning\WarningManager.cpp">
       <Filter>warning</Filter>
     </ClCompile>
@@ -908,6 +878,15 @@
     </ClCompile>
     <ClCompile Include="plugin\extension\CflData.cpp">
       <Filter>plugin\extension</Filter>
+    </ClCompile>
+    <ClCompile Include="system\SystemManager.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\HmiManager.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="plugin\extension\FlightPlanAttributeContainer.cpp">
+      <Filter>base</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

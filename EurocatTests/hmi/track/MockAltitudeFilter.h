@@ -9,6 +9,6 @@ namespace Eurocat::Hmi::Track
 	class MockAltitudeFilter : public IAltitudeFilter
 	{
 	public:
-		MOCK_METHOD(bool, InRange, (IRadarTargetDataProvider&, Plugin::PluginEnvironment&), (override));
+		MOCK_METHOD(bool, InRange, (IRadarTargetDataProvider&, Plugin::EurocatPlugin&), (override));
 	};
 }

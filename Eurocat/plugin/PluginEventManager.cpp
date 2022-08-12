@@ -4,16 +4,6 @@
 
 namespace Eurocat::Plugin
 {
-	PluginEventManager& PluginEventManager::Shared()
-	{
-		return *shared;
-	}
-
-	void PluginEventManager::SetShared(std::shared_ptr<PluginEventManager> ptr)
-	{
-		shared = ptr;
-	}
-
 	PluginEventManager::PluginEventManager(
 		std::vector<std::shared_ptr<IFlightPlanEventHandler>>& flightPlanEventHandlers,
 		std::vector<std::shared_ptr<IRadarTargetEventHandler>>& radarEventHandlers,

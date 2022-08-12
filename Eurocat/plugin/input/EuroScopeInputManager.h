@@ -2,7 +2,7 @@
 
 #include "plugin/input/EuroScopeInputRetriever.h"
 #include "plugin/IFunctionHandler.h"
-#include "plugin/PluginEnvironment.h"
+#include "plugin/Plugin.h"
 
 namespace Eurocat::Plugin
 {
@@ -14,14 +14,14 @@ namespace Eurocat::Plugin::Input
 	class EuroScopeInputManager : public IFunctionHandler
 	{
 	public:
-		EuroScopeInputManager(PluginEnvironment& pluginEnv);
+		EuroScopeInputManager(EurocatPlugin& plugin);
 		void OpenPopupEdit(RECT rect, CString initialValue, std::shared_ptr<EuroScopeInputRetriever> retriever);
 		void OpenPopupList(RECT rect, CString title, std::shared_ptr<EuroScopeInputRetriever> retriever);
 		void AddPopupListElement(CString str, bool selected = false);
 		void OnFunctionCall(int functionId, CString itemString, POINT point, RECT area) override;
 
 	private:
-		PluginEnvironment& pluginEnv;
+		EurocatPlugin& plugin;
 		std::shared_ptr<EuroScopeInputRetriever> currentRetriever;
 	};
 }

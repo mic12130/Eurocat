@@ -3,20 +3,17 @@
 #include "plugin/extension/FlightPlanProcessor.h"
 
 #include "common/OpData.h"
-#include "plugin/Plugin.h"
 
 using namespace Eurocat::Common;
 
 namespace Eurocat::Plugin::Extension
 {
-	FlightPlanProcessor::FlightPlanProcessor(PluginEnvironment& pluginEnv) : pluginEnv(pluginEnv)
+	FlightPlanProcessor::FlightPlanProcessor(EurocatPlugin& plugin) : plugin(plugin)
 	{
 	}
 
 	void FlightPlanProcessor::OnTimedEvent(int counter)
 	{
-		auto& plugin = pluginEnv.GetPlugin();
-
 		for (auto fp = plugin.FlightPlanSelectFirst(); fp.IsValid(); fp = plugin.FlightPlanSelectNext(fp))
 		{
 			if (fp.GetTrackingControllerIsMe())

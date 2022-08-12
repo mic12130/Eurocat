@@ -4,9 +4,10 @@
 
 #include "window/LevelPopupMenu.h"
 #include "common/unit/AltitudeConverter.h"
-#include "plugin/PluginEnvironment.h"
+#include "system/SystemManager.h"
 #include "plugin/FlightPlanHelper.h"
 #include "plugin/extension/CflData.h"
+#include "plugin/extension/FlightPlanAttributeContainer.h"
 
 using namespace Eurocat::Window;
 using namespace Eurocat::Hmi::Unit;
@@ -25,7 +26,7 @@ namespace Eurocat::Hmi::Track
 	{
 		if (button == MouseButton::Left)
 		{
-			auto fp = PluginEnvironment::Shared().GetPlugin()
+			auto fp = SystemManager::Shared().GetPlugin()
 				.FlightPlanSelect(trackProfile.flightPlanId.value());
 
 			if (!FlightPlanHelper::IsWritable(fp))
@@ -63,8 +64,8 @@ namespace Eurocat::Hmi::Track
 		}
 		else if (button == MouseButton::Middle)
 		{
-			auto fp = PluginEnvironment::Shared().GetPlugin().FlightPlanSelect(trackProfile.flightPlanId.value());
-			auto& fpAttribute = PluginEnvironment::Shared().AttributeForFlightPlan(fp);
+			auto fp = SystemManager::Shared().GetPlugin().FlightPlanSelect(trackProfile.flightPlanId.value());
+			auto& fpAttribute = FlightPlanAttributeContainer::Shared().AttributeForFlightPlan(fp);
 			fpAttribute.isCflAcknowledged = !fpAttribute.isCflAcknowledged;
 		}
 	}
@@ -78,7 +79,7 @@ namespace Eurocat::Hmi::Track
 			levelToSet = AltitudeConverter::MeterToFeet(level.value());
 		}
 
-		if (auto fp = PluginEnvironment::Shared().GetPlugin().FlightPlanSelect(callsignForPopup);
+		if (auto fp = SystemManager::Shared().GetPlugin().FlightPlanSelect(callsignForPopup);
 			fp.IsValid())
 		{
 			CflData::SetForFlightPlan(fp, levelToSet);

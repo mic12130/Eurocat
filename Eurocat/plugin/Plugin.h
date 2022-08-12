@@ -1,19 +1,14 @@
 #pragma once
 
-#include "plugin/IFlightPlanEventHandler.h"
-#include "plugin/IRadarTargetEventHandler.h"
-#include "plugin/ITagItemProvider.h"
-#include "plugin/IFunctionHandler.h"
-#include "plugin/ITimedEventHandler.h"
+#include "plugin/PluginEventManager.h"
 #include "screen/IScreenEventHandler.h"
-#include "system/SystemServiceManager.h"
 
 namespace Eurocat::Plugin
 {
 	class EurocatPlugin : public EuroScopePlugIn::CPlugIn
 	{
 	public:
-		EurocatPlugin(int compatibilityCode, CString name, CString version, CString author, CString copyright);
+		EurocatPlugin();
 		~EurocatPlugin();
 
 		void OnGetTagItem(
@@ -39,6 +34,8 @@ namespace Eurocat::Plugin
 		void OnFlightPlanControllerAssignedDataUpdate(EuroScopePlugIn::CFlightPlan FlightPlan, int DataType) override;
 		void OnTimer(int Counter) override;
 
+		std::shared_ptr<PluginEventManager> GetEventManager() const;
+
 	private:
 		std::vector<std::shared_ptr<IFlightPlanEventHandler>> flightPlanEventHandlers;
 		std::vector<std::shared_ptr<IRadarTargetEventHandler>> radarEventHandlers;
@@ -46,8 +43,7 @@ namespace Eurocat::Plugin
 		std::map<int, std::shared_ptr<ITagItemProvider>> tagItemProviders;
 		std::map<int, std::shared_ptr<IFunctionHandler>> functionHandlers;
 		std::vector<std::shared_ptr<Screen::IScreenEventHandler>> screenEventHandlers;
-
-		System::SystemServiceManager systemServiceManager;
+		std::shared_ptr<PluginEventManager> eventManager;
 
 		const CString kScreenName = "Eurocat radar screen";
 	};

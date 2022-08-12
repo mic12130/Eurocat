@@ -2,13 +2,13 @@
 
 #include "warning/BuiltinWarningChecker.h"
 
-#include "plugin/PluginEnvironment.h"
+#include "system/SystemManager.h"
 
 namespace Eurocat::Warning
 {
 	void BuiltinWarningChecker::OnTimedEvent(int counter)
 	{
-		auto& plugin = Plugin::PluginEnvironment::Shared().GetPlugin();
+		auto& plugin = SystemManager::Shared().GetPlugin();
 
 		clamWarningTargetIds.clear();
 		ramWarningTargetIds.clear();

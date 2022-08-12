@@ -2,25 +2,31 @@
 
 #include "plugin/Plugin.h"
 
+#include "base/versioninfo.h"
 #include "screen/Screen.h"
-#include "plugin/PluginEnvironment.h"
 #include "plugin/PluginEventManager.h"
-#include "plugin/PluginService.h"
+#include "plugin/PluginFunctionId.h"
 #include "plugin/extension/FlightPlanAttributeUpdater.h"
+#include "plugin/extension/FlightPlanProcessor.h"
 #include "plugin/input/EuroScopeInputManager.h"
+#include "plugin/input/EuroScopeInputBridge.h"
 
 using namespace Eurocat::Plugin::Extension;
 using namespace Eurocat::Plugin::Input;
 using namespace Eurocat::Screen;
-using namespace Eurocat::System;
 
 namespace Eurocat::Plugin
 {
-	EurocatPlugin::EurocatPlugin(int compatibilityCode, CString name, CString version, CString author, CString copyright)
-		: CPlugIn(compatibilityCode, name, version, author, copyright)
+	EurocatPlugin::EurocatPlugin()
+		: CPlugIn(EuroScopePlugIn::COMPATIBILITY_CODE,
+			kPluginName,
+			kPluginVersion,
+			kPluginAuthor,
+			kPluginCopyright)
 	{
-		auto pluginEnv = std::make_shared<PluginEnvironment>(*this);
-		auto pluginEventManager = std::make_shared<PluginEventManager>(
+		RegisterDisplayType(kScreenName, true, true, true, false);
+
+		eventManager = std::make_shared<PluginEventManager>(
 			flightPlanEventHandlers,
 			radarEventHandlers,
 			timedEventHandlers,
@@ -29,15 +35,20 @@ namespace Eurocat::Plugin
 			screenEventHandlers
 			);
 
-		systemServiceManager.StartPluginService(std::make_unique<PluginService>(pluginEnv, pluginEventManager));
-		systemServiceManager.StartOtherServices();
+		auto attributeUpdater = std::make_shared<FlightPlanAttributeUpdater>(*this);
+		eventManager->AddFlightPlanEventHandler(attributeUpdater);
+		eventManager->AddTimedEventHandler(attributeUpdater);
 
-		RegisterDisplayType(kScreenName, true, true, true, false);
+		auto fpProcessor = std::make_shared<FlightPlanProcessor>(*this);
+		eventManager->AddTimedEventHandler(fpProcessor);
+
+		auto inputManager = std::make_shared<EuroScopeInputManager>(*this);
+		eventManager->AddFunctionHandler(inputManager, PluginFunctionId::kSubmitInputFunctionId);
+		EuroScopeInputBridge::shared->SetEuroScopeInputManager(inputManager);
 	}
 
 	EurocatPlugin::~EurocatPlugin()
 	{
-		systemServiceManager.StopServices();
 	}
 
 	void EurocatPlugin::OnGetTagItem(EuroScopePlugIn::CFlightPlan FlightPlan, EuroScopePlugIn::CRadarTarget RadarTarget, int ItemCode, int TagData, char sItemString[16], int* pColorCode, COLORREF* pRGB, double* pFontSize)
@@ -96,5 +107,10 @@ namespace Eurocat::Plugin
 		{
 			handler->OnTimedEvent(Counter);
 		}
+	}
+
+	std::shared_ptr<PluginEventManager> EurocatPlugin::GetEventManager() const
+	{
+		return eventManager;
 	}
 }

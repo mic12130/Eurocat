@@ -2,7 +2,7 @@
 
 #include "base/pch.h"
 
-#include "plugin/PluginEnvironment.h"
+#include "plugin/Plugin.h"
 #include "hmi/track/IRadarTargetDataProvider.h"
 
 namespace Eurocat::Hmi::Track
@@ -11,6 +11,6 @@ namespace Eurocat::Hmi::Track
 	{
 	public:
 		virtual ~IAltitudeFilter() = default;
-		virtual bool InRange(IRadarTargetDataProvider& rt, Plugin::PluginEnvironment& pluginEnv) = 0;
+		virtual bool InRange(IRadarTargetDataProvider& rt, Plugin::EurocatPlugin& plugin) = 0;
 	};
 }

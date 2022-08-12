@@ -1,7 +1,6 @@
 #include "base/pch.h"
 
-#include "hmi/HmiService.h"
-
+#include "hmi/HmiManager.h"
 #include "hmi/OptionDialog.h"
 #include "plugin/PluginEventManager.h"
 
@@ -9,25 +8,25 @@ using namespace Eurocat::Hmi::Track;
 
 namespace Eurocat::Hmi
 {
-	HmiService::HmiService()
+	HmiManager::HmiManager()
 	{
 		trackManager = std::make_shared<TrackManager>(unitDisplayManager);
 		optionButton = std::make_shared<OptionButton>();
+		optionButton->SetClickCallback(std::bind(&HmiManager::OnClickOptionButton, this));
 	}
 
-	void HmiService::OnStart()
-	{
-		Plugin::PluginEventManager::Shared().AddScreenEventHandler(trackManager);
-		Plugin::PluginEventManager::Shared().AddScreenEventHandler(optionButton);
-		optionButton->SetClickCallback(std::bind(&HmiService::OnClickOptionButton, this));
-	}
-
-	void HmiService::OnStop()
+	HmiManager::~HmiManager()
 	{
 		optionButton->SetClickCallback(nullptr);
 	}
 
-	void HmiService::OnClickOptionButton()
+	void HmiManager::SubscribeToPluginEvents(Plugin::PluginEventManager& manager)
+	{
+		manager.AddScreenEventHandler(trackManager);
+		manager.AddScreenEventHandler(optionButton);
+	}
+
+	void HmiManager::OnClickOptionButton()
 	{
 		AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
@@ -38,7 +37,7 @@ namespace Eurocat::Hmi
 		).DoModal();
 	}
 
-	Unit::UnitDisplayManager& HmiService::GetUnitDisplayManager()
+	Unit::UnitDisplayManager& HmiManager::GetUnitDisplayManager()
 	{
 		return unitDisplayManager;
 	}

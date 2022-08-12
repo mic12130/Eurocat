@@ -4,18 +4,18 @@
 #include "warning/DupeSquawkChecker.h"
 #include "warning/RadarTargetWarningInfo.h"
 
+namespace Eurocat::Plugin
+{
+	class PluginEventManager;
+}
+
 namespace Eurocat::Warning
 {
 	class WarningManager
 	{
 	public:
-		static WarningManager& Shared();
-		static void SetShared(std::shared_ptr<WarningManager> ptr);
-
-		WarningManager(
-			std::shared_ptr<BuiltinWarningChecker> builtinWarningChecker,
-			std::shared_ptr<DupeSquawkChecker> dupeSquawkChecker
-		);
+		WarningManager();
+		void SubscribeToPluginEvents(Plugin::PluginEventManager& manager);
 		std::vector<CString> GetClamWarningTargetIds();
 		std::vector<CString> GetRamWarningTargetIds();
 		std::vector<CString> GetDupeWarningTargetIds();

@@ -3,7 +3,7 @@
 #include "tagitem/RflFunction.h"
 
 #include "common/unit/AltitudeConverter.h"
-#include "plugin/PluginEnvironment.h"
+#include "system/SystemManager.h"
 #include "plugin/FlightPlanHelper.h"
 #include "window/LevelPopupMenu.h"
 
@@ -20,7 +20,7 @@ namespace Eurocat::TagItem
 
 	void RflFunction::OnFunctionCall(int functionId, CString itemString, POINT point, RECT area)
 	{
-		auto fp = PluginEnvironment::Shared().GetPlugin().FlightPlanSelectASEL();
+		auto fp = SystemManager::Shared().GetPlugin().FlightPlanSelectASEL();
 
 		if (!FlightPlanHelper::IsWritable(fp))
 		{
@@ -43,7 +43,7 @@ namespace Eurocat::TagItem
 
 	void RflFunction::OnSelectLevel(std::optional<int> level, Hmi::Unit::UnitDisplayMode unit)
 	{
-		auto fp = PluginEnvironment::Shared().GetPlugin().FlightPlanSelect(callsignForPopup);
+		auto fp = SystemManager::Shared().GetPlugin().FlightPlanSelect(callsignForPopup);
 		int levelToSet = level.value_or(0); // Convert NONE selection to 0 as RFL cannot be none
 
 		if (unit == UnitDisplayMode::Metric)

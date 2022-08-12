@@ -9,8 +9,7 @@
 #include "hmi/track/option/OptionData.h"
 #include "hmi/track/tag/alert/WarningTypeCollection.h"
 #include "hmi/track/tag/alert/WarningSelector.h"
-#include "plugin/PluginEnvironment.h"
-#include "warning/WarningManager.h"
+#include "system/SystemManager.h"
 #include "hmi/unit/UnitDisplayMode.h"
 
 namespace Eurocat::Hmi::Track
@@ -38,7 +37,7 @@ namespace Eurocat::Hmi::Track
 				rt, alertData,
 				unit,
 				IdentDisplayModeCalc::GetIdentDisplayModeForUncoupledTrack(option),
-				rt.GetPressureAltitude() > Plugin::PluginEnvironment::Shared().GetPlugin().GetTransitionAltitude()
+				rt.GetPressureAltitude() > SystemManager::Shared().GetPlugin().GetTransitionAltitude()
 			);
 		}
 
@@ -49,7 +48,7 @@ namespace Eurocat::Hmi::Track
 			selector.allowedWarnings = std::vector{ WarningType::Dupe };
 
 			WarningTypeCollection warnings;
-			warnings.AddFromRadarTargetWarningInfo(Warning::WarningManager::Shared().GetWarningInfoByTargetId(rt.GetTargetId()));
+			warnings.AddFromRadarTargetWarningInfo(SystemManager::Shared().GetWarningManager()->GetWarningInfoByTargetId(rt.GetTargetId()));
 
 			return TagAlertData(EmergencyInfo::Make(rt.GetSsr()), WarningInfo::Make(warnings.GetWaningTypes(), selector));
 		}

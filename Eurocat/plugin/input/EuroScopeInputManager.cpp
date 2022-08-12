@@ -8,25 +8,25 @@
 
 namespace Eurocat::Plugin::Input
 {
-	EuroScopeInputManager::EuroScopeInputManager(PluginEnvironment& pluginEnv) : pluginEnv(pluginEnv)
+	EuroScopeInputManager::EuroScopeInputManager(EurocatPlugin& plugin) : plugin(plugin)
 	{
 	}
 
 	void EuroScopeInputManager::OpenPopupEdit(RECT rect, CString initialValue, std::shared_ptr<EuroScopeInputRetriever> retriever)
 	{
 		currentRetriever = std::move(retriever);
-		pluginEnv.GetPlugin().OpenPopupEdit(rect, PluginFunctionId::kSubmitInputFunctionId, initialValue);
+		plugin.OpenPopupEdit(rect, PluginFunctionId::kSubmitInputFunctionId, initialValue);
 	}
 
 	void EuroScopeInputManager::OpenPopupList(RECT rect, CString title, std::shared_ptr<EuroScopeInputRetriever> retriever)
 	{
 		currentRetriever = std::move(retriever);
-		pluginEnv.GetPlugin().OpenPopupList(rect, title, 1);
+		plugin.OpenPopupList(rect, title, 1);
 	}
 
 	void EuroScopeInputManager::AddPopupListElement(CString str, bool selected)
 	{
-		pluginEnv.GetPlugin().AddPopupListElement(str, "", PluginFunctionId::kSubmitInputFunctionId, selected);
+		plugin.AddPopupListElement(str, "", PluginFunctionId::kSubmitInputFunctionId, selected);
 	}
 
 	void EuroScopeInputManager::OnFunctionCall(int functionId, CString itemString, POINT point, RECT area)

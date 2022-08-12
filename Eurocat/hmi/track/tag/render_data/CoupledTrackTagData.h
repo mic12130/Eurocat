@@ -11,9 +11,8 @@
 #include "hmi/track/option/OptionData.h"
 #include "hmi/track/tag/alert/WarningTypeCollection.h"
 #include "hmi/track/tag/alert/WarningSelector.h"
-#include "plugin/PluginEnvironment.h"
+#include "system/SystemManager.h"
 #include "hmi/unit/UnitDisplayMode.h"
-#include "warning/WarningManager.h"
 
 namespace Eurocat::Hmi::Track
 {
@@ -42,7 +41,7 @@ namespace Eurocat::Hmi::Track
 				rt, fp, alertData,
 				unit,
 				option.identDisplayMode,
-				rt.GetPressureAltitude() > Plugin::PluginEnvironment::Shared().GetPlugin().GetTransitionAltitude(),
+				rt.GetPressureAltitude() > SystemManager::Shared().GetPlugin().GetTransitionAltitude(),
 				ExtendedLabelCalc::RendersExtendedLabel(option, fp, profile),
 				SharedLabelCalc::RendersSharedLabel(option)
 			);
@@ -52,7 +51,7 @@ namespace Eurocat::Hmi::Track
 		{
 			WarningSelector selector;
 			WarningTypeCollection warnings;
-			warnings.AddFromRadarTargetWarningInfo(Warning::WarningManager::Shared().GetWarningInfoByTargetId(rt.GetTargetId()));
+			warnings.AddFromRadarTargetWarningInfo(SystemManager::Shared().GetWarningManager()->GetWarningInfoByTargetId(rt.GetTargetId()));
 
 			return TagAlertData(EmergencyInfo::Make(rt.GetSsr()), WarningInfo::Make(warnings.GetWaningTypes(), selector));
 		}

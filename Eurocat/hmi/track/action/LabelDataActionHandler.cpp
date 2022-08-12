@@ -4,7 +4,7 @@
 
 #include "plugin/input/PopupEdit.h"
 #include "common/OpData.h"
-#include "plugin/PluginEnvironment.h"
+#include "system/SystemManager.h"
 #include "plugin/FlightPlanHelper.h"
 
 using namespace Eurocat::Common;
@@ -17,7 +17,7 @@ namespace Eurocat::Hmi::Track
 	{
 		if (button == Screen::MouseButton::Left)
 		{
-			auto fp = PluginEnvironment::Shared().GetPlugin().FlightPlanSelect(trackProfile.flightPlanId.value());
+			auto fp = SystemManager::Shared().GetPlugin().FlightPlanSelect(trackProfile.flightPlanId.value());
 
 			if (!FlightPlanHelper::IsWritable(fp))
 			{
@@ -35,7 +35,7 @@ namespace Eurocat::Hmi::Track
 
 	void LabelDataActionHandler::OnSubmit(CString str, POINT point, RECT rect)
 	{
-		auto fp = PluginEnvironment::Shared().GetPlugin().FlightPlanSelect(flightPlanCallsignForPopupEdit);
+		auto fp = SystemManager::Shared().GetPlugin().FlightPlanSelect(flightPlanCallsignForPopupEdit);
 		OpData::SetForFlightPlan(fp, str);
 	}
 }

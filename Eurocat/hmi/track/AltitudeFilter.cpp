@@ -4,15 +4,15 @@
 
 namespace Eurocat::Hmi::Track
 {
-	AltitudeFilter::AltitudeFilter(OptionData& option) : pluginEnv(pluginEnv), option(option)
+	AltitudeFilter::AltitudeFilter(OptionData& option) : option(option)
 	{
 	}
 
-	bool AltitudeFilter::InRange(IRadarTargetDataProvider& rt, Plugin::PluginEnvironment& pluginEnv)
+	bool AltitudeFilter::InRange(IRadarTargetDataProvider& rt, Plugin::EurocatPlugin& plugin)
 	{
 		int altitude = rt.GetPressureAltitude();
 
-		if (altitude > pluginEnv.GetPlugin().GetTransitionAltitude())
+		if (altitude > plugin.GetTransitionAltitude())
 		{
 			altitude = rt.GetFlightLevel();
 		}

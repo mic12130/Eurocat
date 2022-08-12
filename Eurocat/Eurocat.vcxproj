@@ -223,10 +223,11 @@
     <ClCompile Include="common\unit\RflConverter.cpp" />
     <ClCompile Include="common\unit\SpeedConverter.cpp" />
     <ClCompile Include="common\unit\SpeedFormatter.cpp" />
+    <ClCompile Include="plugin\extension\FlightPlanAttributeContainer.cpp" />
     <ClCompile Include="helper\GraphicsHelper.cpp" />
+    <ClCompile Include="hmi\HmiManager.cpp" />
     <ClCompile Include="hmi\cursor\CursorManager.cpp" />
     <ClCompile Include="hmi\FlightPlanDisplayStateGenerator.cpp" />
-    <ClCompile Include="hmi\HmiService.cpp" />
     <ClCompile Include="hmi\OptionButton.cpp" />
     <ClCompile Include="hmi\OptionDialog.cpp" />
     <ClCompile Include="hmi\track\action\AcidActionHandler.cpp" />
@@ -287,15 +288,12 @@
     <ClCompile Include="plugin\input\PopupMenu.cpp" />
     <ClCompile Include="plugin\input\EuroScopeInputBridge.cpp" />
     <ClCompile Include="plugin\Plugin.cpp" />
-    <ClCompile Include="plugin\PluginApp.cpp" />
-    <ClCompile Include="plugin\PluginEnvironment.cpp" />
     <ClCompile Include="plugin\PluginEventManager.cpp" />
-    <ClCompile Include="plugin\PluginService.cpp" />
     <ClCompile Include="screen\GraphicsWrapper.cpp" />
     <ClCompile Include="screen\Screen.cpp" />
     <ClCompile Include="screen\ScreenWrapper.cpp" />
     <ClCompile Include="screen\WindowScalingInfo.cpp" />
-    <ClCompile Include="system\SystemServiceManager.cpp" />
+    <ClCompile Include="system\SystemManager.cpp" />
     <ClCompile Include="tagitem\AcidTagItem.cpp" />
     <ClCompile Include="tagitem\CflFunction.cpp" />
     <ClCompile Include="tagitem\CflTagItem.cpp" />
@@ -305,13 +303,12 @@
     <ClCompile Include="tagitem\RflInIcaoFormatTagItem.cpp" />
     <ClCompile Include="tagitem\RflTagItem.cpp" />
     <ClCompile Include="tagitem\TagItemColor.cpp" />
-    <ClCompile Include="tagitem\TagItemService.cpp" />
+    <ClCompile Include="tagitem\TagItemManager.cpp" />
     <ClCompile Include="warning\BuiltinWarningChecker.cpp" />
     <ClCompile Include="warning\DupeSquawkCheckDataProvider.cpp" />
     <ClCompile Include="warning\DupeSquawkChecker.cpp" />
     <ClCompile Include="warning\DupeSquawkCheckScheduler.cpp" />
     <ClCompile Include="warning\WarningManager.cpp" />
-    <ClCompile Include="warning\WarningService.cpp" />
     <ClCompile Include="window\LevelPopupMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -335,15 +332,16 @@
     <ClInclude Include="common\unit\RflModel.h" />
     <ClInclude Include="common\unit\SpeedConverter.h" />
     <ClInclude Include="common\unit\SpeedFormatter.h" />
+    <ClInclude Include="plugin\extension\FlightPlanAttributeContainer.h" />
     <ClInclude Include="helper\CoordinateHelper.h" />
     <ClInclude Include="helper\GraphicsHelper.h" />
     <ClInclude Include="helper\StringHelper.h" />
+    <ClInclude Include="hmi\HmiManager.h" />
     <ClInclude Include="hmi\cursor\CursorManager.h" />
     <ClInclude Include="hmi\cursor\CursorType.h" />
     <ClInclude Include="hmi\cursor\ICursorManager.h" />
     <ClInclude Include="hmi\FlightPlanDisplayState.h" />
     <ClInclude Include="hmi\FlightPlanDisplayStateGenerator.h" />
-    <ClInclude Include="hmi\HmiService.h" />
     <ClInclude Include="hmi\OptionButton.h" />
     <ClInclude Include="hmi\OptionDialog.h" />
     <ClInclude Include="hmi\track\action\AcidActionHandler.h" />
@@ -451,11 +449,8 @@
     <ClInclude Include="plugin\ITagItemProvider.h" />
     <ClInclude Include="plugin\ITimedEventHandler.h" />
     <ClInclude Include="plugin\Plugin.h" />
-    <ClInclude Include="plugin\PluginApp.h" />
-    <ClInclude Include="plugin\PluginEnvironment.h" />
     <ClInclude Include="plugin\PluginEventManager.h" />
     <ClInclude Include="plugin\PluginFunctionId.h" />
-    <ClInclude Include="plugin\PluginService.h" />
     <ClInclude Include="plugin\PluginTagItemId.h" />
     <ClInclude Include="res\Resource.h" />
     <ClInclude Include="screen\GraphicsWrapper.h" />
@@ -466,8 +461,7 @@
     <ClInclude Include="screen\ScreenObjectType.h" />
     <ClInclude Include="screen\ScreenWrapper.h" />
     <ClInclude Include="screen\WindowScalingInfo.h" />
-    <ClInclude Include="system\SystemService.h" />
-    <ClInclude Include="system\SystemServiceManager.h" />
+    <ClInclude Include="system\SystemManager.h" />
     <ClInclude Include="tagitem\AcidTagItem.h" />
     <ClInclude Include="tagitem\CflFunction.h" />
     <ClInclude Include="tagitem\CflTagItem.h" />
@@ -477,7 +471,7 @@
     <ClInclude Include="tagitem\RflInIcaoFormatTagItem.h" />
     <ClInclude Include="tagitem\RflTagItem.h" />
     <ClInclude Include="tagitem\TagItemColor.h" />
-    <ClInclude Include="tagitem\TagItemService.h" />
+    <ClInclude Include="tagitem\TagItemManager.h" />
     <ClInclude Include="warning\BuiltinWarningChecker.h" />
     <ClInclude Include="warning\DupeSquawkCheckDataProvider.h" />
     <ClInclude Include="warning\DupeSquawkChecker.h" />
@@ -486,7 +480,6 @@
     <ClInclude Include="warning\RadarTargetWarningInfo.h" />
     <ClInclude Include="warning\SquawkData.h" />
     <ClInclude Include="warning\WarningManager.h" />
-    <ClInclude Include="warning\WarningService.h" />
     <ClInclude Include="window\LevelPopupMenu.h" />
     <ClInclude Include="window\LevelPopupMenuDelegate.h" />
   </ItemGroup>

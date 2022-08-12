@@ -24,9 +24,10 @@
 #include "hmi/track/tag/render_data/CoupledTrackTagData.h"
 #include "hmi/track/tag/render_data/FlightPlanTrackTagData.h"
 #include "hmi/track/tag/render_data/UncoupledTrackTagData.h"
-#include "hmi/FlightPlanDisplayStateGenerator.h"
 #include "screen/ScreenObjectType.h"
-#include "plugin/PluginEnvironment.h"
+#include "plugin/Plugin.h"
+#include "plugin/extension/FlightPlanAttributeContainer.h"
+#include "system/SystemManager.h"
 #include "hmi/cursor/CursorManager.h"
 
 using namespace Eurocat::Plugin::Extension;
@@ -53,7 +54,7 @@ namespace Eurocat::Hmi::Track
 
 	void TrackManager::OnRender(Screen::ScreenWrapper& screen, Screen::GraphicsWrapper& graphics)
 	{
-		auto& plugin = PluginEnvironment::Shared().GetPlugin();
+		auto& plugin = SystemManager::Shared().GetPlugin();
 		auto radarArea = screen.GetRadarArea();
 		std::vector<RenderableTrack> renderableTracks;
 
@@ -77,7 +78,7 @@ namespace Eurocat::Hmi::Track
 					fp.GetCorrelatedRadarTarget().IsValid() == false)
 				{
 					// FP Track
-					auto& fpAttribute = PluginEnvironment::Shared().AttributeForFlightPlan(fp);
+					auto& fpAttribute = FlightPlanAttributeContainer::Shared().AttributeForFlightPlan(fp);
 					auto fpData = std::make_shared<FlightPlanDataProvider>(fp, fpAttribute);
 					renderableTracks.emplace_back(fp.GetCallsign(), RenderableTrack::Type::FlightPlanTrack, fpData, nullptr);
 				}
@@ -96,7 +97,7 @@ namespace Eurocat::Hmi::Track
 			{
 				continue;
 			}
-			
+
 			auto rtData = std::make_shared<RadarTargetDataProvider>(rt);
 
 			if (rt.GetPosition().GetReportedGS() < kGroundTrafficMaxSpeed)
@@ -112,7 +113,7 @@ namespace Eurocat::Hmi::Track
 					if (auto coupledFp = rt.GetCorrelatedFlightPlan(); coupledFp.IsValid())
 					{
 						// Coupled
-						auto& fpAttribute = PluginEnvironment::Shared().AttributeForFlightPlan(coupledFp);
+						auto& fpAttribute = FlightPlanAttributeContainer::Shared().AttributeForFlightPlan(coupledFp);
 						auto fpData = std::make_shared<FlightPlanDataProvider>(coupledFp, fpAttribute);
 
 						renderableTracks.emplace_back(rt.GetCallsign(), RenderableTrack::Type::Coupled, fpData, rtData);
@@ -165,11 +166,11 @@ namespace Eurocat::Hmi::Track
 
 				if (profile.trackType == TrackProfile::TrackType::FlightPlan)
 				{
-					coord = PluginEnvironment::Shared().GetPlugin().FlightPlanSelect(profile.flightPlanId.value()).GetFPTrackPosition().GetPosition();
+					coord = SystemManager::Shared().GetPlugin().FlightPlanSelect(profile.flightPlanId.value()).GetFPTrackPosition().GetPosition();
 				}
 				else if (profile.trackType == TrackProfile::TrackType::Coupled || profile.trackType == TrackProfile::TrackType::Uncoupled)
 				{
-					coord = PluginEnvironment::Shared().GetPlugin().RadarTargetSelect(profile.radarTargetId.value()).GetPosition().GetPosition();
+					coord = SystemManager::Shared().GetPlugin().RadarTargetSelect(profile.radarTargetId.value()).GetPosition().GetPosition();
 				}
 
 				CPoint cursorPx;
@@ -302,24 +303,24 @@ namespace Eurocat::Hmi::Track
 
 	bool TrackManager::IsSelected(IRadarTargetDataProvider& rt)
 	{
-		return PluginEnvironment::Shared().GetPlugin().RadarTargetSelectASEL().GetSystemID() == rt.GetTargetId();
+		return SystemManager::Shared().GetPlugin().RadarTargetSelectASEL().GetSystemID() == rt.GetTargetId();
 	}
 
 	bool TrackManager::IsSelected(IFlightPlanDataProvider& fp)
 	{
-		return PluginEnvironment::Shared().GetPlugin().FlightPlanSelectASEL().GetCallsign() == fp.GetCallsign();
+		return SystemManager::Shared().GetPlugin().FlightPlanSelectASEL().GetCallsign() == fp.GetCallsign();
 	}
 
 	bool TrackManager::IsAboveTransAltitude(IRadarTargetDataProvider& rt)
 	{
 		int level = rt.GetPressureAltitude();
 
-		if (level > PluginEnvironment::Shared().GetPlugin().GetTransitionAltitude())
+		if (level > SystemManager::Shared().GetPlugin().GetTransitionAltitude())
 		{
 			level = rt.GetFlightLevel();
 		}
 
-		return level > PluginEnvironment::Shared().GetPlugin().GetTransitionAltitude();
+		return level > SystemManager::Shared().GetPlugin().GetTransitionAltitude();
 	}
 
 	auto TrackManager::GetUnit(IRadarTargetDataProvider& rt) -> Hmi::Unit::UnitDisplayMode

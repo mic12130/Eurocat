@@ -1,32 +1,22 @@
 #include "base/pch.h"
 
 #include "warning/WarningManager.h"
+#include "warning/DupeSquawkCheckScheduler.h"
+#include "plugin/PluginEventManager.h"
 
 namespace Eurocat::Warning
 {
-	WarningManager& WarningManager::Shared()
+	WarningManager::WarningManager()
 	{
-		return *shared;
+		builtinWarningChecker = std::make_shared<BuiltinWarningChecker>();
+		dupeSquawkChecker = std::make_shared<DupeSquawkChecker>();
 	}
 
-	void WarningManager::SetShared(std::shared_ptr<WarningManager> ptr)
+	void WarningManager::SubscribeToPluginEvents(Plugin::PluginEventManager& manager)
 	{
-		if (ptr == nullptr)
-		{
-			shared = nullptr;
-		}
-		else
-		{
-			shared = std::move(ptr);
-		}
-	}
-
-	WarningManager::WarningManager(
-		std::shared_ptr<BuiltinWarningChecker> builtinWarningChecker,
-		std::shared_ptr<DupeSquawkChecker> dupeSquawkChecker)
-		: builtinWarningChecker(builtinWarningChecker),
-		dupeSquawkChecker(dupeSquawkChecker)
-	{
+		auto dupeSquawkCheckScheduler = std::make_shared<DupeSquawkCheckScheduler>(dupeSquawkChecker);
+		manager.AddTimedEventHandler(builtinWarningChecker);
+		manager.AddTimedEventHandler(dupeSquawkCheckScheduler);
 	}
 
 	std::vector<CString> WarningManager::GetClamWarningTargetIds()

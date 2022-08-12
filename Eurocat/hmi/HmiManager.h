@@ -1,20 +1,25 @@
 #pragma once
 
-#include "system/SystemService.h"
-
 #include "hmi/unit/UnitDisplayManager.h"
 #include "hmi/OptionButton.h"
 #include "track/TrackManager.h"
 
+namespace Eurocat::Plugin
+{
+	class PluginEventManager;
+}
+
 namespace Eurocat::Hmi
 {
-	class HmiService : public System::SystemService
+	class HmiManager
 	{
 	public:
-		HmiService();
-		void OnStart() override;
-		void OnStop() override;
+		HmiManager();
+		~HmiManager();
+		void SubscribeToPluginEvents(Plugin::PluginEventManager& manager);
 		void OnClickOptionButton();
+
+		// Expose for tag item module
 		Unit::UnitDisplayManager& GetUnitDisplayManager();
 
 	private:

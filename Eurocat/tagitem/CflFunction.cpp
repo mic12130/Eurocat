@@ -3,7 +3,7 @@
 #include "tagitem/CflFunction.h"
 
 #include "common/unit/AltitudeConverter.h"
-#include "plugin/PluginEnvironment.h"
+#include "system/SystemManager.h"
 #include "plugin/FlightPlanHelper.h"
 #include "window/LevelPopupMenu.h"
 #include "plugin/extension/CflData.h"
@@ -22,7 +22,7 @@ namespace Eurocat::TagItem
 
 	void CflFunction::OnFunctionCall(int functionId, CString itemString, POINT point, RECT area)
 	{
-		auto fp = PluginEnvironment::Shared().GetPlugin().FlightPlanSelectASEL();
+		auto fp = SystemManager::Shared().GetPlugin().FlightPlanSelectASEL();
 
 		if (!FlightPlanHelper::IsWritable(fp))
 		{
@@ -45,7 +45,7 @@ namespace Eurocat::TagItem
 
 	void CflFunction::OnSelectLevel(std::optional<int> level, Hmi::Unit::UnitDisplayMode unit)
 	{
-		auto fp = PluginEnvironment::Shared().GetPlugin().FlightPlanSelect(callsignForPopup);
+		auto fp = SystemManager::Shared().GetPlugin().FlightPlanSelect(callsignForPopup);
 		auto levelToSet = level;
 
 		if (unit == UnitDisplayMode::Metric && level.has_value())

@@ -12,9 +12,6 @@ namespace Eurocat::Plugin
 	class PluginEventManager
 	{
 	public:
-		static PluginEventManager& Shared();
-		static void SetShared(std::shared_ptr<PluginEventManager> ptr);
-
 		PluginEventManager(
 			std::vector<std::shared_ptr<IFlightPlanEventHandler>>& flightPlanEventHandlers,
 			std::vector<std::shared_ptr<IRadarTargetEventHandler>>& radarEventHandlers,
@@ -32,8 +29,6 @@ namespace Eurocat::Plugin
 		void AddScreenEventHandler(std::shared_ptr<Screen::IScreenEventHandler> handler);
 
 	private:
-		inline static std::shared_ptr<PluginEventManager> shared = nullptr;
-
 		std::vector<std::shared_ptr<IFlightPlanEventHandler>>& flightPlanEventHandlers;
 		std::vector<std::shared_ptr<IRadarTargetEventHandler>>& radarEventHandlers;
 		std::vector<std::shared_ptr<ITimedEventHandler>>& timerEventHandlers;
