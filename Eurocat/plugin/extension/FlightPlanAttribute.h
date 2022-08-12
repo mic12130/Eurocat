@@ -2,8 +2,9 @@
 
 #include "common/FlightPlanState.h"
 
-namespace Eurocat::Plugin::Extension
+namespace Eurocat::Plugin
 {
+	// Flight plan attributes that will be stored locally and will not interact with the ES API
 	struct FlightPlanAttribute
 	{
 		bool isCflAcknowledged = false;

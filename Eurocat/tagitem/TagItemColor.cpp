@@ -2,6 +2,7 @@
 
 #include "tagitem/TagItemColor.h"
 #include "hmi/FlightPlanDisplayStateGenerator.h"
+#include "plugin/extension/FlightPlanExtension.h"
 
 using namespace Eurocat::Plugin;
 using namespace Eurocat::Common;
@@ -9,9 +10,9 @@ using namespace Eurocat::Hmi;
 
 namespace Eurocat::TagItem
 {
-	COLORREF TagItemColor::GetIdenticalColor(EuroScopePlugIn::CFlightPlan& fp, Plugin::Extension::FlightPlanAttribute& fpAttribute)
+	COLORREF TagItemColor::GetIdenticalColor(EuroScopePlugIn::CFlightPlan& fp)
 	{
-		auto displayState = FlightPlanDisplayStateGenerator::Generate(fp, fpAttribute);
+		auto displayState = FlightPlanDisplayStateGenerator::Generate(fp);
 		COLORREF result = RGB(0, 0, 0);
 
 		if (IsEmergency(fp))

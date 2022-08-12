@@ -1,6 +1,6 @@
 #pragma once
 
-namespace Eurocat::Plugin::Extension
+namespace Eurocat::Plugin
 {
 	class CflData
 	{

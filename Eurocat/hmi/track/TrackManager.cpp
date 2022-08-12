@@ -26,11 +26,9 @@
 #include "hmi/track/tag/render_data/UncoupledTrackTagData.h"
 #include "screen/ScreenObjectType.h"
 #include "plugin/Plugin.h"
-#include "plugin/extension/FlightPlanAttributeContainer.h"
 #include "system/SystemManager.h"
 #include "hmi/cursor/CursorManager.h"
 
-using namespace Eurocat::Plugin::Extension;
 using namespace Eurocat::Plugin;
 using namespace Eurocat::Screen;
 using namespace Eurocat::Hmi::Cursor;
@@ -78,8 +76,7 @@ namespace Eurocat::Hmi::Track
 					fp.GetCorrelatedRadarTarget().IsValid() == false)
 				{
 					// FP Track
-					auto& fpAttribute = FlightPlanAttributeContainer::Shared().AttributeForFlightPlan(fp);
-					auto fpData = std::make_shared<FlightPlanDataProvider>(fp, fpAttribute);
+					auto fpData = std::make_shared<FlightPlanDataProvider>(fp);
 					renderableTracks.emplace_back(fp.GetCallsign(), RenderableTrack::Type::FlightPlanTrack, fpData, nullptr);
 				}
 			}
@@ -113,8 +110,7 @@ namespace Eurocat::Hmi::Track
 					if (auto coupledFp = rt.GetCorrelatedFlightPlan(); coupledFp.IsValid())
 					{
 						// Coupled
-						auto& fpAttribute = FlightPlanAttributeContainer::Shared().AttributeForFlightPlan(coupledFp);
-						auto fpData = std::make_shared<FlightPlanDataProvider>(coupledFp, fpAttribute);
+						auto fpData = std::make_shared<FlightPlanDataProvider>(coupledFp);
 
 						renderableTracks.emplace_back(rt.GetCallsign(), RenderableTrack::Type::Coupled, fpData, rtData);
 					}

@@ -217,7 +217,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="common\OpData.cpp" />
+    <ClCompile Include="plugin\extension\FlightPlanExtension.cpp" />
+    <ClCompile Include="plugin\extension\OpData.cpp" />
     <ClCompile Include="common\unit\AltitudeConverter.cpp" />
     <ClCompile Include="common\unit\AltitudeFormatter.cpp" />
     <ClCompile Include="common\unit\RflConverter.cpp" />
@@ -324,8 +325,9 @@
     <ClInclude Include="common\Coordinate.h" />
     <ClInclude Include="common\FlightPlanState.h" />
     <ClInclude Include="common\FlightPlanStateMaker.h" />
-    <ClInclude Include="common\OpData.h" />
-    <ClInclude Include="common\OpDataConverter.h" />
+    <ClInclude Include="plugin\extension\FlightPlanExtension.h" />
+    <ClInclude Include="plugin\extension\OpData.h" />
+    <ClInclude Include="plugin\extension\OpDataConverter.h" />
     <ClInclude Include="common\unit\AltitudeConverter.h" />
     <ClInclude Include="common\unit\AltitudeFormatter.h" />
     <ClInclude Include="common\unit\RflConverter.h" />
@@ -434,7 +436,6 @@
     <ClInclude Include="plugin\extension\FlightPlanAttribute.h" />
     <ClInclude Include="plugin\extension\FlightPlanAttributeUpdater.h" />
     <ClInclude Include="plugin\extension\FlightPlanProcessor.h" />
-    <ClInclude Include="plugin\FlightPlanHelper.h" />
     <ClInclude Include="plugin\IFlightPlanEventHandler.h" />
     <ClInclude Include="plugin\input\EuroScopeInputManager.h" />
     <ClInclude Include="plugin\input\EuroScopeInputRetriever.h" />

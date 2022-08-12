@@ -8,10 +8,7 @@ namespace Eurocat::Hmi
 	class FlightPlanDisplayStateGenerator
 	{
 	public:
-		static auto Generate(
-			const EuroScopePlugIn::CFlightPlan& fp, 
-			const Plugin::Extension::FlightPlanAttribute& fpAttribute
-		) -> FlightPlanDisplayState;
-		static bool IsAcceptedReminding(const Plugin::Extension::FlightPlanAttribute& fpAttribute);
+		static auto Generate(EuroScopePlugIn::CFlightPlan& fp) -> FlightPlanDisplayState;
+		static bool IsAcceptedReminding(EuroScopePlugIn::CFlightPlan& fp);
 	};
 }

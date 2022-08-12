@@ -4,8 +4,8 @@
 
 #include "hmi/track/action/EuroScopeFunctionHelper.h"
 #include "plugin/input/PopupMenu.h"
+#include "plugin/extension/FlightPlanExtension.h"
 #include "system/SystemManager.h"
-#include "plugin/FlightPlanHelper.h"
 
 using namespace Eurocat::Screen;
 using namespace Eurocat::Plugin;
@@ -22,8 +22,9 @@ namespace Eurocat::Hmi::Track
 		if (button == MouseButton::Left)
 		{
 			auto fp = SystemManager::Shared().GetPlugin().FlightPlanSelect(trackProfile.flightPlanId.value());
+			auto fpExt = FlightPlanExtension(fp);
 
-			if (!FlightPlanHelper::IsWritable(fp))
+			if (!fpExt.GetWritable())
 			{
 				return;
 			}

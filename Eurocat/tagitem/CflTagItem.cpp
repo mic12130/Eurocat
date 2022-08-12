@@ -4,11 +4,9 @@
 
 #include "common/unit/AltitudeConverter.h"
 #include "common/unit/AltitudeFormatter.h"
-#include "plugin/extension/FlightPlanAttributeContainer.h"
 #include "tagitem/TagItemColor.h"
 
 using namespace Eurocat::Plugin;
-using namespace Eurocat::Plugin::Extension;
 using namespace Eurocat::Common::Unit;
 using namespace Eurocat::Hmi::Unit;
 
@@ -23,7 +21,6 @@ namespace Eurocat::TagItem
 		EuroScopePlugIn::CRadarTarget radarTarget,
 		int itemCode, char itemString[16], int* colorCode, COLORREF* rgb)
 	{
-		auto fpAttribute = FlightPlanAttributeContainer::Shared().AttributeForFlightPlan(flightPlan);
 		int level = flightPlan.GetControllerAssignedData().GetClearedAltitude();
 		UnitDisplayMode unit = unitDisplayManager.GetUnitForFlightPlan(flightPlan.GetCallsign());
 		AltitudeFormatter formatter(unit);
@@ -36,6 +33,6 @@ namespace Eurocat::TagItem
 		CString str = formatter.StringFromAltitude(level);
 		strcpy_s(itemString, 16, str);
 		*colorCode = EuroScopePlugIn::TAG_COLOR_RGB_DEFINED;
-		*rgb = TagItemColor::GetIdenticalColor(flightPlan, fpAttribute);
+		*rgb = TagItemColor::GetIdenticalColor(flightPlan);
 	}
 }

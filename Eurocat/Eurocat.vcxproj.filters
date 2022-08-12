@@ -296,9 +296,6 @@
     <ClInclude Include="hmi\FlightPlanDisplayStateGenerator.h">
       <Filter>hmi</Filter>
     </ClInclude>
-    <ClInclude Include="plugin\FlightPlanHelper.h">
-      <Filter>plugin</Filter>
-    </ClInclude>
     <ClInclude Include="hmi\track\IAltitudeFilter.h">
       <Filter>hmi\track</Filter>
     </ClInclude>
@@ -569,10 +566,10 @@
     <ClInclude Include="screen\WindowScalingInfo.h">
       <Filter>screen</Filter>
     </ClInclude>
-    <ClInclude Include="common\OpDataConverter.h">
+    <ClInclude Include="plugin\extension\OpDataConverter.h">
       <Filter>common</Filter>
     </ClInclude>
-    <ClInclude Include="common\OpData.h">
+    <ClInclude Include="plugin\extension\OpData.h">
       <Filter>common</Filter>
     </ClInclude>
     <ClInclude Include="hmi\track\symbol\SymbolObjectInfo.h">
@@ -594,6 +591,9 @@
       <Filter>plugin</Filter>
     </ClInclude>
     <ClInclude Include="plugin\extension\FlightPlanAttributeContainer.h">
+      <Filter>plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\extension\FlightPlanExtension.h">
       <Filter>plugin</Filter>
     </ClInclude>
   </ItemGroup>
@@ -870,7 +870,7 @@
     <ClCompile Include="screen\WindowScalingInfo.cpp">
       <Filter>screen</Filter>
     </ClCompile>
-    <ClCompile Include="common\OpData.cpp">
+    <ClCompile Include="plugin\extension\OpData.cpp">
       <Filter>common</Filter>
     </ClCompile>
     <ClCompile Include="hmi\track\symbol\SymbolObjectInfoFactory.cpp">
@@ -886,6 +886,9 @@
       <Filter>base</Filter>
     </ClCompile>
     <ClCompile Include="plugin\extension\FlightPlanAttributeContainer.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="plugin\extension\FlightPlanExtension.cpp">
       <Filter>base</Filter>
     </ClCompile>
   </ItemGroup>

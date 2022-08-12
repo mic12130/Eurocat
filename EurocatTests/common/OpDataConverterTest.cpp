@@ -1,8 +1,8 @@
 #include "pch.h"
 
-#include "common/OpDataConverter.h"
+#include "plugin/extension/OpDataConverter.h"
 
-namespace Eurocat::Common
+namespace Eurocat::Plugin
 {
 	TEST(OpDataConverterTest, ConvertsEmptyStringFromEs)
 	{

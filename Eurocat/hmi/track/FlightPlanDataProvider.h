@@ -1,14 +1,13 @@
 #pragma once
 
 #include "hmi/track/IFlightPlanDataProvider.h"
-#include "plugin/extension/FlightPlanAttribute.h"
 
 namespace Eurocat::Hmi::Track
 {
 	class FlightPlanDataProvider : public IFlightPlanDataProvider
 	{
 	public:
-		FlightPlanDataProvider(EuroScopePlugIn::CFlightPlan& fp, Plugin::Extension::FlightPlanAttribute& fpAttribute);
+		FlightPlanDataProvider(EuroScopePlugIn::CFlightPlan& fp);
 		CString GetCallsign() override;
 		Hmi::FlightPlanDisplayState GetDisplayState() override;
 		bool IsAcceptedReminding() override;
@@ -32,6 +31,5 @@ namespace Eurocat::Hmi::Track
 
 	private:
 		EuroScopePlugIn::CFlightPlan fp;
-		Plugin::Extension::FlightPlanAttribute& fpAttribute;
 	};
 }

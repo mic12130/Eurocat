@@ -3,9 +3,8 @@
 #include "hmi/track/action/LabelDataActionHandler.h"
 
 #include "plugin/input/PopupEdit.h"
-#include "common/OpData.h"
+#include "plugin/extension/FlightPlanExtension.h"
 #include "system/SystemManager.h"
-#include "plugin/FlightPlanHelper.h"
 
 using namespace Eurocat::Common;
 using namespace Eurocat::Plugin;
@@ -18,13 +17,14 @@ namespace Eurocat::Hmi::Track
 		if (button == Screen::MouseButton::Left)
 		{
 			auto fp = SystemManager::Shared().GetPlugin().FlightPlanSelect(trackProfile.flightPlanId.value());
+			auto fpExtension = FlightPlanExtension(fp);
 
-			if (!FlightPlanHelper::IsWritable(fp))
+			if (!fpExtension.GetWritable())
 			{
 				return;
 			}
 
-			CString labelData = OpData::GetForFlightPlan(fp);
+			CString labelData = fpExtension.GetOpDataText();
 			auto popupEdit = std::make_shared<PopupEdit>(labelData, true);
 			popupEdit->delegate = shared_from_this();
 			popupEdit->Show(point, area);
@@ -36,6 +36,6 @@ namespace Eurocat::Hmi::Track
 	void LabelDataActionHandler::OnSubmit(CString str, POINT point, RECT rect)
 	{
 		auto fp = SystemManager::Shared().GetPlugin().FlightPlanSelect(flightPlanCallsignForPopupEdit);
-		OpData::SetForFlightPlan(fp, str);
+		FlightPlanExtension(fp).SetOpDataText(str);
 	}
 }

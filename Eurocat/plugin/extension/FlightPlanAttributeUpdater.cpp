@@ -7,7 +7,7 @@
 
 using namespace Eurocat::Common;
 
-namespace Eurocat::Plugin::Extension
+namespace Eurocat::Plugin
 {
 	FlightPlanAttributeUpdater::FlightPlanAttributeUpdater(EuroScopePlugIn::CPlugIn& plugin)
 		: plugin(plugin)

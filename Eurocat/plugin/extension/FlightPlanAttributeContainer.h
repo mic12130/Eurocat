@@ -2,7 +2,7 @@
 
 #include "plugin/extension/FlightPlanAttribute.h"
 
-namespace Eurocat::Plugin::Extension
+namespace Eurocat::Plugin
 {
 	class FlightPlanAttributeContainer
 	{

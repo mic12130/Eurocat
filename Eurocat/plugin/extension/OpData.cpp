@@ -1,10 +1,10 @@
 #include "base/pch.h"
 
-#include "common/OpData.h"
+#include "plugin/extension/OpData.h"
 
-#include "common/OpDataConverter.h"
+#include "plugin/extension/OpDataConverter.h"
 
-namespace Eurocat::Common
+namespace Eurocat::Plugin
 {
 	CString OpData::GetForFlightPlan(const EuroScopePlugIn::CFlightPlan& fp)
 	{

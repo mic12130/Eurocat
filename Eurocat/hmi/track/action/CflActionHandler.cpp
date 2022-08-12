@@ -5,14 +5,11 @@
 #include "window/LevelPopupMenu.h"
 #include "common/unit/AltitudeConverter.h"
 #include "system/SystemManager.h"
-#include "plugin/FlightPlanHelper.h"
-#include "plugin/extension/CflData.h"
-#include "plugin/extension/FlightPlanAttributeContainer.h"
+#include "plugin/extension/FlightPlanExtension.h"
 
 using namespace Eurocat::Window;
 using namespace Eurocat::Hmi::Unit;
 using namespace Eurocat::Plugin;
-using namespace Eurocat::Plugin::Extension;
 using namespace Eurocat::Screen;
 using namespace Eurocat::Common::Unit;
 
@@ -28,8 +25,9 @@ namespace Eurocat::Hmi::Track
 		{
 			auto fp = SystemManager::Shared().GetPlugin()
 				.FlightPlanSelect(trackProfile.flightPlanId.value());
+			auto fpExtension = FlightPlanExtension(fp);
 
-			if (!FlightPlanHelper::IsWritable(fp))
+			if (!fpExtension.GetWritable())
 			{
 				return;
 			}
@@ -65,8 +63,8 @@ namespace Eurocat::Hmi::Track
 		else if (button == MouseButton::Middle)
 		{
 			auto fp = SystemManager::Shared().GetPlugin().FlightPlanSelect(trackProfile.flightPlanId.value());
-			auto& fpAttribute = FlightPlanAttributeContainer::Shared().AttributeForFlightPlan(fp);
-			fpAttribute.isCflAcknowledged = !fpAttribute.isCflAcknowledged;
+			auto fpExtension = FlightPlanExtension(fp);
+			fpExtension.SetCflAcknowledged(!fpExtension.GetCflAcknowledged());
 		}
 	}
 
@@ -82,7 +80,7 @@ namespace Eurocat::Hmi::Track
 		if (auto fp = SystemManager::Shared().GetPlugin().FlightPlanSelect(callsignForPopup);
 			fp.IsValid())
 		{
-			CflData::SetForFlightPlan(fp, levelToSet);
+			FlightPlanExtension(fp).SetCfl(levelToSet);
 		}
 	}
 }

@@ -4,12 +4,10 @@
 
 #include "common/unit/AltitudeConverter.h"
 #include "system/SystemManager.h"
-#include "plugin/FlightPlanHelper.h"
 #include "window/LevelPopupMenu.h"
-#include "plugin/extension/CflData.h"
+#include "plugin/extension/FlightPlanExtension.h"
 
 using namespace Eurocat::Plugin;
-using namespace Eurocat::Plugin::Extension;
 using namespace Eurocat::Common::Unit;
 using namespace Eurocat::Hmi::Unit;
 using namespace Eurocat::Window;
@@ -23,8 +21,9 @@ namespace Eurocat::TagItem
 	void CflFunction::OnFunctionCall(int functionId, CString itemString, POINT point, RECT area)
 	{
 		auto fp = SystemManager::Shared().GetPlugin().FlightPlanSelectASEL();
+		auto fpExt = FlightPlanExtension(fp);
 
-		if (!FlightPlanHelper::IsWritable(fp))
+		if (!fpExt.GetWritable())
 		{
 			return;
 		}
@@ -46,6 +45,7 @@ namespace Eurocat::TagItem
 	void CflFunction::OnSelectLevel(std::optional<int> level, Hmi::Unit::UnitDisplayMode unit)
 	{
 		auto fp = SystemManager::Shared().GetPlugin().FlightPlanSelect(callsignForPopup);
+		auto fpExt = FlightPlanExtension(fp);
 		auto levelToSet = level;
 
 		if (unit == UnitDisplayMode::Metric && level.has_value())
@@ -53,6 +53,6 @@ namespace Eurocat::TagItem
 			levelToSet = AltitudeConverter::MeterToFeet(level.value());
 		}
 
-		CflData::SetForFlightPlan(fp, levelToSet);
+		fpExt.SetCfl(levelToSet);
 	}
 }

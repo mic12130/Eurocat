@@ -2,13 +2,16 @@
 
 #include "hmi/FlightPlanDisplayStateGenerator.h"
 
+#include "plugin/extension/FlightPlanExtension.h"
+
 using namespace Eurocat::Common;
+using namespace Eurocat::Plugin;
 
 namespace Eurocat::Hmi
 {
-	auto FlightPlanDisplayStateGenerator::Generate(const EuroScopePlugIn::CFlightPlan& fp, const Plugin::Extension::FlightPlanAttribute& fpAttribute) -> FlightPlanDisplayState
+	auto FlightPlanDisplayStateGenerator::Generate(EuroScopePlugIn::CFlightPlan& fp) -> FlightPlanDisplayState
 	{
-		auto fpState = fpAttribute.currentState;
+		auto fpState = FlightPlanExtension(fp).GetCurrentState();
 		FlightPlanDisplayState result;
 
 		if (fpState == FlightPlanState::Uncontrolled)
@@ -42,10 +45,15 @@ namespace Eurocat::Hmi
 		return result;
 	}
 
-	bool FlightPlanDisplayStateGenerator::IsAcceptedReminding(const Plugin::Extension::FlightPlanAttribute& fpAttribute)
+	bool FlightPlanDisplayStateGenerator::IsAcceptedReminding(EuroScopePlugIn::CFlightPlan& fp)
 	{
-		return fpAttribute.currentState == FlightPlanState::Uncontrolled &&
-			(fpAttribute.lastState == FlightPlanState::Controlled || fpAttribute.lastState == FlightPlanState::HandedOver) &&
-			CTimeSpan(CTime::GetCurrentTime() - fpAttribute.lastStateUpdateTime).GetTotalSeconds() <= 15;
+		auto fpExtension = FlightPlanExtension(fp);
+		auto currentState = fpExtension.GetCurrentState();
+		auto lastState = fpExtension.GetLastState();
+		auto lastStateUpdateTime = fpExtension.GetLastStateUpdateTime();
+
+		return currentState == FlightPlanState::Uncontrolled &&
+			(lastState == FlightPlanState::Controlled || lastState == FlightPlanState::HandedOver) &&
+			CTimeSpan(CTime::GetCurrentTime() - lastStateUpdateTime).GetTotalSeconds() <= 15;
 	}
 }

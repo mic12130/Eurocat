@@ -6,7 +6,7 @@
 
 using namespace Eurocat::Common;
 
-namespace Eurocat::Plugin::Extension
+namespace Eurocat::Plugin
 {
 	std::shared_ptr<FlightPlanAttributeContainer> FlightPlanAttributeContainer::shared = 
 		std::shared_ptr<FlightPlanAttributeContainer>(new FlightPlanAttributeContainer());

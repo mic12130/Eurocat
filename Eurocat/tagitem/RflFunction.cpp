@@ -4,7 +4,7 @@
 
 #include "common/unit/AltitudeConverter.h"
 #include "system/SystemManager.h"
-#include "plugin/FlightPlanHelper.h"
+#include "plugin/extension/FlightPlanExtension.h"
 #include "window/LevelPopupMenu.h"
 
 using namespace Eurocat::Plugin;
@@ -21,8 +21,9 @@ namespace Eurocat::TagItem
 	void RflFunction::OnFunctionCall(int functionId, CString itemString, POINT point, RECT area)
 	{
 		auto fp = SystemManager::Shared().GetPlugin().FlightPlanSelectASEL();
+		auto fpExt = FlightPlanExtension(fp);
 
-		if (!FlightPlanHelper::IsWritable(fp))
+		if (!fpExt.GetWritable())
 		{
 			return;
 		}

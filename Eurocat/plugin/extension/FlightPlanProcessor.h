@@ -4,7 +4,7 @@
 #include "plugin/ITimedEventHandler.h"
 #include "plugin/Plugin.h"
 
-namespace Eurocat::Plugin::Extension
+namespace Eurocat::Plugin
 {
 	// Updates flight plans to make them meet the requirements of Eurocat plugin.
 	// To avoid possible conflict, changes will be only applied on controlled flight plans.

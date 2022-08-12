@@ -2,7 +2,7 @@
 
 #include "base/pch.h"
 
-namespace Eurocat::Common
+namespace Eurocat::Plugin
 {
 	class OpData
 	{

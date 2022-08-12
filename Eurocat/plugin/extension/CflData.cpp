@@ -2,9 +2,9 @@
 
 #include "plugin/extension/CflData.h"
 
-namespace Eurocat::Plugin::Extension
+namespace Eurocat::Plugin
 {
-	std::optional<int> Extension::CflData::GetForFlightPlan(const EuroScopePlugIn::CFlightPlan& fp)
+	std::optional<int> CflData::GetForFlightPlan(const EuroScopePlugIn::CFlightPlan& fp)
 	{
 		int original = fp.GetControllerAssignedData().GetClearedAltitude();
 
@@ -16,17 +16,17 @@ namespace Eurocat::Plugin::Extension
 		return original;
 	}
 
-	int Extension::CflData::SetForFlightPlan(const EuroScopePlugIn::CFlightPlan& fp, std::optional<int> level)
+	int CflData::SetForFlightPlan(const EuroScopePlugIn::CFlightPlan& fp, std::optional<int> level)
 	{
 		return fp.GetControllerAssignedData().SetClearedAltitude(level.value_or(kNoneCflValue));
 	}
 
-	int Extension::CflData::SetForFlightPlan(const EuroScopePlugIn::CFlightPlan& fp, int level)
+	int CflData::SetForFlightPlan(const EuroScopePlugIn::CFlightPlan& fp, int level)
 	{
 		return SetForFlightPlan(fp, std::make_optional(level));
 	}
 
-	int Extension::CflData::SetNoneForFlightPlan(const EuroScopePlugIn::CFlightPlan& fp)
+	int CflData::SetNoneForFlightPlan(const EuroScopePlugIn::CFlightPlan& fp)
 	{
 		return SetForFlightPlan(fp, std::nullopt);
 	}

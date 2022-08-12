@@ -2,10 +2,10 @@
 
 #include "tagitem/OpDataTagItem.h"
 
-#include "common/OpData.h"
 #include "tagitem/TagItemColor.h"
+#include "plugin/extension/FlightPlanExtension.h"
 
-using namespace Eurocat::Common;
+using namespace Eurocat::Plugin;
 
 namespace Eurocat::TagItem
 {
@@ -14,7 +14,7 @@ namespace Eurocat::TagItem
 		EuroScopePlugIn::CRadarTarget radarTarget,
 		int itemCode, char itemString[16], int* colorCode, COLORREF* rgb)
 	{
-		CString str = OpData::GetForFlightPlan(flightPlan);
+		CString str = FlightPlanExtension(flightPlan).GetOpDataText();
 		strcpy_s(itemString, 16, str);
 		*colorCode = EuroScopePlugIn::TAG_COLOR_RGB_DEFINED;
 		*rgb = TagItemColor::kRegularColor;

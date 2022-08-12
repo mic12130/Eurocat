@@ -2,11 +2,9 @@
 
 #include "plugin/extension/FlightPlanProcessor.h"
 
-#include "common/OpData.h"
+#include "plugin/extension/OpData.h"
 
-using namespace Eurocat::Common;
-
-namespace Eurocat::Plugin::Extension
+namespace Eurocat::Plugin
 {
 	FlightPlanProcessor::FlightPlanProcessor(EurocatPlugin& plugin) : plugin(plugin)
 	{

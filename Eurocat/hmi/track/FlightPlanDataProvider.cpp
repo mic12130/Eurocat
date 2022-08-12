@@ -3,21 +3,16 @@
 #include "hmi/track/FlightPlanDataProvider.h"
 
 #include "helper/CoordinateHelper.h"
-#include "common/FlightPlanStateMaker.h"
-#include "common/OpData.h"
 #include "hmi/FlightPlanDisplayStateGenerator.h"
-#include "plugin/extension/CflData.h"
+#include "plugin/extension/FlightPlanExtension.h"
 
 using namespace Eurocat::Hmi;
 using namespace Eurocat::Common;
-using namespace Eurocat::Plugin::Extension;
+using namespace Eurocat::Plugin;
 
 namespace Eurocat::Hmi::Track
 {
-	FlightPlanDataProvider::FlightPlanDataProvider(
-		EuroScopePlugIn::CFlightPlan& fp,
-		Plugin::Extension::FlightPlanAttribute& fpAttribute)
-		: fp(fp), fpAttribute(fpAttribute)
+	FlightPlanDataProvider::FlightPlanDataProvider(EuroScopePlugIn::CFlightPlan& fp) : fp(fp)
 	{
 	}
 
@@ -28,12 +23,12 @@ namespace Eurocat::Hmi::Track
 
 	Hmi::FlightPlanDisplayState FlightPlanDataProvider::GetDisplayState()
 	{
-		return FlightPlanDisplayStateGenerator::Generate(fp, fpAttribute);
+		return FlightPlanDisplayStateGenerator::Generate(fp);
 	}
 
 	bool FlightPlanDataProvider::IsAcceptedReminding()
 	{
-		return FlightPlanDisplayStateGenerator::IsAcceptedReminding(fpAttribute);
+		return FlightPlanDisplayStateGenerator::IsAcceptedReminding(fp);
 	}
 
 	CString FlightPlanDataProvider::GetAircraftType()
@@ -53,7 +48,7 @@ namespace Eurocat::Hmi::Track
 
 	std::optional<int> FlightPlanDataProvider::GetCfl()
 	{
-		return CflData::GetForFlightPlan(fp);
+		return FlightPlanExtension(fp).GetCfl();
 	}
 
 	char FlightPlanDataProvider::GetWtc()
@@ -99,7 +94,7 @@ namespace Eurocat::Hmi::Track
 
 	CTime FlightPlanDataProvider::GetLastStateUpdateTime()
 	{
-		return fpAttribute.lastStateUpdateTime;
+		return FlightPlanExtension(fp).GetLastStateUpdateTime();
 	}
 
 	int FlightPlanDataProvider::GetRfl()
@@ -109,7 +104,7 @@ namespace Eurocat::Hmi::Track
 
 	bool FlightPlanDataProvider::IsCflAcknowledged()
 	{
-		return fpAttribute.isCflAcknowledged;
+		return FlightPlanExtension(fp).GetCflAcknowledged();
 	}
 
 	char FlightPlanDataProvider::GetCapabilities()
@@ -124,7 +119,7 @@ namespace Eurocat::Hmi::Track
 
 	CString FlightPlanDataProvider::GetLabelData()
 	{
-		return OpData::GetForFlightPlan(fp);
+		return FlightPlanExtension(fp).GetOpDataText();
 	}
 
 	int FlightPlanDataProvider::GetAssignedHeading()

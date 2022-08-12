@@ -8,7 +8,7 @@ namespace Eurocat::Plugin
 	class EurocatPlugin;
 }
 
-namespace Eurocat::Plugin::Extension
+namespace Eurocat::Plugin
 {
 	class FlightPlanAttributeUpdater : public IFlightPlanEventHandler, public ITimedEventHandler
 	{

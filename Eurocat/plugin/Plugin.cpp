@@ -11,7 +11,6 @@
 #include "plugin/input/EuroScopeInputManager.h"
 #include "plugin/input/EuroScopeInputBridge.h"
 
-using namespace Eurocat::Plugin::Extension;
 using namespace Eurocat::Plugin::Input;
 using namespace Eurocat::Screen;
 
