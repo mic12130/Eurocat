@@ -25,6 +25,7 @@ processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
 #include <cmath>
 #include <functional>
 #include <regex>
+#include <filesystem>
 
 #include <gdiPlus.h>
 

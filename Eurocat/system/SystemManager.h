@@ -21,6 +21,7 @@ namespace Eurocat {
 		static std::shared_ptr<SystemManager> shared;
 
 		SystemManager() = default;
+		void InitLogger();
 
 		std::shared_ptr<Plugin::EurocatPlugin> plugin;
 		std::shared_ptr<Warning::WarningManager> warningManager;
