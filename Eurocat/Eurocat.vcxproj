@@ -326,6 +326,7 @@
     <ClInclude Include="common\Coordinate.h" />
     <ClInclude Include="common\FlightPlanState.h" />
     <ClInclude Include="common\FlightPlanStateMaker.h" />
+    <ClInclude Include="helper\FileHelper.h" />
     <ClInclude Include="plugin\extension\OpDataExtraction.h" />
     <ClInclude Include="plugin\extension\FlightPlanExtension.h" />
     <ClInclude Include="plugin\extension\OpData.h" />

@@ -599,6 +599,9 @@
     <ClInclude Include="plugin\extension\OpDataExtraction.h">
       <Filter>plugin</Filter>
     </ClInclude>
+    <ClInclude Include="helper\FileHelper.h">
+      <Filter>plugin</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="res\Eurocat.rc">
