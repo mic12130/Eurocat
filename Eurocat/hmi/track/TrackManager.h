@@ -38,6 +38,7 @@ namespace Eurocat::Hmi::Track
 		bool IsAboveTransAltitude(IRadarTargetDataProvider& rt);
 		auto GetUnit(IRadarTargetDataProvider& rt) -> Hmi::Unit::UnitDisplayMode;
 		auto GetUnit(IFlightPlanDataProvider& fp) -> Hmi::Unit::UnitDisplayMode;
+		void FinishTagReposition(Screen::ScreenWrapper& screen);
 
 		const int kGroundTrafficMaxSpeed = 30;
 

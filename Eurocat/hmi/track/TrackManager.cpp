@@ -150,44 +150,7 @@ namespace Eurocat::Hmi::Track
 
 		if (args.objectId == TrackObjectId::kRepositioningBackgroundObjectId)
 		{
-			if (repositioningProfileId.has_value())
-			{
-				EuroScopePlugIn::CPosition coord;
-				TrackProfile profile;
-
-				if (trackProfileManager.TryGetProfile(repositioningProfileId.value(), profile) == false)
-				{
-					throw std::runtime_error("Profile not found");
-				}
-
-				if (profile.trackType == TrackProfile::TrackType::FlightPlan)
-				{
-					coord = SystemManager::Shared().GetPlugin().FlightPlanSelect(profile.flightPlanId.value()).GetFPTrackPosition().GetPosition();
-				}
-				else if (profile.trackType == TrackProfile::TrackType::Coupled || profile.trackType == TrackProfile::TrackType::Uncoupled)
-				{
-					coord = SystemManager::Shared().GetPlugin().RadarTargetSelect(profile.radarTargetId.value()).GetPosition().GetPosition();
-				}
-
-				CPoint cursorPx;
-				GetCursorPos(&cursorPx);
-
-				CPoint targetPx = screen.ConvertCoordFromPositionToPixel(coord);
-				CPoint closestPolarPx = RepositionHelper::GetClosestPolarPx(targetPx, cursorPx);
-
-				profile.isTagRepositioning = false;
-				profile.tagOffsetX = closestPolarPx.x - targetPx.x;
-				profile.tagOffsetY = closestPolarPx.y - targetPx.y;
-				trackProfileManager.TryUpdateProfile(profile);
-			}
-			else
-			{
-				throw std::runtime_error("Repositioning background exists, but repositioningProfileId is null");
-			}
-
-			repositioningProfileId = std::nullopt;
-			CursorManager::shared->SetCursorType(CursorType::Normal);
-
+			FinishTagReposition(screen);
 			return;
 		}
 
@@ -327,5 +290,65 @@ namespace Eurocat::Hmi::Track
 	auto TrackManager::GetUnit(IFlightPlanDataProvider& fp) -> Hmi::Unit::UnitDisplayMode
 	{
 		return unitDisplayManager.GetUnitForRadarTarget(fp.GetCallsign());
+	}
+
+	void TrackManager::FinishTagReposition(Screen::ScreenWrapper& screen)
+	{
+		if (repositioningProfileId.has_value() == false)
+		{
+			throw std::runtime_error("Couldn't apply tag reposition because repositioningProfileId is null");
+		}
+
+		EuroScopePlugIn::CPosition coord;
+		TrackProfile profile;
+
+		if (trackProfileManager.TryGetProfile(repositioningProfileId.value(), profile) == false)
+		{
+			throw std::runtime_error("Profile not found");
+		}
+
+		// Even though the profile exists, the related rt or fp may has disconnected,
+		// so it is required to check the validity of rt or fp in the steps below
+
+		if (profile.trackType == TrackProfile::TrackType::FlightPlan)
+		{
+			auto fp = SystemManager::Shared().GetPlugin().FlightPlanSelect(profile.flightPlanId.value());
+
+			if (fp.IsValid())
+			{
+				coord = fp.GetFPTrackPosition().GetPosition();
+			}
+			else
+			{
+				return;
+			}
+		}
+		else if (profile.trackType == TrackProfile::TrackType::Coupled || profile.trackType == TrackProfile::TrackType::Uncoupled)
+		{
+			auto rt = SystemManager::Shared().GetPlugin().RadarTargetSelect(profile.radarTargetId.value());
+
+			if (rt.IsValid())
+			{
+				coord = rt.GetPosition().GetPosition();
+			}
+			else
+			{
+				return;
+			}
+		}
+
+		CPoint cursorPx;
+		GetCursorPos(&cursorPx);
+
+		CPoint targetPx = screen.ConvertCoordFromPositionToPixel(coord);
+		CPoint closestPolarPx = RepositionHelper::GetClosestPolarPx(targetPx, cursorPx);
+
+		profile.isTagRepositioning = false;
+		profile.tagOffsetX = closestPolarPx.x - targetPx.x;
+		profile.tagOffsetY = closestPolarPx.y - targetPx.y;
+		trackProfileManager.TryUpdateProfile(profile);
+
+		repositioningProfileId = std::nullopt;
+		CursorManager::shared->SetCursorType(CursorType::Normal);
 	}
 }
