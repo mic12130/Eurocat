@@ -125,7 +125,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>gdiplus.lib;winmm.lib;EuroScopePlugInDll.lib;Eurocat.dll.lib;gmock_maind.lib;gtest_maind.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>gdiplus.lib;winmm.lib;EuroScopePlugInDll.lib;Eurocat.dll.lib;manual-link/gmock_main.lib;manual-link/gtest_main.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(ProjectDir)..\external\euroscope\lib;$(ProjectDir)..\Eurocat\bin\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
