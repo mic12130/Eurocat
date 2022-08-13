@@ -9,7 +9,7 @@ namespace Eurocat::Plugin
 	// Updates flight plans to make them meet the requirements of Eurocat plugin.
 	// To avoid possible conflict, changes will be only applied on controlled flight plans.
 	// Current processing items:
-	// - Passes assigned data to label data
+	// nil
 	class FlightPlanProcessor : public ITimedEventHandler
 	{
 	public:
@@ -18,7 +18,5 @@ namespace Eurocat::Plugin
 
 	private:
 		EurocatPlugin& plugin;
-
-		void PassAssignedDataToLabelDataIfNeeded(EuroScopePlugIn::CFlightPlan& fp);
 	};
 }

@@ -596,6 +596,9 @@
     <ClInclude Include="plugin\extension\FlightPlanExtension.h">
       <Filter>plugin</Filter>
     </ClInclude>
+    <ClInclude Include="plugin\extension\OpDataExtraction.h">
+      <Filter>plugin</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="res\Eurocat.rc">
@@ -889,6 +892,9 @@
       <Filter>base</Filter>
     </ClCompile>
     <ClCompile Include="plugin\extension\FlightPlanExtension.cpp">
+      <Filter>base</Filter>
+    </ClCompile>
+    <ClCompile Include="plugin\extension\OpDataConverter.cpp">
       <Filter>base</Filter>
     </ClCompile>
   </ItemGroup>

@@ -284,6 +284,7 @@
     <ClCompile Include="plugin\extension\CflData.cpp" />
     <ClCompile Include="plugin\extension\FlightPlanAttributeUpdater.cpp" />
     <ClCompile Include="plugin\extension\FlightPlanProcessor.cpp" />
+    <ClCompile Include="plugin\extension\OpDataConverter.cpp" />
     <ClCompile Include="plugin\input\EuroScopeInputManager.cpp" />
     <ClCompile Include="plugin\input\PopupEdit.cpp" />
     <ClCompile Include="plugin\input\PopupMenu.cpp" />
@@ -325,6 +326,7 @@
     <ClInclude Include="common\Coordinate.h" />
     <ClInclude Include="common\FlightPlanState.h" />
     <ClInclude Include="common\FlightPlanStateMaker.h" />
+    <ClInclude Include="plugin\extension\OpDataExtraction.h" />
     <ClInclude Include="plugin\extension\FlightPlanExtension.h" />
     <ClInclude Include="plugin\extension\OpData.h" />
     <ClInclude Include="plugin\extension\OpDataConverter.h" />

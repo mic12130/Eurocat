@@ -68,7 +68,7 @@
     <ClCompile Include="hmi\track\tag\label\WaypointLabelTest.cpp">
       <Filter>hmi\track\tag\label</Filter>
     </ClCompile>
-    <ClCompile Include="common\OpDataConverterTest.cpp">
+    <ClCompile Include="plugin\extension\OpDataConverterTest.cpp">
       <Filter>common</Filter>
     </ClCompile>
   </ItemGroup>
