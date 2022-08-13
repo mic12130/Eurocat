@@ -2,6 +2,7 @@
     "name": "eurocat",
     "version": "0",
     "dependencies": [
-        "nlohmann-json"
+        "nlohmann-json",
+        "glog"
     ]
 }
