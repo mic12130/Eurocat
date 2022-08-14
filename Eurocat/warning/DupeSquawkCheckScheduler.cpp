@@ -11,5 +11,6 @@ namespace Eurocat::Warning
 
 	void DupeSquawkCheckScheduler::OnTimedEvent(int counter)
 	{
+		checker->Check();
 	}
 }
