@@ -71,6 +71,7 @@
     <ClCompile Include="plugin\extension\OpDataConverterTest.cpp">
       <Filter>common</Filter>
     </ClCompile>
+    <ClCompile Include="warning\DupeSquawkCheckerTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -113,6 +114,7 @@
     <ClInclude Include="hmi\track\tag\label\StringContentUtil.h">
       <Filter>hmi\track\tag\label</Filter>
     </ClInclude>
+    <ClInclude Include="warning\MockDupeSquawkCheckDataProvider.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="screen">

@@ -72,6 +72,7 @@
     <ClInclude Include="screen\TestGraphics.h" />
     <ClInclude Include="screen\TestScreen.h" />
     <ClInclude Include="screen\TestScreenWrapper.h" />
+    <ClInclude Include="warning\MockDupeSquawkCheckDataProvider.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="plugin\extension\OpDataConverterTest.cpp" />
@@ -103,6 +104,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="warning\DupeSquawkCheckerTest.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Eurocat\Eurocat.vcxproj">

@@ -6,13 +6,13 @@
 
 namespace Eurocat::Warning
 {
-	DupeSquawkChecker::DupeSquawkChecker(std::unique_ptr<IDupeSquawkCheckDataProvider> dataProvider)
+	DupeSquawkChecker::DupeSquawkChecker(std::shared_ptr<IDupeSquawkCheckDataProvider> dataProvider)
 		: dataProvider(std::move(dataProvider))
 	{
 	}
 
 	DupeSquawkChecker::DupeSquawkChecker()
-		: dataProvider(std::make_unique<DupeSquawkCheckDataProvider>())
+		: dataProvider(std::make_shared<DupeSquawkCheckDataProvider>())
 	{
 	}
 

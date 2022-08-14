@@ -7,13 +7,13 @@ namespace Eurocat::Warning
 	class DupeSquawkChecker
 	{
 	public:
-		DupeSquawkChecker(std::unique_ptr<IDupeSquawkCheckDataProvider> dataProvider);
+		DupeSquawkChecker(std::shared_ptr<IDupeSquawkCheckDataProvider> dataProvider);
 		DupeSquawkChecker();
 		void Check();
 		std::vector<CString> GetWarningTargetIds();
 
 	private:
-		std::unique_ptr<IDupeSquawkCheckDataProvider> dataProvider;
+		std::shared_ptr<IDupeSquawkCheckDataProvider> dataProvider;
 		std::vector<CString> warningTargetIds;
 	};
 }
