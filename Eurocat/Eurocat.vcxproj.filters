@@ -584,9 +584,6 @@
     <ClInclude Include="hmi\track\RenderableTrack.h">
       <Filter>hmi\track</Filter>
     </ClInclude>
-    <ClInclude Include="system\SystemManager.h">
-      <Filter>plugin</Filter>
-    </ClInclude>
     <ClInclude Include="hmi\HmiManager.h">
       <Filter>plugin</Filter>
     </ClInclude>
@@ -601,6 +598,9 @@
     </ClInclude>
     <ClInclude Include="helper\FileHelper.h">
       <Filter>plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="system\SystemManager.h">
+      <Filter>system</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -886,19 +886,19 @@
       <Filter>plugin\extension</Filter>
     </ClCompile>
     <ClCompile Include="system\SystemManager.cpp">
-      <Filter>base</Filter>
+      <Filter>system</Filter>
     </ClCompile>
     <ClCompile Include="hmi\HmiManager.cpp">
-      <Filter>base</Filter>
-    </ClCompile>
-    <ClCompile Include="plugin\extension\FlightPlanAttributeContainer.cpp">
-      <Filter>base</Filter>
+      <Filter>hmi</Filter>
     </ClCompile>
     <ClCompile Include="plugin\extension\FlightPlanExtension.cpp">
-      <Filter>base</Filter>
+      <Filter>plugin</Filter>
+    </ClCompile>
+    <ClCompile Include="plugin\extension\FlightPlanAttributeContainer.cpp">
+      <Filter>plugin</Filter>
     </ClCompile>
     <ClCompile Include="plugin\extension\OpDataConverter.cpp">
-      <Filter>base</Filter>
+      <Filter>common</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
