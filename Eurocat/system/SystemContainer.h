@@ -6,10 +6,10 @@
 #include "tagitem/TagItemManager.h"
 
 namespace Eurocat {
-	class SystemManager
+	class SystemContainer
 	{
 	public:
-		static SystemManager& Shared();
+		static SystemContainer& Shared();
 		
 		void Startup();
 		void Cleanup();
@@ -18,9 +18,9 @@ namespace Eurocat {
 		std::shared_ptr<Warning::WarningManager> GetWarningManager() const;
 
 	private:
-		static std::shared_ptr<SystemManager> shared;
+		static std::shared_ptr<SystemContainer> shared;
 
-		SystemManager() = default;
+		SystemContainer() = default;
 		void InitLogger();
 
 		std::shared_ptr<Plugin::EurocatPlugin> plugin;

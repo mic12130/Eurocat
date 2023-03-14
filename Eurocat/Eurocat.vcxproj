@@ -295,7 +295,7 @@
     <ClCompile Include="screen\Screen.cpp" />
     <ClCompile Include="screen\ScreenWrapper.cpp" />
     <ClCompile Include="screen\WindowScalingInfo.cpp" />
-    <ClCompile Include="system\SystemManager.cpp" />
+    <ClCompile Include="system\SystemContainer.cpp" />
     <ClCompile Include="tagitem\AcidTagItem.cpp" />
     <ClCompile Include="tagitem\CflFunction.cpp" />
     <ClCompile Include="tagitem\CflTagItem.cpp" />
@@ -465,7 +465,7 @@
     <ClInclude Include="screen\ScreenObjectType.h" />
     <ClInclude Include="screen\ScreenWrapper.h" />
     <ClInclude Include="screen\WindowScalingInfo.h" />
-    <ClInclude Include="system\SystemManager.h" />
+    <ClInclude Include="system\SystemContainer.h" />
     <ClInclude Include="tagitem\AcidTagItem.h" />
     <ClInclude Include="tagitem\CflFunction.h" />
     <ClInclude Include="tagitem\CflTagItem.h" />

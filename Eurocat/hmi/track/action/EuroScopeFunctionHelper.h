@@ -1,6 +1,6 @@
 #pragma once
 
-#include "system/SystemManager.h"
+#include "system/SystemContainer.h"
 #include "screen/ScreenWrapper.h"
 
 namespace Eurocat::Hmi::Track
@@ -11,14 +11,14 @@ namespace Eurocat::Hmi::Track
 		{
 		public:
 			SelectionRestorer()
-				: selectedFp(SystemManager::Shared().GetPlugin().FlightPlanSelectASEL()),
-				selectedRt(SystemManager::Shared().GetPlugin().RadarTargetSelectASEL())
+				: selectedFp(SystemContainer::Shared().GetPlugin().FlightPlanSelectASEL()),
+				selectedRt(SystemContainer::Shared().GetPlugin().RadarTargetSelectASEL())
 			{
 			}
 
 			void Restore()
 			{
-				EuroScopePlugIn::CPlugIn& plugin = SystemManager::Shared().GetPlugin();
+				EuroScopePlugIn::CPlugIn& plugin = SystemContainer::Shared().GetPlugin();
 
 				if (selectedFp.IsValid())
 				{
@@ -40,7 +40,7 @@ namespace Eurocat::Hmi::Track
 			CString callsign, int functionId, POINT point, RECT area,
 			Screen::ScreenWrapper& screen)
 		{
-			auto& plugin = SystemManager::Shared().GetPlugin();
+			auto& plugin = SystemContainer::Shared().GetPlugin();
 			SelectionRestorer restorer;
 
 			plugin.SetASELAircraft(plugin.FlightPlanSelect(callsign));

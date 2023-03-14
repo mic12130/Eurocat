@@ -6,7 +6,7 @@
 #include "hmi/track/action/EuroScopeFunctionHelper.h"
 #include "hmi/track/tag/render_data/ExtendedLabelCalc.h"
 #include "hmi/track/FlightPlanDataProvider.h"
-#include "system/SystemManager.h"
+#include "system/SystemContainer.h"
 
 using namespace Eurocat::Plugin;
 using namespace Eurocat::Screen;
@@ -37,7 +37,7 @@ namespace Eurocat::Hmi::Track
 		else if (button == MouseButton::Middle)
 		{
 			TrackProfile updatedTrackProfile(trackProfile);
-			auto fp = SystemManager::Shared().GetPlugin().FlightPlanSelect(trackProfile.flightPlanId.value());
+			auto fp = SystemContainer::Shared().GetPlugin().FlightPlanSelect(trackProfile.flightPlanId.value());
 			auto fpProvider = FlightPlanDataProvider(fp);
 
 			// Whether the tag would be extended if no user-set extended behaviour was stored (null)

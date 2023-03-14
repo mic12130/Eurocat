@@ -599,7 +599,7 @@
     <ClInclude Include="helper\FileHelper.h">
       <Filter>plugin</Filter>
     </ClInclude>
-    <ClInclude Include="system\SystemManager.h">
+    <ClInclude Include="system\SystemContainer.h">
       <Filter>system</Filter>
     </ClInclude>
   </ItemGroup>
@@ -885,7 +885,7 @@
     <ClCompile Include="plugin\extension\CflData.cpp">
       <Filter>plugin\extension</Filter>
     </ClCompile>
-    <ClCompile Include="system\SystemManager.cpp">
+    <ClCompile Include="system\SystemContainer.cpp">
       <Filter>system</Filter>
     </ClCompile>
     <ClCompile Include="hmi\HmiManager.cpp">

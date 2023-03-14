@@ -1,6 +1,6 @@
 #include "base/pch.h"
 
-#include "system/SystemManager.h"
+#include "system/SystemContainer.h"
 
 Gdiplus::GdiplusStartupInput kGdiplusStartupInput;
 ULONG_PTR kGdiplusToken;
@@ -9,8 +9,8 @@ void __declspec(dllexport) EuroScopePlugInInit(EuroScopePlugIn::CPlugIn** ppPlug
 {
 	AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
-	Eurocat::SystemManager::Shared().Startup();
-	*ppPlugInInstance = &Eurocat::SystemManager::Shared().GetPlugin();
+	Eurocat::SystemContainer::Shared().Startup();
+	*ppPlugInInstance = &Eurocat::SystemContainer::Shared().GetPlugin();
 
 	Gdiplus::GdiplusStartup(&kGdiplusToken, &kGdiplusStartupInput, NULL);
 }
@@ -19,7 +19,7 @@ void __declspec(dllexport) EuroScopePlugInExit(void)
 {
 	AFX_MANAGE_STATE(AfxGetStaticModuleState())
 
-	Eurocat::SystemManager::Shared().Cleanup();
+	Eurocat::SystemContainer::Shared().Cleanup();
 
 	Gdiplus::GdiplusShutdown(kGdiplusToken);
 }

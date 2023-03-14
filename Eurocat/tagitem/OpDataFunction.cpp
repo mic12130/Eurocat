@@ -4,7 +4,7 @@
 
 #include "plugin/input/PopupEdit.h"
 #include "plugin/extension/FlightPlanExtension.h"
-#include "system/SystemManager.h"
+#include "system/SystemContainer.h"
 
 using namespace Eurocat::Common;
 using namespace Eurocat::Plugin::Input;
@@ -14,7 +14,7 @@ namespace Eurocat::TagItem
 {
 	void OpDataFunction::OnFunctionCall(int functionId, CString itemString, POINT point, RECT area)
 	{
-		auto fp = SystemManager::Shared().GetPlugin().FlightPlanSelectASEL();
+		auto fp = SystemContainer::Shared().GetPlugin().FlightPlanSelectASEL();
 		auto fpExt = FlightPlanExtension(fp);
 
 		if (!fpExt.GetWritable())
@@ -33,7 +33,7 @@ namespace Eurocat::TagItem
 
 	void OpDataFunction::OnSubmit(CString str, POINT point, RECT rect)
 	{
-		auto fp = SystemManager::Shared().GetPlugin().FlightPlanSelect(flightPlanCallsignForPopup);
+		auto fp = SystemContainer::Shared().GetPlugin().FlightPlanSelect(flightPlanCallsignForPopup);
 		auto fpExt = FlightPlanExtension(fp);
 		fpExt.SetOpDataText(str);
 	}

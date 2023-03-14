@@ -2,7 +2,7 @@
 
 #include "warning/DupeSquawkCheckDataProvider.h"
 
-#include "system/SystemManager.h"
+#include "system/SystemContainer.h"
 
 using namespace Eurocat::Plugin;
 
@@ -10,7 +10,7 @@ namespace Eurocat::Warning
 {
 	std::vector<SquawkData> DupeSquawkCheckDataProvider::GetSquawkDataCollection()
 	{
-		auto& plugin = SystemManager::Shared().GetPlugin();
+		auto& plugin = SystemContainer::Shared().GetPlugin();
 		std::vector<SquawkData> result;
 
 		for (auto rt = plugin.RadarTargetSelectFirst();

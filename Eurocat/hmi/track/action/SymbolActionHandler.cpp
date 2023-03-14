@@ -3,7 +3,7 @@
 #include "hmi/track/action/SymbolActionHandler.h"
 
 #include "hmi/cursor/CursorManager.h"
-#include "system/SystemManager.h"
+#include "system/SystemContainer.h"
 
 using namespace Eurocat::Plugin;
 using namespace Eurocat::Screen;
@@ -26,7 +26,7 @@ namespace Eurocat::Hmi::Track
 		Screen::MouseButton button,
 		POINT point, RECT area)
 	{
-		auto& plugin = SystemManager::Shared().GetPlugin();
+		auto& plugin = SystemContainer::Shared().GetPlugin();
 
 		if (button == MouseButton::Left)
 		{

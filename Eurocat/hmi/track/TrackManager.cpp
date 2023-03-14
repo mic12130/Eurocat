@@ -26,7 +26,7 @@
 #include "hmi/track/tag/render_data/UncoupledTrackTagData.h"
 #include "screen/ScreenObjectType.h"
 #include "plugin/Plugin.h"
-#include "system/SystemManager.h"
+#include "system/SystemContainer.h"
 #include "hmi/cursor/CursorManager.h"
 
 using namespace Eurocat::Plugin;
@@ -52,7 +52,7 @@ namespace Eurocat::Hmi::Track
 
 	void TrackManager::OnRender(Screen::ScreenWrapper& screen, Screen::GraphicsWrapper& graphics)
 	{
-		auto& plugin = SystemManager::Shared().GetPlugin();
+		auto& plugin = SystemContainer::Shared().GetPlugin();
 		auto radarArea = screen.GetRadarArea();
 		std::vector<RenderableTrack> renderableTracks;
 
@@ -262,24 +262,24 @@ namespace Eurocat::Hmi::Track
 
 	bool TrackManager::IsSelected(IRadarTargetDataProvider& rt)
 	{
-		return SystemManager::Shared().GetPlugin().RadarTargetSelectASEL().GetSystemID() == rt.GetTargetId();
+		return SystemContainer::Shared().GetPlugin().RadarTargetSelectASEL().GetSystemID() == rt.GetTargetId();
 	}
 
 	bool TrackManager::IsSelected(IFlightPlanDataProvider& fp)
 	{
-		return SystemManager::Shared().GetPlugin().FlightPlanSelectASEL().GetCallsign() == fp.GetCallsign();
+		return SystemContainer::Shared().GetPlugin().FlightPlanSelectASEL().GetCallsign() == fp.GetCallsign();
 	}
 
 	bool TrackManager::IsAboveTransAltitude(IRadarTargetDataProvider& rt)
 	{
 		int level = rt.GetPressureAltitude();
 
-		if (level > SystemManager::Shared().GetPlugin().GetTransitionAltitude())
+		if (level > SystemContainer::Shared().GetPlugin().GetTransitionAltitude())
 		{
 			level = rt.GetFlightLevel();
 		}
 
-		return level > SystemManager::Shared().GetPlugin().GetTransitionAltitude();
+		return level > SystemContainer::Shared().GetPlugin().GetTransitionAltitude();
 	}
 
 	auto TrackManager::GetUnit(IRadarTargetDataProvider& rt) -> Hmi::Unit::UnitDisplayMode
@@ -312,7 +312,7 @@ namespace Eurocat::Hmi::Track
 
 		if (profile.trackType == TrackProfile::TrackType::FlightPlan)
 		{
-			auto fp = SystemManager::Shared().GetPlugin().FlightPlanSelect(profile.flightPlanId.value());
+			auto fp = SystemContainer::Shared().GetPlugin().FlightPlanSelect(profile.flightPlanId.value());
 
 			if (fp.IsValid())
 			{
@@ -325,7 +325,7 @@ namespace Eurocat::Hmi::Track
 		}
 		else if (profile.trackType == TrackProfile::TrackType::Coupled || profile.trackType == TrackProfile::TrackType::Uncoupled)
 		{
-			auto rt = SystemManager::Shared().GetPlugin().RadarTargetSelect(profile.radarTargetId.value());
+			auto rt = SystemContainer::Shared().GetPlugin().RadarTargetSelect(profile.radarTargetId.value());
 
 			if (rt.IsValid())
 			{

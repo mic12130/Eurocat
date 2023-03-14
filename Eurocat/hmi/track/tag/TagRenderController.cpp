@@ -2,7 +2,7 @@
 
 #include "hmi/track/tag/TagRenderController.h"
 
-#include "system/SystemManager.h"
+#include "system/SystemContainer.h"
 #include "hmi/track/AltitudeFilter.h"
 #include "hmi/track/tag/TagRenderer.h"
 
@@ -32,7 +32,7 @@ namespace Eurocat::Hmi::Track
 		Screen::ScreenWrapper& screen, 
 		Screen::GraphicsWrapper& graphics)
 	{
-		if (altitudeFilter->InRange(rt, SystemManager::Shared().GetPlugin()) == false &&
+		if (altitudeFilter->InRange(rt, SystemContainer::Shared().GetPlugin()) == false &&
 			tagData.CanOverrideFilter() == false)
 		{
 			return;
@@ -53,7 +53,7 @@ namespace Eurocat::Hmi::Track
 		Screen::ScreenWrapper& screen,
 		Screen::GraphicsWrapper& graphics)
 	{
-		if (altitudeFilter->InRange(rt, SystemManager::Shared().GetPlugin()) == false &&
+		if (altitudeFilter->InRange(rt, SystemContainer::Shared().GetPlugin()) == false &&
 			tagData.CanOverrideFilter() == false)
 		{
 			return;

@@ -1,6 +1,6 @@
 #include "base/pch.h"
 
-#include "system/SystemManager.h"
+#include "system/SystemContainer.h"
 
 #include "helper/FileHelper.h"
 
@@ -12,14 +12,14 @@ namespace fs = std::filesystem;
 
 namespace Eurocat
 {
-	std::shared_ptr<SystemManager> SystemManager::shared = std::shared_ptr<SystemManager>(new SystemManager());
+	std::shared_ptr<SystemContainer> SystemContainer::shared = std::shared_ptr<SystemContainer>(new SystemContainer());
 
-	SystemManager& SystemManager::Shared()
+	SystemContainer& SystemContainer::Shared()
 	{
 		return *shared;
 	}
 
-	void SystemManager::Startup()
+	void SystemContainer::Startup()
 	{
 		// In this period, do not access the shared instance of system manager,
 		// because we cannot ensure the components to be accessed have been initialized
@@ -45,22 +45,22 @@ namespace Eurocat
 		tagItemManager->RegisterItems(*plugin);
 	}
 
-	void SystemManager::Cleanup()
+	void SystemContainer::Cleanup()
 	{
 		LOG(INFO) << "Cleaning up";
 	}
 
-	Plugin::EurocatPlugin& SystemManager::GetPlugin() const
+	Plugin::EurocatPlugin& SystemContainer::GetPlugin() const
 	{
 		return *plugin;
 	}
 
-	std::shared_ptr<WarningManager> SystemManager::GetWarningManager() const
+	std::shared_ptr<WarningManager> SystemContainer::GetWarningManager() const
 	{
 		return warningManager;
 	}
 
-	void SystemManager::InitLogger()
+	void SystemContainer::InitLogger()
 	{
 		std::string fileName = FileHelper::GetFileName().GetString();
 		fs::path fileNamePath = fileName;
