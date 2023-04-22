@@ -584,9 +584,6 @@
     <ClInclude Include="hmi\track\RenderableTrack.h">
       <Filter>hmi\track</Filter>
     </ClInclude>
-    <ClInclude Include="hmi\HmiManager.h">
-      <Filter>plugin</Filter>
-    </ClInclude>
     <ClInclude Include="plugin\extension\FlightPlanAttributeContainer.h">
       <Filter>plugin</Filter>
     </ClInclude>
@@ -601,6 +598,9 @@
     </ClInclude>
     <ClInclude Include="system\SystemContainer.h">
       <Filter>system</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\HmiManager.h">
+      <Filter>hmi</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
