@@ -28,7 +28,7 @@ namespace Eurocat::Warning
 
 		checker->Check();
 
-		EXPECT_EQ(checker->GetWarningTargetIds().size(), 0);
+		EXPECT_EQ(checker->GetWarnings().size(), 0);
 	}
 
 	TEST_F(DupeSquawkCheckerTest, NoWarningWhenNoDupeSquawk)
@@ -43,7 +43,7 @@ namespace Eurocat::Warning
 
 		checker->Check();
 
-		EXPECT_EQ(checker->GetWarningTargetIds().size(), 0);
+		EXPECT_EQ(checker->GetWarnings().size(), 0);
 	}
 
 	TEST_F(DupeSquawkCheckerTest, DetectsTwoDupeSquawks)
@@ -58,8 +58,10 @@ namespace Eurocat::Warning
 
 		checker->Check();
 
-		auto expected = std::vector<CString>{ "222", "333" };
-		EXPECT_EQ(checker->GetWarningTargetIds(), expected);
+		auto expectedTargetIds = std::vector<CString>{ "222", "333" };
+		ASSERT_EQ(checker->GetWarnings().size(), 1);
+		EXPECT_STREQ(checker->GetWarnings()[0].code, "3500");
+		EXPECT_EQ(checker->GetWarnings()[0].targetIds, expectedTargetIds);
 	}
 
 	TEST_F(DupeSquawkCheckerTest, DetectsMultipleDupeSquawks)
@@ -75,7 +77,9 @@ namespace Eurocat::Warning
 
 		checker->Check();
 
-		auto expected = std::vector<CString>{ "111", "222", "333" };
-		EXPECT_EQ(checker->GetWarningTargetIds(), expected);
+		auto expectedTargetIds = std::vector<CString>{ "111", "222", "333" };
+		ASSERT_EQ(checker->GetWarnings().size(), 1);
+		EXPECT_STREQ(checker->GetWarnings()[0].code, "4200");
+		EXPECT_EQ(checker->GetWarnings()[0].targetIds, expectedTargetIds);
 	}
 }

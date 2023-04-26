@@ -4,7 +4,6 @@
 
 #include "hmi/track/tag/alert/WarningType.h"
 #include "hmi/track/tag/alert/WarningSelector.h"
-#include "warning/RadarTargetWarningInfo.h"
 
 namespace Eurocat::Hmi::Track
 {

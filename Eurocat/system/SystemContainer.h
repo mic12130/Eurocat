@@ -9,18 +9,12 @@ namespace Eurocat {
 	class SystemContainer
 	{
 	public:
-		static SystemContainer& Shared();
-		
+		SystemContainer() = default;
 		void Startup();
 		void Cleanup();
-
 		Plugin::EurocatPlugin& GetPlugin() const;
-		std::shared_ptr<Warning::WarningManager> GetWarningManager() const;
 
 	private:
-		static std::shared_ptr<SystemContainer> shared;
-
-		SystemContainer() = default;
 		void InitLogger();
 
 		std::shared_ptr<Plugin::EurocatPlugin> plugin;

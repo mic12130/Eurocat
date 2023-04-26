@@ -3,6 +3,7 @@
 #include "system/SystemContainer.h"
 
 #include "helper/FileHelper.h"
+#include "plugin/PluginAccess.h"
 
 using namespace Eurocat::Plugin;
 using namespace Eurocat::Warning;
@@ -12,13 +13,6 @@ namespace fs = std::filesystem;
 
 namespace Eurocat
 {
-	std::shared_ptr<SystemContainer> SystemContainer::shared = std::shared_ptr<SystemContainer>(new SystemContainer());
-
-	SystemContainer& SystemContainer::Shared()
-	{
-		return *shared;
-	}
-
 	void SystemContainer::Startup()
 	{
 		// In this period, do not access the shared instance of system manager,
@@ -30,10 +24,12 @@ namespace Eurocat
 
 		LOG(INFO) << "Starting plugin";
 		plugin = std::make_shared<EurocatPlugin>();
+		PluginAccess::SetupShared(plugin);
 
 		LOG(INFO) << "Starting warning manager";
 		warningManager = std::make_shared<WarningManager>();
 		warningManager->SubscribeToPluginEvents(*plugin->GetEventManager());
+		WarningData::SetupShared(warningManager->MakeWarningData());
 
 		LOG(INFO) << "Starting hmi manager";
 		hmiManager = std::make_shared<HmiManager>();
@@ -53,11 +49,6 @@ namespace Eurocat
 	Plugin::EurocatPlugin& SystemContainer::GetPlugin() const
 	{
 		return *plugin;
-	}
-
-	std::shared_ptr<WarningManager> SystemContainer::GetWarningManager() const
-	{
-		return warningManager;
 	}
 
 	void SystemContainer::InitLogger()

@@ -16,7 +16,7 @@ namespace Eurocat::Hmi::Track
 		}
 
 		OptionData option;
-		AltitudeFilter filter = AltitudeFilter(option);
+		AltitudeFilter filter = AltitudeFilter(option, 0);
 	};
 
 	TEST_F(AltitudeFilterTest, BothFiltersInactivated)

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "warning/IDupeSquawkCheckDataProvider.h"
+#include "warning/WarningTypes.h"
 
 namespace Eurocat::Warning
 {
@@ -10,10 +11,10 @@ namespace Eurocat::Warning
 		DupeSquawkChecker(std::shared_ptr<IDupeSquawkCheckDataProvider> dataProvider);
 		DupeSquawkChecker();
 		void Check();
-		std::vector<CString> GetWarningTargetIds();
+		std::vector<DupeWarning> GetWarnings();
 
 	private:
 		std::shared_ptr<IDupeSquawkCheckDataProvider> dataProvider;
-		std::vector<CString> warningTargetIds;
+		std::vector<DupeWarning> warnings;
 	};
 }

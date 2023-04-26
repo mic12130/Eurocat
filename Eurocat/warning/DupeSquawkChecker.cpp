@@ -18,34 +18,36 @@ namespace Eurocat::Warning
 
 	void DupeSquawkChecker::Check()
 	{
-		auto squawkDataCollection = dataProvider->GetSquawkDataCollection();
-		warningTargetIds.clear();
+		std::map<CString, std::vector<CString>> targetIdsBySquawk;
+		warnings.clear();
 
-		for (unsigned i = 0; i < squawkDataCollection.size() - 1; i++)
+		for (auto& squawkData : dataProvider->GetSquawkDataCollection())
 		{
-			for (unsigned j = i + 1; j < squawkDataCollection.size(); j++)
-			{
-				auto sourceData = squawkDataCollection[i];
-				auto targetData = squawkDataCollection[j];
+			auto it = targetIdsBySquawk.find(squawkData.squawk);
 
-				if (sourceData.squawk == targetData.squawk)
-				{
-					if (std::find(warningTargetIds.begin(), warningTargetIds.end(), sourceData.targetId) == warningTargetIds.end())
-					{
-						warningTargetIds.push_back(sourceData.targetId);
-					}
-					
-					if (std::find(warningTargetIds.begin(), warningTargetIds.end(), targetData.targetId) == warningTargetIds.end())
-					{
-						warningTargetIds.push_back(targetData.targetId);
-					}
-				}
+			if (it != targetIdsBySquawk.end())
+			{
+				auto targetIds = it->second;
+				targetIds.push_back(squawkData.targetId);
+				it->second = targetIds;
+			}
+			else
+			{
+				targetIdsBySquawk[squawkData.squawk] = { squawkData.targetId };
+			}
+		}
+
+		for (const auto& it : targetIdsBySquawk)
+		{
+			if (it.second.size() > 1)
+			{
+				warnings.emplace_back(it.first, it.second);
 			}
 		}
 	}
 
-	std::vector<CString> DupeSquawkChecker::GetWarningTargetIds()
+	std::vector<DupeWarning> DupeSquawkChecker::GetWarnings()
 	{
-		return warningTargetIds;
+		return warnings;
 	}
 }

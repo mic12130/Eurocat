@@ -7,10 +7,13 @@
 #include "hmi/track/IRadarTargetDataProvider.h"
 #include "hmi/track/profile/TrackProfile.h"
 #include "hmi/track/option/OptionData.h"
-#include "hmi/track/tag/alert/WarningTypeCollection.h"
+#include "hmi/track/tag/alert/WarningTypeCollector.h"
 #include "hmi/track/tag/alert/WarningSelector.h"
-#include "system/SystemContainer.h"
 #include "hmi/unit/UnitDisplayMode.h"
+#include "plugin/PluginAccess.h"
+
+using namespace Eurocat::Warning;
+using namespace Eurocat::Plugin;
 
 namespace Eurocat::Hmi::Track
 {
@@ -37,7 +40,7 @@ namespace Eurocat::Hmi::Track
 				rt, alertData,
 				unit,
 				IdentDisplayModeCalc::GetIdentDisplayModeForUncoupledTrack(option),
-				rt.GetPressureAltitude() > SystemContainer::Shared().GetPlugin().GetTransitionAltitude()
+				rt.GetPressureAltitude() > PluginAccess::Shared().GetPlugin().GetTransitionAltitude()
 			);
 		}
 
@@ -47,10 +50,8 @@ namespace Eurocat::Hmi::Track
 			WarningSelector selector;
 			selector.allowedWarnings = std::vector{ WarningType::Dupe };
 
-			WarningTypeCollection warnings;
-			warnings.AddFromRadarTargetWarningInfo(SystemContainer::Shared().GetWarningManager()->GetWarningInfoByTargetId(rt.GetTargetId()));
-
-			return TagAlertData(EmergencyInfo::Make(rt.GetSsr()), WarningInfo::Make(warnings.GetWaningTypes(), selector));
+			auto warningTypes = WarningTypeCollector::GetWarningTypes(rt.GetTargetId());
+			return TagAlertData(EmergencyInfo::Make(rt.GetSsr()), WarningInfo::Make(warningTypes, selector));
 		}
 
 		bool GetIsFlashing() override

@@ -2,16 +2,17 @@
 
 #include "warning/BuiltinWarningChecker.h"
 
-#include "system/SystemContainer.h"
+#include "plugin/PluginAccess.h"
+
+using namespace Eurocat::Plugin;
 
 namespace Eurocat::Warning
 {
 	void BuiltinWarningChecker::OnTimedEvent(int counter)
 	{
-		auto& plugin = SystemContainer::Shared().GetPlugin();
+		auto& plugin = PluginAccess::Shared().GetPlugin();
 
-		clamWarningTargetIds.clear();
-		ramWarningTargetIds.clear();
+		warnings.clear();
 
 		for (auto rt = plugin.RadarTargetSelectFirst();
 			rt.IsValid();
@@ -24,26 +25,13 @@ namespace Eurocat::Warning
 
 			if (auto fp = rt.GetCorrelatedFlightPlan(); fp.IsValid())
 			{
-				if (fp.GetCLAMFlag())
-				{
-					clamWarningTargetIds.push_back(rt.GetSystemID());
-				}
-
-				if (fp.GetRAMFlag())
-				{
-					ramWarningTargetIds.push_back(rt.GetSystemID());
-				}
+				warnings.push_back(BuiltinWarning(rt.GetSystemID(), fp.GetCLAMFlag(), fp.GetRAMFlag()));
 			}
 		}
 	}
 
-	std::vector<CString> BuiltinWarningChecker::GetClamWarningTargetIds()
+	std::vector<BuiltinWarning> BuiltinWarningChecker::GetWarnings()
 	{
-		return clamWarningTargetIds;
-	}
-
-	std::vector<CString> BuiltinWarningChecker::GetRamWarningTargetIds()
-	{
-		return ramWarningTargetIds;
+		return warnings;
 	}
 }

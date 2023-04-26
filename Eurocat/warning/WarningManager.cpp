@@ -19,31 +19,8 @@ namespace Eurocat::Warning
 		manager.AddTimedEventHandler(dupeSquawkCheckScheduler);
 	}
 
-	std::vector<CString> WarningManager::GetClamWarningTargetIds()
+	std::shared_ptr<WarningData> WarningManager::MakeWarningData()
 	{
-		return builtinWarningChecker->GetClamWarningTargetIds();
-	}
-
-	std::vector<CString> WarningManager::GetRamWarningTargetIds()
-	{
-		return builtinWarningChecker->GetRamWarningTargetIds();
-	}
-
-	std::vector<CString> WarningManager::GetDupeWarningTargetIds()
-	{
-		return dupeSquawkChecker->GetWarningTargetIds();
-	}
-
-	auto WarningManager::GetWarningInfoByTargetId(CString targetId) -> RadarTargetWarningInfo
-	{
-		std::vector<CString> clamTargetIds = builtinWarningChecker->GetClamWarningTargetIds();
-		std::vector<CString> ramTargetIds = builtinWarningChecker->GetRamWarningTargetIds();
-		std::vector<CString> dupeTargetIds = dupeSquawkChecker->GetWarningTargetIds();
-
-		RadarTargetWarningInfo result;
-		result.isClam = std::find(clamTargetIds.begin(), clamTargetIds.end(), targetId) != clamTargetIds.end();
-		result.isRam = std::find(ramTargetIds.begin(), ramTargetIds.end(), targetId) != ramTargetIds.end();
-		result.isDupe = std::find(dupeTargetIds.begin(), dupeTargetIds.end(), targetId) != dupeTargetIds.end();
-		return result;
+		return std::make_shared<WarningData>(builtinWarningChecker, dupeSquawkChecker);
 	}
 }

@@ -217,6 +217,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="hmi\track\tag\alert\WarningTypeCollector.cpp" />
     <ClCompile Include="plugin\extension\FlightPlanExtension.cpp" />
     <ClCompile Include="plugin\extension\OpData.cpp" />
     <ClCompile Include="common\unit\AltitudeConverter.cpp" />
@@ -290,6 +291,7 @@
     <ClCompile Include="plugin\input\PopupMenu.cpp" />
     <ClCompile Include="plugin\input\EuroScopeInputBridge.cpp" />
     <ClCompile Include="plugin\Plugin.cpp" />
+    <ClCompile Include="plugin\PluginAccess.cpp" />
     <ClCompile Include="plugin\PluginEventManager.cpp" />
     <ClCompile Include="screen\GraphicsWrapper.cpp" />
     <ClCompile Include="screen\Screen.cpp" />
@@ -310,6 +312,7 @@
     <ClCompile Include="warning\DupeSquawkCheckDataProvider.cpp" />
     <ClCompile Include="warning\DupeSquawkChecker.cpp" />
     <ClCompile Include="warning\DupeSquawkCheckScheduler.cpp" />
+    <ClCompile Include="warning\WarningData.cpp" />
     <ClCompile Include="warning\WarningManager.cpp" />
     <ClCompile Include="window\LevelPopupMenu.cpp" />
   </ItemGroup>
@@ -327,6 +330,7 @@
     <ClInclude Include="common\FlightPlanState.h" />
     <ClInclude Include="common\FlightPlanStateMaker.h" />
     <ClInclude Include="helper\FileHelper.h" />
+    <ClInclude Include="hmi\track\tag\alert\WarningTypeCollector.h" />
     <ClInclude Include="plugin\extension\OpDataExtraction.h" />
     <ClInclude Include="plugin\extension\FlightPlanExtension.h" />
     <ClInclude Include="plugin\extension\OpData.h" />
@@ -386,7 +390,6 @@
     <ClInclude Include="hmi\track\tag\alert\WarningInfo.h" />
     <ClInclude Include="hmi\track\tag\alert\WarningSelector.h" />
     <ClInclude Include="hmi\track\tag\alert\WarningType.h" />
-    <ClInclude Include="hmi\track\tag\alert\WarningTypeCollection.h" />
     <ClInclude Include="hmi\track\tag\ITagRenderer.h" />
     <ClInclude Include="hmi\track\tag\label\AccIndicatorLabel.h" />
     <ClInclude Include="hmi\track\tag\label\AircraftTypeLabel.h" />
@@ -453,6 +456,7 @@
     <ClInclude Include="plugin\ITagItemProvider.h" />
     <ClInclude Include="plugin\ITimedEventHandler.h" />
     <ClInclude Include="plugin\Plugin.h" />
+    <ClInclude Include="plugin\PluginAccess.h" />
     <ClInclude Include="plugin\PluginEventManager.h" />
     <ClInclude Include="plugin\PluginFunctionId.h" />
     <ClInclude Include="plugin\PluginTagItemId.h" />
@@ -481,9 +485,10 @@
     <ClInclude Include="warning\DupeSquawkChecker.h" />
     <ClInclude Include="warning\DupeSquawkCheckScheduler.h" />
     <ClInclude Include="warning\IDupeSquawkCheckDataProvider.h" />
-    <ClInclude Include="warning\RadarTargetWarningInfo.h" />
     <ClInclude Include="warning\SquawkData.h" />
+    <ClInclude Include="warning\WarningData.h" />
     <ClInclude Include="warning\WarningManager.h" />
+    <ClInclude Include="warning\WarningTypes.h" />
     <ClInclude Include="window\LevelPopupMenu.h" />
     <ClInclude Include="window\LevelPopupMenuDelegate.h" />
   </ItemGroup>

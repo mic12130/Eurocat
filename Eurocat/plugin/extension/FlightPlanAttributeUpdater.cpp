@@ -3,7 +3,7 @@
 #include "plugin/extension/FlightPlanAttributeUpdater.h"
 
 #include "common/FlightPlanStateMaker.h"
-#include "plugin/extension/FlightPlanAttributeContainer.h"
+#include "plugin/PluginAccess.h"
 
 using namespace Eurocat::Common;
 
@@ -25,7 +25,7 @@ namespace Eurocat::Plugin
 	{
 		if (dataType == EuroScopePlugIn::CTR_DATA_TYPE_TEMPORARY_ALTITUDE)
 		{
-			auto& attribute = FlightPlanAttributeContainer::Shared().AttributeForFlightPlan(flightPlan);
+			auto& attribute = PluginAccess::Shared().FlightPlanAttribute (flightPlan);
 			attribute.isCflAcknowledged = false;
 		}
 	}
@@ -35,7 +35,7 @@ namespace Eurocat::Plugin
 		for (auto fp = plugin.FlightPlanSelectFirst(); fp.IsValid(); fp = plugin.FlightPlanSelectNext(fp))
 		{
 			auto state = FlightPlanStateMaker::Make(fp.GetState());
-			auto& attribute = FlightPlanAttributeContainer::Shared().AttributeForFlightPlan(fp);
+			auto& attribute = PluginAccess::Shared().FlightPlanAttribute(fp);
 
 			if (state != attribute.currentState)
 			{

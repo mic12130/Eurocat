@@ -11,6 +11,6 @@ namespace Eurocat::Hmi::Track
 	{
 	public:
 		virtual ~IAltitudeFilter() = default;
-		virtual bool InRange(IRadarTargetDataProvider& rt, Plugin::EurocatPlugin& plugin) = 0;
+		virtual bool InRange(IRadarTargetDataProvider& rt) = 0;
 	};
 }

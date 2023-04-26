@@ -88,6 +88,9 @@
     <Filter Include="warning">
       <UniqueIdentifier>{9b0e9714-f235-4789-91f8-a45b53d2a7bb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="config">
+      <UniqueIdentifier>{04e3ca2d-777a-4ae5-82ae-07d817581c79}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\Eurocat.rc2">
@@ -554,23 +557,11 @@
     <ClInclude Include="warning\WarningManager.h">
       <Filter>warning</Filter>
     </ClInclude>
-    <ClInclude Include="warning\RadarTargetWarningInfo.h">
-      <Filter>warning</Filter>
-    </ClInclude>
     <ClInclude Include="hmi\track\tag\alert\WarningType.h">
-      <Filter>hmi\track\tag\alert</Filter>
-    </ClInclude>
-    <ClInclude Include="hmi\track\tag\alert\WarningTypeCollection.h">
       <Filter>hmi\track\tag\alert</Filter>
     </ClInclude>
     <ClInclude Include="screen\WindowScalingInfo.h">
       <Filter>screen</Filter>
-    </ClInclude>
-    <ClInclude Include="plugin\extension\OpDataConverter.h">
-      <Filter>common</Filter>
-    </ClInclude>
-    <ClInclude Include="plugin\extension\OpData.h">
-      <Filter>common</Filter>
     </ClInclude>
     <ClInclude Include="hmi\track\symbol\SymbolObjectInfo.h">
       <Filter>hmi\track\symbol</Filter>
@@ -584,15 +575,6 @@
     <ClInclude Include="hmi\track\RenderableTrack.h">
       <Filter>hmi\track</Filter>
     </ClInclude>
-    <ClInclude Include="plugin\extension\FlightPlanAttributeContainer.h">
-      <Filter>plugin</Filter>
-    </ClInclude>
-    <ClInclude Include="plugin\extension\FlightPlanExtension.h">
-      <Filter>plugin</Filter>
-    </ClInclude>
-    <ClInclude Include="plugin\extension\OpDataExtraction.h">
-      <Filter>plugin</Filter>
-    </ClInclude>
     <ClInclude Include="helper\FileHelper.h">
       <Filter>plugin</Filter>
     </ClInclude>
@@ -601,6 +583,33 @@
     </ClInclude>
     <ClInclude Include="hmi\HmiManager.h">
       <Filter>hmi</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\PluginAccess.h">
+      <Filter>plugin</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\extension\FlightPlanAttributeContainer.h">
+      <Filter>plugin\extension</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\extension\OpData.h">
+      <Filter>plugin\extension</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\extension\OpDataConverter.h">
+      <Filter>plugin\extension</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\extension\OpDataExtraction.h">
+      <Filter>plugin\extension</Filter>
+    </ClInclude>
+    <ClInclude Include="plugin\extension\FlightPlanExtension.h">
+      <Filter>plugin\extension</Filter>
+    </ClInclude>
+    <ClInclude Include="warning\WarningData.h">
+      <Filter>warning</Filter>
+    </ClInclude>
+    <ClInclude Include="warning\WarningTypes.h">
+      <Filter>warning</Filter>
+    </ClInclude>
+    <ClInclude Include="hmi\track\tag\alert\WarningTypeCollector.h">
+      <Filter>hmi\track\tag\alert</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -876,9 +885,6 @@
     <ClCompile Include="screen\WindowScalingInfo.cpp">
       <Filter>screen</Filter>
     </ClCompile>
-    <ClCompile Include="plugin\extension\OpData.cpp">
-      <Filter>common</Filter>
-    </ClCompile>
     <ClCompile Include="hmi\track\symbol\SymbolObjectInfoFactory.cpp">
       <Filter>hmi\track\symbol</Filter>
     </ClCompile>
@@ -891,14 +897,26 @@
     <ClCompile Include="hmi\HmiManager.cpp">
       <Filter>hmi</Filter>
     </ClCompile>
-    <ClCompile Include="plugin\extension\FlightPlanExtension.cpp">
+    <ClCompile Include="plugin\PluginAccess.cpp">
       <Filter>plugin</Filter>
     </ClCompile>
     <ClCompile Include="plugin\extension\FlightPlanAttributeContainer.cpp">
-      <Filter>plugin</Filter>
+      <Filter>plugin\extension</Filter>
+    </ClCompile>
+    <ClCompile Include="plugin\extension\OpData.cpp">
+      <Filter>plugin\extension</Filter>
     </ClCompile>
     <ClCompile Include="plugin\extension\OpDataConverter.cpp">
-      <Filter>common</Filter>
+      <Filter>plugin\extension</Filter>
+    </ClCompile>
+    <ClCompile Include="plugin\extension\FlightPlanExtension.cpp">
+      <Filter>plugin\extension</Filter>
+    </ClCompile>
+    <ClCompile Include="warning\WarningData.cpp">
+      <Filter>warning</Filter>
+    </ClCompile>
+    <ClCompile Include="hmi\track\tag\alert\WarningTypeCollector.cpp">
+      <Filter>hmi\track\tag\alert</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

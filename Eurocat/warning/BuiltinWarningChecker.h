@@ -1,6 +1,7 @@
 #pragma once
 
 #include "plugin/ITimedEventHandler.h"
+#include "WarningTypes.h"
 
 namespace Eurocat::Warning
 {
@@ -8,11 +9,9 @@ namespace Eurocat::Warning
 	{
 	public:
 		void OnTimedEvent(int counter) override;
-		std::vector<CString> GetClamWarningTargetIds();
-		std::vector<CString> GetRamWarningTargetIds();
+		std::vector<BuiltinWarning> GetWarnings();
 
 	private:
-		std::vector<CString> clamWarningTargetIds;
-		std::vector<CString> ramWarningTargetIds;
+		std::vector<BuiltinWarning> warnings;
 	};
 }

@@ -8,14 +8,6 @@ using namespace Eurocat::Common;
 
 namespace Eurocat::Plugin
 {
-	std::shared_ptr<FlightPlanAttributeContainer> FlightPlanAttributeContainer::shared = 
-		std::shared_ptr<FlightPlanAttributeContainer>(new FlightPlanAttributeContainer());
-
-	FlightPlanAttributeContainer& FlightPlanAttributeContainer::Shared()
-	{
-		return *shared;
-	}
-
 	FlightPlanAttribute& FlightPlanAttributeContainer::AttributeForFlightPlan(EuroScopePlugIn::CFlightPlan flightPlan)
 	{
 		CString callsign = flightPlan.GetCallsign();

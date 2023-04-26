@@ -8,11 +8,15 @@ namespace Eurocat::Hmi::Track
 	class AltitudeFilter : public IAltitudeFilter
 	{
 	public:
-		AltitudeFilter(OptionData& option);
-		bool InRange(IRadarTargetDataProvider& rt, Plugin::EurocatPlugin& plugin) override;
+		AltitudeFilter(OptionData& option, int transAltitude);
+		bool InRange(IRadarTargetDataProvider& rt) override;
 		bool InRange(int altitude);
 
 	private:
 		OptionData& option;
+
+		// We use this to correct the altitude from radar target
+		// It will not take any effect when InRange(int altitude) variant is called
+		int transAltitude;
 	};
 }
