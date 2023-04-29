@@ -10,7 +10,7 @@ class StringHelper
 public:
 	static std::vector<CString> GetComponents(CString fullString, char split)
 	{
-		std::string str = fullString;
+		std::string str = fullString.GetString();
 		std::stringstream ss(str);
 		std::string segment;
 		std::vector<CString> contentList;

@@ -11,7 +11,7 @@ namespace Eurocat::Hmi::Track
 {
 	void HistRenderer::Render(std::vector<Common::Coordinate> positions, Gdiplus::Color color, Screen::ScreenWrapper& screen, Screen::GraphicsWrapper& graphics)
 	{
-		for each (auto position in positions)
+		for (auto& position : positions)
 		{
 			SolidBrush brush(color);
 			POINT _px = screen.ConvertCoordFromPositionToPixel(CoordinateHelper::ConvertToCPosition(position));

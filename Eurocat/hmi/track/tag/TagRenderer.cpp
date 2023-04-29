@@ -47,7 +47,7 @@ namespace Eurocat::Hmi::Track
 
 		for (auto& labelLine : labelContents)
 		{
-			for each (auto label in labelLine)
+			for (auto& label : labelLine)
 			{
 				if (!isLabelHidden)
 				{
@@ -100,10 +100,10 @@ namespace Eurocat::Hmi::Track
 		REAL labelWidth = 0;
 
 		// Loop through label lines and find the line that has the greatest width
-		for each (auto labelLine in labelContents)
+		for (auto& labelLine : labelContents)
 		{
 			REAL lineWidth = 0;
-			for each (auto label in labelLine)
+			for (auto& label : labelLine)
 			{
 				lineWidth += label->GetSize(graphics).Width;
 			}
@@ -127,7 +127,7 @@ namespace Eurocat::Hmi::Track
 		{
 			bool isEmptyLine = true;
 
-			for each (auto label in labelLine)
+			for (auto& label : labelLine)
 			{
 				if (!label->IsEmpty())
 				{
