@@ -13,8 +13,7 @@ namespace Eurocat::Plugin
 
 	void PluginAccess::SetupShared(std::shared_ptr<Plugin::EurocatPlugin> plugin)
 	{
-		shared = nullptr;
-		//shared = std::make_shared<PluginAccess>(plugin);
+		shared = std::make_shared<PluginAccess>(plugin);
 	}
 
 	EurocatPlugin& PluginAccess::GetPlugin()
