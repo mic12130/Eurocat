@@ -10,10 +10,8 @@ namespace Eurocat::Config
 	{
 		groundTrafficSpeedThreshold = LoadSettingItem<int>(
 			kGroundTrafficSpeedThresholdKey, 30, 
-			std::make_unique<IntegerRangeValidator>(0, 100)
-		);
-		callsignFilePath = LoadSettingItem<CString>(
-			kCallsignFilePathKey, ""
-		);
+			std::make_unique<IntegerRangeValidator>(0, 100));
+
+		callsignFilePath = LoadSettingItem<CString>(kCallsignFilePathKey, "");
 	}
 }
