@@ -7,11 +7,10 @@ namespace Eurocat::Config
 	struct ConfigCollection
 	{
 	public:
-		ConfigCollection(SettingsData& settingsData) : settingsData(settingsData)
+		ConfigCollection(SettingsData& settings) : settings(settings)
 		{
 		}
-
-	private:
-		const SettingsData settingsData;
+		
+		const SettingsData settings;
 	};
 }
