@@ -4,6 +4,7 @@
 #include "warning/WarningManager.h"
 #include "hmi/HmiManager.h"
 #include "tagitem/TagItemManager.h"
+#include "config/ConfigManager.h"
 
 namespace Eurocat {
 	class SystemContainer
@@ -18,6 +19,7 @@ namespace Eurocat {
 		void InitLogger();
 
 		std::shared_ptr<Plugin::EurocatPlugin> plugin;
+		std::shared_ptr<Config::ConfigManager> configManager;
 		std::shared_ptr<Warning::WarningManager> warningManager;
 		std::shared_ptr<Hmi::HmiManager> hmiManager;
 		std::shared_ptr<TagItem::TagItemManager> tagItemManager;

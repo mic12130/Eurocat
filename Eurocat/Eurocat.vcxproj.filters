@@ -575,9 +575,6 @@
     <ClInclude Include="hmi\track\RenderableTrack.h">
       <Filter>hmi\track</Filter>
     </ClInclude>
-    <ClInclude Include="helper\FileHelper.h">
-      <Filter>plugin</Filter>
-    </ClInclude>
     <ClInclude Include="system\SystemContainer.h">
       <Filter>system</Filter>
     </ClInclude>
@@ -610,6 +607,36 @@
     </ClInclude>
     <ClInclude Include="hmi\track\tag\alert\WarningTypeCollector.h">
       <Filter>hmi\track\tag\alert</Filter>
+    </ClInclude>
+    <ClInclude Include="config\SettingsData.h">
+      <Filter>config</Filter>
+    </ClInclude>
+    <ClInclude Include="config\SettingsStorage.h">
+      <Filter>config</Filter>
+    </ClInclude>
+    <ClInclude Include="config\SettingItemKey.h">
+      <Filter>config</Filter>
+    </ClInclude>
+    <ClInclude Include="config\SettingItem.h">
+      <Filter>config</Filter>
+    </ClInclude>
+    <ClInclude Include="config\SettingItemValidator.h">
+      <Filter>config</Filter>
+    </ClInclude>
+    <ClInclude Include="config\ConfigManager.h">
+      <Filter>config</Filter>
+    </ClInclude>
+    <ClInclude Include="config\ConfigCollection.h">
+      <Filter>config</Filter>
+    </ClInclude>
+    <ClInclude Include="config\IConfigEventHandler.h">
+      <Filter>config</Filter>
+    </ClInclude>
+    <ClInclude Include="config\ConfigEventManager.h">
+      <Filter>config</Filter>
+    </ClInclude>
+    <ClInclude Include="helper\FilesystemHelper.h">
+      <Filter>helper</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -917,6 +944,18 @@
     </ClCompile>
     <ClCompile Include="hmi\track\tag\alert\WarningTypeCollector.cpp">
       <Filter>hmi\track\tag\alert</Filter>
+    </ClCompile>
+    <ClCompile Include="config\SettingsData.cpp">
+      <Filter>config</Filter>
+    </ClCompile>
+    <ClCompile Include="config\SettingsStorage.cpp">
+      <Filter>config</Filter>
+    </ClCompile>
+    <ClCompile Include="config\ConfigManager.cpp">
+      <Filter>config</Filter>
+    </ClCompile>
+    <ClCompile Include="config\ConfigEventManager.cpp">
+      <Filter>config</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

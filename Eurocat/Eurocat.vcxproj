@@ -217,6 +217,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="config\ConfigEventManager.cpp" />
+    <ClCompile Include="config\ConfigManager.cpp" />
+    <ClCompile Include="config\SettingsData.cpp" />
+    <ClCompile Include="config\SettingsStorage.cpp" />
     <ClCompile Include="hmi\track\tag\alert\WarningTypeCollector.cpp" />
     <ClCompile Include="plugin\extension\FlightPlanExtension.cpp" />
     <ClCompile Include="plugin\extension\OpData.cpp" />
@@ -329,7 +333,16 @@
     <ClInclude Include="common\Coordinate.h" />
     <ClInclude Include="common\FlightPlanState.h" />
     <ClInclude Include="common\FlightPlanStateMaker.h" />
-    <ClInclude Include="helper\FileHelper.h" />
+    <ClInclude Include="config\ConfigCollection.h" />
+    <ClInclude Include="config\ConfigEventManager.h" />
+    <ClInclude Include="config\IConfigEventHandler.h" />
+    <ClInclude Include="config\ConfigManager.h" />
+    <ClInclude Include="config\SettingItem.h" />
+    <ClInclude Include="config\SettingItemKey.h" />
+    <ClInclude Include="config\SettingItemValidator.h" />
+    <ClInclude Include="config\SettingsData.h" />
+    <ClInclude Include="config\SettingsStorage.h" />
+    <ClInclude Include="helper\FilesystemHelper.h" />
     <ClInclude Include="hmi\track\tag\alert\WarningTypeCollector.h" />
     <ClInclude Include="plugin\extension\OpDataExtraction.h" />
     <ClInclude Include="plugin\extension\FlightPlanExtension.h" />

@@ -2,13 +2,14 @@
 
 #include "system/SystemContainer.h"
 
-#include "helper/FileHelper.h"
+#include "helper/FilesystemHelper.h"
 #include "plugin/PluginAccess.h"
 
 using namespace Eurocat::Plugin;
 using namespace Eurocat::Warning;
 using namespace Eurocat::Hmi;
 using namespace Eurocat::TagItem;
+using namespace Eurocat::Config;
 namespace fs = std::filesystem;
 
 namespace Eurocat
@@ -25,6 +26,10 @@ namespace Eurocat
 		LOG(INFO) << "Starting plugin";
 		plugin = std::make_shared<EurocatPlugin>();
 		PluginAccess::SetupShared(plugin);
+
+		LOG(INFO) << "Starting config manager";
+		configManager = std::make_shared<ConfigManager>();
+		configManager->Load();
 
 		LOG(INFO) << "Starting warning manager";
 		warningManager = std::make_shared<WarningManager>();
@@ -53,7 +58,7 @@ namespace Eurocat
 
 	void SystemContainer::InitLogger()
 	{
-		std::string fileName = FileHelper::GetFileName().GetString();
+		std::string fileName = FilesystemHelper::GetDllPath();
 		fs::path fileNamePath = fileName;
 		fs::path logDirPath = fileNamePath.parent_path().append("Eurocat_logs");
 
