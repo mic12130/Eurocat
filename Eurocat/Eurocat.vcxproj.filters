@@ -91,6 +91,9 @@
     <Filter Include="config">
       <UniqueIdentifier>{04e3ca2d-777a-4ae5-82ae-07d817581c79}</UniqueIdentifier>
     </Filter>
+    <Filter Include="external">
+      <UniqueIdentifier>{82d6d70d-727f-4f0f-9f6d-58bada774949}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\Eurocat.rc2">
@@ -638,6 +641,15 @@
     <ClInclude Include="helper\FilesystemHelper.h">
       <Filter>helper</Filter>
     </ClInclude>
+    <ClInclude Include="external\ExternalResManager.h">
+      <Filter>external</Filter>
+    </ClInclude>
+    <ClInclude Include="external\CallsignLookup.h">
+      <Filter>external</Filter>
+    </ClInclude>
+    <ClInclude Include="external\CallsignFileParser.h">
+      <Filter>external</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="res\Eurocat.rc">
@@ -956,6 +968,15 @@
     </ClCompile>
     <ClCompile Include="config\ConfigEventManager.cpp">
       <Filter>config</Filter>
+    </ClCompile>
+    <ClCompile Include="external\ExternalResManager.cpp">
+      <Filter>external</Filter>
+    </ClCompile>
+    <ClCompile Include="external\CallsignLookup.cpp">
+      <Filter>external</Filter>
+    </ClCompile>
+    <ClCompile Include="external\CallsignFileParser.cpp">
+      <Filter>external</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -5,6 +5,7 @@
 #include "hmi/HmiManager.h"
 #include "tagitem/TagItemManager.h"
 #include "config/ConfigManager.h"
+#include "external/ExternalResManager.h"
 
 namespace Eurocat {
 	class SystemContainer
@@ -23,5 +24,6 @@ namespace Eurocat {
 		std::shared_ptr<Warning::WarningManager> warningManager;
 		std::shared_ptr<Hmi::HmiManager> hmiManager;
 		std::shared_ptr<TagItem::TagItemManager> tagItemManager;
+		std::shared_ptr<External::ExternalResManager> externalResManager;
 	};
 }

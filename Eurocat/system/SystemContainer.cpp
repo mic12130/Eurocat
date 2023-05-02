@@ -10,6 +10,7 @@ using namespace Eurocat::Warning;
 using namespace Eurocat::Hmi;
 using namespace Eurocat::TagItem;
 using namespace Eurocat::Config;
+using namespace Eurocat::External;
 namespace fs = std::filesystem;
 
 namespace Eurocat
@@ -30,6 +31,7 @@ namespace Eurocat
 		LOG(INFO) << "Starting config manager";
 		configManager = std::make_shared<ConfigManager>();
 		configManager->Load();
+		auto config = configManager->MakeConfigCollection();
 
 		LOG(INFO) << "Starting warning manager";
 		warningManager = std::make_shared<WarningManager>();
@@ -44,6 +46,10 @@ namespace Eurocat
 		tagItemManager = std::make_shared<TagItemManager>(hmiManager->GetUnitDisplayManager());
 		tagItemManager->SubscribeToPluginEvents(*plugin->GetEventManager());
 		tagItemManager->RegisterItems(*plugin);
+
+		LOG(INFO) << "Starting external resources manager";
+		externalResManager = std::make_shared<ExternalResManager>();
+		externalResManager->SubscribeToConfigEvents(config, configManager->GetEventManager());
 	}
 
 	void SystemContainer::Cleanup()
