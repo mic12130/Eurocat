@@ -17,7 +17,10 @@ namespace Eurocat::Hmi::Track
 		virtual bool IsAcceptedReminding() = 0;
 		virtual CTime GetLastStateUpdateTime() = 0;
 		virtual CString GetAircraftType() = 0;
+		virtual CString GetOrigin() = 0;
 		virtual CString GetDestination() = 0;
+		virtual CString GetAlternate() = 0;
+		virtual CString GetRoute() = 0;
 		virtual CString GetArrivalRunway() = 0;
 		virtual std::optional<int> GetCfl() = 0;
 		virtual int GetRfl() = 0;
@@ -31,6 +34,7 @@ namespace Eurocat::Hmi::Track
 		virtual int GetAssignedHeading() = 0;
 		virtual int GetAssignedSpeed() = 0;
 		virtual int GetAssignedMach() = 0;
+		virtual CString GetAssignedSsr() = 0;
 		virtual CString GetPilotName() = 0;
 	};
 }

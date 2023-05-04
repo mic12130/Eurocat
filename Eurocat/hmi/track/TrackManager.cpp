@@ -184,6 +184,7 @@ namespace Eurocat::Hmi::Track
 		VelRenderController velRenderController;
 		HistRenderController histRenderController;
 		SymbolObjectInfoFactory symbolObjectInfoFactory;
+		symbolObjectInfoFactory.transAlt = PluginAccess::Shared().GetPlugin().GetTransitionAltitude();
 
 		for (auto& track : tracks)
 		{
@@ -231,7 +232,7 @@ namespace Eurocat::Hmi::Track
 				auto tagData = CoupledTrackTagData(rt, fp, profile, option, unit);
 				auto color = TrackColor::GetTrackColor(fp, profile.isIql);
 				bool isSelected = IsSelected(fp);
-				auto symbolObjectInfo = symbolObjectInfoFactory.MakeForCoupledTrack(fp, profile);
+				auto symbolObjectInfo = symbolObjectInfoFactory.MakeForCoupledTrack(fp, rt, profile);
 
 				symbolRenderController.OnRenderSsrTrack(rt, color, option, isSelected, symbolObjectInfo);
 				tagRenderController.OnRenderCoupledTrack(rt, tagData, color, screen, graphics);

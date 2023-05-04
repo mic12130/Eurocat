@@ -12,8 +12,17 @@ namespace Eurocat::Hmi::Track
 	public:
 		SymbolObjectInfo MakeForPsrTrack();
 		SymbolObjectInfo MakeForUncoupledTrack(const TrackProfile& profile);
-		SymbolObjectInfo MakeForCoupledTrack(IFlightPlanDataProvider& fp, const TrackProfile& profile);
+		SymbolObjectInfo MakeForCoupledTrack(
+			IFlightPlanDataProvider& fp, IRadarTargetDataProvider& rt, const TrackProfile& profile);
 		SymbolObjectInfo MakeForFlightPlanTrack(IFlightPlanDataProvider& fp, const TrackProfile& profile);
 		SymbolObjectInfo MakeForGroundTrack();
+
+		int transAlt = 0;
+
+	private:
+		CString GenerateFpSummaryMessage(IFlightPlanDataProvider& fp);
+		CString GenerateFpDetailMessage(IFlightPlanDataProvider& fp);
+		CString GenerateSsrMessage(IFlightPlanDataProvider& fp, IRadarTargetDataProvider& rt);
+		CString GenerateAssrOnlyMessage(IFlightPlanDataProvider& fp);
 	};
 }

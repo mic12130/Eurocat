@@ -12,7 +12,10 @@ namespace Eurocat::Hmi::Track
 		Hmi::FlightPlanDisplayState GetDisplayState() override;
 		bool IsAcceptedReminding() override;
 		CString GetAircraftType() override;
+		CString GetOrigin() override;
 		CString GetDestination() override;
+		CString GetAlternate() override;
+		CString GetRoute() override;
 		CString GetArrivalRunway() override;
 		std::optional<int> GetCfl() override;
 		char GetWtc() override;
@@ -27,6 +30,7 @@ namespace Eurocat::Hmi::Track
 		int GetAssignedHeading() override;
 		int GetAssignedSpeed() override;
 		int GetAssignedMach() override;
+		CString GetAssignedSsr() override;
 		CString GetPilotName() override;
 
 	private:

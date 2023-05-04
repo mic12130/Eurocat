@@ -36,9 +36,24 @@ namespace Eurocat::Hmi::Track
 		return fp.GetFlightPlanData().GetAircraftFPType();
 	}
 
+	CString FlightPlanDataProvider::GetOrigin()
+	{
+		return fp.GetFlightPlanData().GetOrigin();
+	}
+
 	CString FlightPlanDataProvider::GetDestination()
 	{
 		return fp.GetFlightPlanData().GetDestination();
+	}
+
+	CString FlightPlanDataProvider::GetAlternate()
+	{
+		return fp.GetFlightPlanData().GetAlternate();
+	}
+
+	CString FlightPlanDataProvider::GetRoute()
+	{
+		return fp.GetFlightPlanData().GetRoute();
 	}
 
 	CString FlightPlanDataProvider::GetArrivalRunway()
@@ -136,6 +151,12 @@ namespace Eurocat::Hmi::Track
 	{
 		return fp.GetControllerAssignedData().GetAssignedMach();
 	}
+
+	CString FlightPlanDataProvider::GetAssignedSsr()
+	{
+		return fp.GetControllerAssignedData().GetSquawk();
+	}
+
 	CString FlightPlanDataProvider::GetPilotName()
 	{
 		return fp.GetPilotName();

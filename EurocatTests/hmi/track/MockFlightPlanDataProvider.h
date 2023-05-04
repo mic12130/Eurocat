@@ -14,7 +14,10 @@ namespace Eurocat::Hmi::Track
 		MOCK_METHOD(bool, IsAcceptedReminding, (), (override));
 		MOCK_METHOD(CTime, GetLastStateUpdateTime, (), (override));
 		MOCK_METHOD(CString, GetAircraftType, (), (override));
+		MOCK_METHOD(CString, GetOrigin, (), (override));
 		MOCK_METHOD(CString, GetDestination, (), (override));
+		MOCK_METHOD(CString, GetAlternate, (), (override));
+		MOCK_METHOD(CString, GetRoute, (), (override));
 		MOCK_METHOD(CString, GetArrivalRunway, (), (override));
 		MOCK_METHOD(std::optional<int>, GetCfl, (), (override));
 		MOCK_METHOD(int, GetRfl, (), (override));
@@ -28,6 +31,7 @@ namespace Eurocat::Hmi::Track
 		MOCK_METHOD(int, GetAssignedHeading, (), (override));
 		MOCK_METHOD(int, GetAssignedSpeed, (), (override));
 		MOCK_METHOD(int, GetAssignedMach, (), (override));
+		MOCK_METHOD(CString, GetAssignedSsr, (), (override));
 		MOCK_METHOD(CString, GetPilotName, (), (override));
 	};
 }
