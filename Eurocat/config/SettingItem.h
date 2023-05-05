@@ -29,7 +29,7 @@ namespace Eurocat::Config
 
 			if (!newValue.has_value())
 			{
-				LOG(INFO) << "Setting item " << key << " is set to default value " << defaultValue << " (Value not found)";
+				spdlog::info("Setting item \"{}\" is set to default value \"{}\" (Value not found)", key, defaultValue);
 				value = defaultValue;
 				return;
 			}
@@ -39,12 +39,12 @@ namespace Eurocat::Config
 
 			if (validator == nullptr || validator->IsValid(unwrapped, err))
 			{
-				LOG(INFO) << "Setting item " << key << " is set to " << unwrapped;
+				spdlog::info("Setting item \"{}\" is set to \"{}\"", key, unwrapped);
 				value = unwrapped;
 			}
 			else
 			{
-				LOG(INFO) << "Setting item " << key << " is set to default value " << defaultValue << " (" << err << ")";
+				spdlog::info("Setting item \"{}\" is set to default value \"{}\" ({})", key, defaultValue, err);
 				value = defaultValue;
 			}
 		}

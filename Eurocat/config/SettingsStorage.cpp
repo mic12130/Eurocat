@@ -15,14 +15,14 @@ namespace Eurocat::Config
 	void SettingsStorage::Load(std::string path)
 	{
 		valueMap.clear();
-		
+
 		if (std::filesystem::exists(std::filesystem::path(path)) == false)
 		{
-			LOG(INFO) << "Skipped loading setting items because file not exist" << " (" << path << ")";
+			spdlog::info("Skipped loading setting items because file not exist at \"{}\"", path);
 			return;
 		}
 
-		LOG(INFO) << "Start loading setting items from file " << path;
+		spdlog::info("Start loading setting items from file \"{}\"", path);
 
 		std::ifstream file(path);
 		std::string line;
@@ -35,7 +35,7 @@ namespace Eurocat::Config
 
 			if (std::find(recognizedKeys.begin(), recognizedKeys.end(), tokens[0]) == recognizedKeys.end())
 			{
-				LOG(WARNING) << "Ignored unknown setting item " << tokens[0];
+				spdlog::warn("Ignored unknown setting item \"{}\"", tokens[0]);
 			}
 			else
 			{
@@ -43,7 +43,7 @@ namespace Eurocat::Config
 			}
 		}
 
-		LOG(INFO) << "Finished loading setting items (count: " << valueMap.size() << ")";
+		spdlog::info("Finished loading setting items (count: {})", valueMap.size());
 	}
 
 	void SettingsStorage::AddRecognizedKeys()

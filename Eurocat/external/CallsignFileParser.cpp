@@ -12,11 +12,11 @@ namespace Eurocat::External
 
 		if (std::filesystem::exists(std::filesystem::path(path)) == false)
 		{
-			LOG(INFO) << "Skipped parsing callsign file because file not exist" << " (" << path << ")";
+			spdlog::info("Skipped parsing callsign file because file not exist at \"{}\"", path);
 			return { };
 		}
 
-		LOG(INFO) << "Start parsing callsign file" << " (" << path << ")";
+		spdlog::info("Start parsing callsign file \"{}\"", path);
 
 		std::ifstream file(path);
 		std::string line;
@@ -33,7 +33,7 @@ namespace Eurocat::External
 			}
 		}
 
-		LOG(INFO) << "Finished parsing callsign file (count: " << result.size() << ")";
+		spdlog::info("Finished parsing callsign file (count: {})", result.size());
 		return result;
 	}
 }

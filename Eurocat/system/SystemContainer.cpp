@@ -2,6 +2,8 @@
 
 #include "system/SystemContainer.h"
 
+#include "spdlog/sinks/basic_file_sink.h"
+
 #include "helper/FilesystemHelper.h"
 #include "plugin/PluginAccess.h"
 
@@ -22,39 +24,39 @@ namespace Eurocat
 
 		InitLogger();
 
-		LOG(INFO) << "Starting system";
+		spdlog::info("Starting system");
 
-		LOG(INFO) << "Starting plugin";
+		spdlog::info("Starting plugin");
 		plugin = std::make_shared<EurocatPlugin>();
 		PluginAccess::SetupShared(plugin);
 
-		LOG(INFO) << "Starting config manager";
+		spdlog::info("Starting config manager");
 		configManager = std::make_shared<ConfigManager>();
 		configManager->Load();
 		auto config = configManager->MakeConfigCollection();
 
-		LOG(INFO) << "Starting warning manager";
+		spdlog::info("Starting warning manager");
 		warningManager = std::make_shared<WarningManager>();
 		warningManager->SubscribeToPluginEvents(*plugin->GetEventManager());
 		WarningData::SetupShared(warningManager->MakeWarningData());
 
-		LOG(INFO) << "Starting hmi manager";
+		spdlog::info("Starting hmi manager");
 		hmiManager = std::make_shared<HmiManager>();
 		hmiManager->SubscribeToPluginEvents(*plugin->GetEventManager());
 
-		LOG(INFO) << "Starting tag item manager";
+		spdlog::info("Starting tag item manager");
 		tagItemManager = std::make_shared<TagItemManager>(hmiManager->GetUnitDisplayManager());
 		tagItemManager->SubscribeToPluginEvents(*plugin->GetEventManager());
 		tagItemManager->RegisterItems(*plugin);
 
-		LOG(INFO) << "Starting external resources manager";
+		spdlog::info("Starting external resources manager");
 		externalResManager = std::make_shared<ExternalResManager>();
 		externalResManager->SubscribeToConfigEvents(config, configManager->GetEventManager());
 	}
 
 	void SystemContainer::Cleanup()
 	{
-		LOG(INFO) << "Cleaning up";
+		spdlog::info("Cleaning up");
 	}
 
 	Plugin::EurocatPlugin& SystemContainer::GetPlugin() const
@@ -64,19 +66,15 @@ namespace Eurocat
 
 	void SystemContainer::InitLogger()
 	{
-		std::string fileName = FilesystemHelper::GetDllPath();
-		fs::path fileNamePath = fileName;
-		fs::path logDirPath = fileNamePath.parent_path().append("Eurocat_logs");
+		std::string fileName = FilesystemHelper::GetDllPath() + ".log";
 
-		if (!fs::exists(logDirPath))
+		try
 		{
-			fs::create_directory(logDirPath);
+			auto logger = spdlog::basic_logger_mt("logger", fileName, true);
+			spdlog::set_default_logger(logger);
 		}
-
-		FLAGS_minloglevel = 0;
-		FLAGS_log_dir = logDirPath.string();
-		google::InitGoogleLogging(fileName.c_str());
-
-		LOG(INFO) << "Logger initialized";
+		catch (const spdlog::spdlog_ex&)
+		{
+		}
 	}
 }

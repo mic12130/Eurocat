@@ -31,9 +31,7 @@ processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
 #include <sstream>
 
 #include <gdiPlus.h>
-
-#define GLOG_NO_ABBREVIATED_SEVERITIES
-#include <glog/logging.h>
+#include "spdlog/spdlog.h"
 
 #include "../external/euroscope/include/EuroScopePlugIn.h"
 
