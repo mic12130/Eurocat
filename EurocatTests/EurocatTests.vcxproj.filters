@@ -71,7 +71,9 @@
     <ClCompile Include="plugin\extension\OpDataConverterTest.cpp">
       <Filter>common</Filter>
     </ClCompile>
-    <ClCompile Include="warning\DupeSquawkCheckerTest.cpp" />
+    <ClCompile Include="warning\DupeSquawkCheckerTest.cpp">
+      <Filter>warning</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
@@ -114,7 +116,9 @@
     <ClInclude Include="hmi\track\tag\label\StringContentUtil.h">
       <Filter>hmi\track\tag\label</Filter>
     </ClInclude>
-    <ClInclude Include="warning\MockDupeSquawkCheckDataProvider.h" />
+    <ClInclude Include="warning\MockCheckableDataProvider.h">
+      <Filter>warning</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="screen">
@@ -146,6 +150,9 @@
     </Filter>
     <Filter Include="hmi\track\tag\label">
       <UniqueIdentifier>{60c9189d-bcf4-46b4-a48e-628d4270756d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="warning">
+      <UniqueIdentifier>{26f296d4-9fdc-405e-86fe-77008382abc0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

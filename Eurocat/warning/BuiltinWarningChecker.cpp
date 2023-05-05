@@ -8,11 +8,10 @@ using namespace Eurocat::Plugin;
 
 namespace Eurocat::Warning
 {
-	void BuiltinWarningChecker::OnTimedEvent(int counter)
+	void BuiltinWarningChecker::Check()
 	{
 		auto& plugin = PluginAccess::Shared().GetPlugin();
-
-		warnings.clear();
+		std::vector<BuiltinWarning> newWarnings;
 
 		for (auto rt = plugin.RadarTargetSelectFirst();
 			rt.IsValid();
@@ -25,9 +24,31 @@ namespace Eurocat::Warning
 
 			if (auto fp = rt.GetCorrelatedFlightPlan(); fp.IsValid())
 			{
-				warnings.push_back(BuiltinWarning(rt.GetSystemID(), fp.GetCLAMFlag(), fp.GetRAMFlag()));
+				bool isClam = fp.GetCLAMFlag();
+				bool isRam = fp.GetRAMFlag();
+
+				if (isClam || isRam)
+				{
+					newWarnings.push_back(BuiltinWarning(rt.GetSystemID(), isClam, isRam));
+				}
 			}
 		}
+
+		if (newWarnings != warnings)
+		{
+			if (newWarnings.empty())
+			{
+				spdlog::info("Built-in warnings changed: null");
+			}
+			else
+			{
+				std::string msg = "Built-in warnings changed:";
+				for (auto& w : newWarnings) { msg += " (" + w.Description() + ")"; }
+				spdlog::info(msg);
+			}
+		}
+
+		warnings = newWarnings;
 	}
 
 	std::vector<BuiltinWarning> BuiltinWarningChecker::GetWarnings()

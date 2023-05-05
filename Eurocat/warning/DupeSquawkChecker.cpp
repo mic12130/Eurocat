@@ -2,38 +2,31 @@
 
 #include "warning/DupeSquawkChecker.h"
 
-#include "warning/DupeSquawkCheckDataProvider.h"
-
 namespace Eurocat::Warning
 {
-	DupeSquawkChecker::DupeSquawkChecker(std::shared_ptr<IDupeSquawkCheckDataProvider> dataProvider)
+	DupeSquawkChecker::DupeSquawkChecker(std::shared_ptr<ICheckableDataProvider> dataProvider)
 		: dataProvider(std::move(dataProvider))
-	{
-	}
-
-	DupeSquawkChecker::DupeSquawkChecker()
-		: dataProvider(std::make_shared<DupeSquawkCheckDataProvider>())
 	{
 	}
 
 	void DupeSquawkChecker::Check()
 	{
 		std::map<CString, std::vector<CString>> targetIdsBySquawk;
-		warnings.clear();
+		std::vector<DupeWarning> newWarnings;
 
-		for (auto& squawkData : dataProvider->GetSquawkDataCollection())
+		for (auto& rt : dataProvider->GetRadarTargets())
 		{
-			auto it = targetIdsBySquawk.find(squawkData.squawk);
+			auto it = targetIdsBySquawk.find(rt.squawk);
 
 			if (it != targetIdsBySquawk.end())
 			{
 				auto targetIds = it->second;
-				targetIds.push_back(squawkData.targetId);
+				targetIds.push_back(rt.targetId);
 				it->second = targetIds;
 			}
 			else
 			{
-				targetIdsBySquawk[squawkData.squawk] = { squawkData.targetId };
+				targetIdsBySquawk[rt.squawk] = { rt.targetId };
 			}
 		}
 
@@ -41,13 +34,31 @@ namespace Eurocat::Warning
 		{
 			if (it.second.size() > 1)
 			{
-				warnings.emplace_back(it.first, it.second);
+				newWarnings.emplace_back(it.first, it.second);
 			}
 		}
+
+		std::lock_guard<std::mutex> lock(m);
+		if (newWarnings != warnings)
+		{
+			if (newWarnings.empty())
+			{
+				spdlog::info("DUPE warnings changed: null");
+			}
+			else
+			{
+				std::string msg = "DUPE warnings changed:";
+				for (auto& w : newWarnings) { msg += " (" + w.Description() + ")"; }
+				spdlog::info(msg);
+			}
+		}
+
+		warnings = newWarnings;
 	}
 
 	std::vector<DupeWarning> DupeSquawkChecker::GetWarnings()
 	{
+		std::lock_guard<std::mutex> lock(m);
 		return warnings;
 	}
 }

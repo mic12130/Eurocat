@@ -72,7 +72,7 @@
     <ClInclude Include="screen\TestGraphics.h" />
     <ClInclude Include="screen\TestScreen.h" />
     <ClInclude Include="screen\TestScreenWrapper.h" />
-    <ClInclude Include="warning\MockDupeSquawkCheckDataProvider.h" />
+    <ClInclude Include="warning\MockCheckableDataProvider.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="plugin\extension\OpDataConverterTest.cpp" />

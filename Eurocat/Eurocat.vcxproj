@@ -316,9 +316,8 @@
     <ClCompile Include="tagitem\TagItemColor.cpp" />
     <ClCompile Include="tagitem\TagItemManager.cpp" />
     <ClCompile Include="warning\BuiltinWarningChecker.cpp" />
-    <ClCompile Include="warning\DupeSquawkCheckDataProvider.cpp" />
+    <ClCompile Include="warning\CheckableDataProvider.cpp" />
     <ClCompile Include="warning\DupeSquawkChecker.cpp" />
-    <ClCompile Include="warning\DupeSquawkCheckScheduler.cpp" />
     <ClCompile Include="warning\WarningData.cpp" />
     <ClCompile Include="warning\WarningManager.cpp" />
     <ClCompile Include="window\LevelPopupMenu.cpp" />
@@ -500,11 +499,10 @@
     <ClInclude Include="tagitem\TagItemColor.h" />
     <ClInclude Include="tagitem\TagItemManager.h" />
     <ClInclude Include="warning\BuiltinWarningChecker.h" />
-    <ClInclude Include="warning\DupeSquawkCheckDataProvider.h" />
+    <ClInclude Include="warning\CheckableDataProvider.h" />
     <ClInclude Include="warning\DupeSquawkChecker.h" />
-    <ClInclude Include="warning\DupeSquawkCheckScheduler.h" />
-    <ClInclude Include="warning\IDupeSquawkCheckDataProvider.h" />
-    <ClInclude Include="warning\SquawkData.h" />
+    <ClInclude Include="warning\ICheckableDataProvider.h" />
+    <ClInclude Include="warning\CheckableRadarTarget.h" />
     <ClInclude Include="warning\WarningData.h" />
     <ClInclude Include="warning\WarningManager.h" />
     <ClInclude Include="warning\WarningTypes.h" />

@@ -1,14 +1,13 @@
 #pragma once
 
-#include "plugin/ITimedEventHandler.h"
-#include "WarningTypes.h"
+#include "warning/WarningTypes.h"
 
 namespace Eurocat::Warning
 {
-	class BuiltinWarningChecker : public Plugin::ITimedEventHandler
+	class BuiltinWarningChecker
 	{
 	public:
-		void OnTimedEvent(int counter) override;
+		void Check();
 		std::vector<BuiltinWarning> GetWarnings();
 
 	private:

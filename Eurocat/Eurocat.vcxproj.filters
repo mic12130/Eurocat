@@ -542,16 +542,13 @@
     <ClInclude Include="warning\BuiltinWarningChecker.h">
       <Filter>warning</Filter>
     </ClInclude>
-    <ClInclude Include="warning\DupeSquawkCheckScheduler.h">
+    <ClInclude Include="warning\CheckableDataProvider.h">
       <Filter>warning</Filter>
     </ClInclude>
-    <ClInclude Include="warning\DupeSquawkCheckDataProvider.h">
+    <ClInclude Include="warning\ICheckableDataProvider.h">
       <Filter>warning</Filter>
     </ClInclude>
-    <ClInclude Include="warning\IDupeSquawkCheckDataProvider.h">
-      <Filter>warning</Filter>
-    </ClInclude>
-    <ClInclude Include="warning\SquawkData.h">
+    <ClInclude Include="warning\CheckableRadarTarget.h">
       <Filter>warning</Filter>
     </ClInclude>
     <ClInclude Include="warning\DupeSquawkChecker.h">
@@ -909,10 +906,7 @@
     <ClCompile Include="warning\BuiltinWarningChecker.cpp">
       <Filter>warning</Filter>
     </ClCompile>
-    <ClCompile Include="warning\DupeSquawkCheckScheduler.cpp">
-      <Filter>warning</Filter>
-    </ClCompile>
-    <ClCompile Include="warning\DupeSquawkCheckDataProvider.cpp">
+    <ClCompile Include="warning\CheckableDataProvider.cpp">
       <Filter>warning</Filter>
     </ClCompile>
     <ClCompile Include="warning\DupeSquawkChecker.cpp">
@@ -951,9 +945,6 @@
     <ClCompile Include="plugin\extension\FlightPlanExtension.cpp">
       <Filter>plugin\extension</Filter>
     </ClCompile>
-    <ClCompile Include="warning\WarningData.cpp">
-      <Filter>warning</Filter>
-    </ClCompile>
     <ClCompile Include="hmi\track\tag\alert\WarningTypeCollector.cpp">
       <Filter>hmi\track\tag\alert</Filter>
     </ClCompile>
@@ -977,6 +968,9 @@
     </ClCompile>
     <ClCompile Include="external\CallsignFileParser.cpp">
       <Filter>external</Filter>
+    </ClCompile>
+    <ClCompile Include="warning\WarningData.cpp">
+      <Filter>warning</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

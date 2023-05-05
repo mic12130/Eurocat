@@ -2,7 +2,7 @@
 
 #include "warning/DupeSquawkChecker.h"
 
-#include "warning/MockDupeSquawkCheckDataProvider.h"
+#include "warning/MockCheckableDataProvider.h"
 
 using ::testing::Return;
 
@@ -13,18 +13,18 @@ namespace Eurocat::Warning
 	protected:
 		void SetUp() override
 		{
-			dataProvider = std::make_shared<MockDupeSquawkCheckDataProvider>();
+			dataProvider = std::make_shared<MockCheckableDataProvider>();
 			checker = std::make_unique<DupeSquawkChecker>(dataProvider);
 		}
 
-		std::shared_ptr<MockDupeSquawkCheckDataProvider> dataProvider;
+		std::shared_ptr<MockCheckableDataProvider> dataProvider;
 		std::unique_ptr<DupeSquawkChecker> checker;
 	};
 
 	TEST_F(DupeSquawkCheckerTest, NoWarningByDefault)
 	{
-		EXPECT_CALL(*dataProvider, GetSquawkDataCollection)
-			.WillOnce(Return(std::vector<SquawkData>()));
+		EXPECT_CALL(*dataProvider, GetRadarTargets)
+			.WillOnce(Return(std::vector<CheckableRadarTarget>{ }));
 
 		checker->Check();
 
@@ -33,12 +33,12 @@ namespace Eurocat::Warning
 
 	TEST_F(DupeSquawkCheckerTest, NoWarningWhenNoDupeSquawk)
 	{
-		EXPECT_CALL(*dataProvider, GetSquawkDataCollection)
+		EXPECT_CALL(*dataProvider, GetRadarTargets)
 			.WillOnce(Return(std::vector
 				{
-					SquawkData("111", "1200"),
-					SquawkData("222", "2000"),
-					SquawkData("333", "3000")
+					CheckableRadarTarget("111", "1200", 0, 0, 0, 0),
+					CheckableRadarTarget("222", "2000", 0, 0, 0, 0),
+					CheckableRadarTarget("333", "3000", 0, 0, 0, 0)
 				}));
 
 		checker->Check();
@@ -48,12 +48,12 @@ namespace Eurocat::Warning
 
 	TEST_F(DupeSquawkCheckerTest, DetectsTwoDupeSquawks)
 	{
-		EXPECT_CALL(*dataProvider, GetSquawkDataCollection)
+		EXPECT_CALL(*dataProvider, GetRadarTargets)
 			.WillOnce(Return(std::vector
 				{
-					SquawkData("111", "1200"),
-					SquawkData("222", "3500"),
-					SquawkData("333", "3500")
+					CheckableRadarTarget("111", "1200", 0, 0, 0, 0),
+					CheckableRadarTarget("222", "3500", 0, 0, 0, 0),
+					CheckableRadarTarget("333", "3500", 0, 0, 0, 0)
 				}));
 
 		checker->Check();
@@ -66,13 +66,13 @@ namespace Eurocat::Warning
 
 	TEST_F(DupeSquawkCheckerTest, DetectsMultipleDupeSquawks)
 	{
-		EXPECT_CALL(*dataProvider, GetSquawkDataCollection)
+		EXPECT_CALL(*dataProvider, GetRadarTargets)
 			.WillOnce(Return(std::vector
 				{
-					SquawkData("111", "4200"),
-					SquawkData("222", "4200"),
-					SquawkData("333", "4200"),
-					SquawkData("625", "4201")
+					CheckableRadarTarget("111", "4200", 0, 0, 0, 0),
+					CheckableRadarTarget("222", "4200", 0, 0, 0, 0),
+					CheckableRadarTarget("333", "4200", 0, 0, 0, 0),
+					CheckableRadarTarget("625", "4201", 0, 0, 0, 0)
 				}));
 
 		checker->Check();

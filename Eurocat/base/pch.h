@@ -15,6 +15,7 @@ processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
 #include "base/framework.h"
 
 #include <string>
+#include <format>
 #include <memory>
 #include <vector>
 #include <map>
@@ -29,6 +30,9 @@ processorArchitecture='*' publicKeyToken='6595b64144ccf1df' language='*'\"")
 #include <type_traits>
 #include <fstream>
 #include <sstream>
+#include <mutex>
+#include <shared_mutex>
+#include <thread>
 
 #include <gdiPlus.h>
 #include "spdlog/spdlog.h"
