@@ -8,10 +8,10 @@ namespace Eurocat::Config
 {
 	SettingsData::SettingsData(const SettingsStorage& storage) : storage(storage)
 	{
-		groundTrafficSpeedThreshold = LoadSettingItem<int>(
-			kGroundTrafficSpeedThresholdKey, 30, 
+		coreGndTfcSpeedThreshold = LoadSettingItem<int>(
+			kCoreGndTfcSpeedThresholdKey, 30, 
 			std::make_unique<IntegerRangeValidator>(0, 100));
 
-		callsignFilePath = LoadSettingItem<CString>(kCallsignFilePathKey, "");
+		extCallsignFilePath = LoadSettingItem<CString>(kExtCallsignFilePathKey, "");
 	}
 }

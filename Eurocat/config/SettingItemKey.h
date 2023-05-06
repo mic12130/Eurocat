@@ -4,6 +4,6 @@
 
 namespace Eurocat::Config
 {
-	const CString kGroundTrafficSpeedThresholdKey = "groundTrafficSpeedThreshold";
-	const CString kCallsignFilePathKey = "callsignFilePath";
+	const CString kCoreGndTfcSpeedThresholdKey = "Core_GndTfcSpeedThreshold";
+	const CString kExtCallsignFilePathKey = "Ext_CallsignFilePath";
 }

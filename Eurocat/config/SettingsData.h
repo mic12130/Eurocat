@@ -10,15 +10,19 @@ namespace Eurocat::Config
 	public:
 		SettingsData(const SettingsStorage& storage);
 
-		int GetGroundTrafficSpeedThreshold() const
+		int GetCoreGndTfcSpeedThreshold() const
 		{
-			return groundTrafficSpeedThreshold->Get();
+			return coreGndTfcSpeedThreshold->Get();
 		}
 
-		CString GetCallsignFilePath() const
+		CString GetExtCallsignFilePath() const
 		{
-			return callsignFilePath->Get();
+			return extCallsignFilePath->Get();
 		}
+
+	private:
+		std::shared_ptr<SettingItem<int>> coreGndTfcSpeedThreshold;
+		std::shared_ptr<SettingItem<CString>> extCallsignFilePath;
 
 	private:
 		template <typename T>
@@ -29,9 +33,6 @@ namespace Eurocat::Config
 		) -> std::shared_ptr<SettingItem<T>>;
 
 		const SettingsStorage& storage;
-
-		std::shared_ptr<SettingItem<int>> groundTrafficSpeedThreshold;
-		std::shared_ptr<SettingItem<CString>> callsignFilePath;
 	};
 
 	template<typename T>

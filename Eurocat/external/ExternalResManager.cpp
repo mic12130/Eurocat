@@ -25,7 +25,7 @@ namespace Eurocat::External
 	{
 		auto path = FilesystemHelper::GetDllDirPath();
 		path.append("\\");
-		path.append(config.settings.GetCallsignFilePath());
+		path.append(config.settings.GetExtCallsignFilePath());
 		auto map = CallsignFileParser::Parse(path);
 		CallsignLookup::Shared().SetCallsignMap(map);
 	}
