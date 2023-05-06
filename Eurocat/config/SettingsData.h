@@ -7,39 +7,33 @@ namespace Eurocat::Config
 {
 	struct SettingsData
 	{
-	public:
 		SettingsData(const SettingsStorage& storage);
+		
+		// Force this struct to be constructed from the storage
+		SettingsData() = delete;
 
-		int GetCoreGndTfcSpeedThreshold() const
-		{
-			return coreGndTfcSpeedThreshold->Get();
-		}
+		SettingItem<int> coreGndTfcSpeedThreshold;
+		SettingItem<CString> coreOpDataLeadingChar;
 
-		CString GetExtCallsignFilePath() const
-		{
-			return extCallsignFilePath->Get();
-		}
+		SettingItem<CString> extCallsignFilePath;
 
 	private:
-		std::shared_ptr<SettingItem<int>> coreGndTfcSpeedThreshold;
-		std::shared_ptr<SettingItem<CString>> extCallsignFilePath;
+		class Loader
+		{
+		public:
+			Loader(const SettingsStorage& storage) : storage(storage) { }
 
-	private:
-		template <typename T>
-		auto LoadSettingItem(
-			CString key,
-			T defaultValue,
-			std::unique_ptr<ISettingItemValidator<T>> validator = nullptr
-		) -> std::shared_ptr<SettingItem<T>>;
+			template <typename T>
+			SettingItem<T> Load(
+				CString key, T defaultValue,
+				std::unique_ptr<ISettingItemValidator<T>> validator = nullptr)
+			{
+				auto item = SettingItem<T>(key, defaultValue, std::move(validator));
+				item.LoadFromSettingsStorage(storage);
+				return item;
+			}
 
-		const SettingsStorage& storage;
+			const SettingsStorage& storage;
+		};
 	};
-
-	template<typename T>
-	inline auto SettingsData::LoadSettingItem(CString key, T defaultValue, std::unique_ptr<ISettingItemValidator<T>> validator) -> std::shared_ptr<SettingItem<T>>
-	{
-		auto item = std::make_shared<SettingItem<T>>(key, defaultValue, std::move(validator));
-		item->LoadFromSettingsStorage(storage);
-		return item;
-	}
 }

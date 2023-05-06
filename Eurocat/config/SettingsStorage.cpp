@@ -48,7 +48,10 @@ namespace Eurocat::Config
 
 	void SettingsStorage::AddRecognizedKeys()
 	{
-		recognizedKeys.push_back(kCoreGndTfcSpeedThresholdKey);
-		recognizedKeys.push_back(kExtCallsignFilePathKey);
+		recognizedKeys = {
+			kCoreGndTfcSpeedThresholdKey,
+			kCoreOpDataLeadingCharKey,
+			kExtCallsignFilePathKey
+		};
 	}
 }

@@ -11,6 +11,10 @@ namespace Eurocat::Config
 	class SettingItem
 	{
 	public:
+		SettingItem() : SettingItem("", T())
+		{
+		}
+
 		SettingItem(
 			CString key, T defaultValue,
 			std::unique_ptr<ISettingItemValidator<T>> validator = nullptr)
@@ -18,7 +22,12 @@ namespace Eurocat::Config
 		{
 		}
 
-		T& Get()
+		operator T() const
+		{
+			return value;
+		}
+
+		T Get() const
 		{
 			return value;
 		}
@@ -53,6 +62,6 @@ namespace Eurocat::Config
 		CString key;
 		T value;
 		T defaultValue;
-		std::unique_ptr<ISettingItemValidator<T>> validator;
+		std::shared_ptr<ISettingItemValidator<T>> validator;
 	};
 }

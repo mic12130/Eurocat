@@ -7,7 +7,7 @@ namespace Eurocat::Config
 	struct ConfigCollection
 	{
 	public:
-		ConfigCollection(SettingsData& settings) : settings(settings)
+		ConfigCollection(const SettingsData& settings) : settings(settings)
 		{
 		}
 		
