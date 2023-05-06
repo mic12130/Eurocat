@@ -6,6 +6,11 @@ namespace Eurocat::Plugin
 {
 	class OpData
 	{
+		struct Configuration
+		{
+			char leadingChar = '/';
+		};
+
 	public:
 		// Get OP data text from the ES API.
 		// Apart from the scratch pad, the assigned data will be also appended into the result.
@@ -14,5 +19,7 @@ namespace Eurocat::Plugin
 		// Pass OP data input to the ES API.
 		// Any assigned data included in the input will be separated and applied individually.
 		static void SetForFlightPlan(const EuroScopePlugIn::CFlightPlan& fp, CString content);
+
+		inline static Configuration configuration = Configuration();
 	};
 }

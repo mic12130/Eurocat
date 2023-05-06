@@ -293,6 +293,7 @@
     <ClCompile Include="plugin\extension\FlightPlanAttributeUpdater.cpp" />
     <ClCompile Include="plugin\extension\FlightPlanProcessor.cpp" />
     <ClCompile Include="plugin\extension\OpDataConverter.cpp" />
+    <ClCompile Include="plugin\extension\PluginExtensionConfigurator.cpp" />
     <ClCompile Include="plugin\input\EuroScopeInputManager.cpp" />
     <ClCompile Include="plugin\input\PopupEdit.cpp" />
     <ClCompile Include="plugin\input\PopupMenu.cpp" />
@@ -460,6 +461,7 @@
     <ClInclude Include="plugin\extension\FlightPlanAttribute.h" />
     <ClInclude Include="plugin\extension\FlightPlanAttributeUpdater.h" />
     <ClInclude Include="plugin\extension\FlightPlanProcessor.h" />
+    <ClInclude Include="plugin\extension\PluginExtensionConfigurator.h" />
     <ClInclude Include="plugin\IFlightPlanEventHandler.h" />
     <ClInclude Include="plugin\input\EuroScopeInputManager.h" />
     <ClInclude Include="plugin\input\EuroScopeInputRetriever.h" />

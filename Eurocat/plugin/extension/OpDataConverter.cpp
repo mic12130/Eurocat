@@ -6,7 +6,7 @@
 
 namespace Eurocat::Plugin
 {
-	CString OpDataConverter::FromEsFormat(const OpDataExtraction& original)
+	CString OpDataConverter::FromEsFormat(const OpDataExtraction& original, char leadingChar)
 	{
 		std::vector<CString> components;
 
@@ -43,8 +43,8 @@ namespace Eurocat::Plugin
 		// Append text
 		if (CString text = original.text; text != "")
 		{
-			// Remove the indicator of Eurocat label data ("/")
-			if (text.Left(1) == "/")
+			// Remove the indicator of Eurocat label data ("/" by default)
+			if (text.Left(1) == leadingChar)
 			{
 				components.push_back(text.Mid(1));
 			}
@@ -60,7 +60,7 @@ namespace Eurocat::Plugin
 		return result;
 	}
 
-	OpDataExtraction OpDataConverter::ToEsFormat(CString str)
+	OpDataExtraction OpDataConverter::ToEsFormat(CString str, char leadingChar)
 	{
 		OpDataExtraction result;
 		std::vector<CString> remainingTexts;
@@ -96,7 +96,7 @@ namespace Eurocat::Plugin
 		if (result.text != "")
 		{
 			// Make upper and and add slash prefix (to avoid transforming to assigned data)
-			result.text = "/" + result.text.MakeUpper();
+			result.text = leadingChar + result.text.MakeUpper();
 		}
 
 		return result;

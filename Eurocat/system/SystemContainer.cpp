@@ -6,6 +6,7 @@
 
 #include "helper/FilesystemHelper.h"
 #include "plugin/PluginAccess.h"
+#include "plugin/extension/PluginExtensionConfigurator.h"
 
 using namespace Eurocat::Plugin;
 using namespace Eurocat::Warning;
@@ -52,6 +53,9 @@ namespace Eurocat
 		spdlog::info("Starting external resources manager");
 		externalResManager = std::make_shared<ExternalResManager>();
 		externalResManager->SubscribeToConfigEvents(config, configManager->GetEventManager());
+
+		spdlog::info("Setting up plugin components");
+		SetupPluginExtension(config);
 	}
 
 	void SystemContainer::Cleanup()
@@ -76,5 +80,12 @@ namespace Eurocat
 		catch (const spdlog::spdlog_ex&)
 		{
 		}
+	}
+
+	void SystemContainer::SetupPluginExtension(Config::ConfigCollection& config)
+	{
+		auto configurator = std::make_shared<PluginExtensionConfigurator>();
+		configurator->ApplyInitConfig(config);
+		configManager->GetEventManager().AddConfigEventHandler(configurator);
 	}
 }

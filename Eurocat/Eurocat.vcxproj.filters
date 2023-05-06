@@ -647,6 +647,9 @@
     <ClInclude Include="external\CallsignFileParser.h">
       <Filter>external</Filter>
     </ClInclude>
+    <ClInclude Include="plugin\extension\PluginExtensionConfigurator.h">
+      <Filter>plugin\extension</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="res\Eurocat.rc">
@@ -971,6 +974,9 @@
     </ClCompile>
     <ClCompile Include="warning\WarningData.cpp">
       <Filter>warning</Filter>
+    </ClCompile>
+    <ClCompile Include="plugin\extension\PluginExtensionConfigurator.cpp">
+      <Filter>plugin\extension</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

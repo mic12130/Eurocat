@@ -19,6 +19,9 @@ namespace Eurocat {
 	private:
 		void InitLogger();
 
+		// This have to be called after configManager was initialized
+		void SetupPluginExtension(Config::ConfigCollection& config);
+
 		std::shared_ptr<Plugin::EurocatPlugin> plugin;
 		std::shared_ptr<Config::ConfigManager> configManager;
 		std::shared_ptr<Warning::WarningManager> warningManager;

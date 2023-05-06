@@ -7,7 +7,7 @@ namespace Eurocat::Plugin
 	class OpDataConverter
 	{
 	public:
-		static CString FromEsFormat(const OpDataExtraction& original);
-		static OpDataExtraction ToEsFormat(CString str);
+		static CString FromEsFormat(const OpDataExtraction& original, char leadingChar);
+		static OpDataExtraction ToEsFormat(CString str, char leadingChar);
 	};
 }

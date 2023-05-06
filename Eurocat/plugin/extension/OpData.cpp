@@ -16,12 +16,12 @@ namespace Eurocat::Plugin
 		extraction.assignedMach = assignedData.GetAssignedMach();
 		extraction.dctPoint = assignedData.GetDirectToPointName();
 
-		return OpDataConverter::FromEsFormat(extraction);
+		return OpDataConverter::FromEsFormat(extraction, configuration.leadingChar);
 	}
 
 	void OpData::SetForFlightPlan(const EuroScopePlugIn::CFlightPlan& fp, CString content)
 	{
-		auto extraction = OpDataConverter::ToEsFormat(content);
+		auto extraction = OpDataConverter::ToEsFormat(content, configuration.leadingChar);
 		auto assignedData = fp.GetControllerAssignedData();
 
 		if (CString(assignedData.GetScratchPadString()) != extraction.text)
