@@ -49,8 +49,36 @@ namespace Eurocat::Config
 	void SettingsStorage::AddRecognizedKeys()
 	{
 		recognizedKeys = {
+			// Core
 			kCoreGndTfcSpeedThresholdKey,
 			kCoreOpDataLeadingCharKey,
+			
+			// STCA
+			kStcaLowerAltKey,
+			kSctaLowerSpeedKey,
+			kStcaLookAheadTimeAccKey,
+			kStcaPlanarSepAccKey,
+			kStcaAltSepLowAccKey,
+			kStcaAltSepHighAccKey,
+			kStcaAltSepThresholdAccKey,
+			kStcaRvsmAltLimitAccKey,
+			kStcaLookAheadTimeAppKey,
+			kStcaPlanarSepAppKey,
+			kStcaAltSepLowAppKey,
+			kStcaAltSepHighAppKey,
+			kStcaAltSepThresholdAppKey,
+			kStcaRvsmAltLimitAppKey,
+			kStcaPredMaxAltOvershootKey,
+			kStcaPredRateThresholdKey,
+			kStcaPredAltDiffThresholdKey,
+			kStcaImminentTimeKey,
+			kStcaWarningTimeKey,
+			kStcaQualityThresholdKey,
+			kStcaCounterThresholdKey,
+			kStcaConflictPlanarSepKey,
+			kStcaSolvedCounterThresholdKey,
+			
+			//External
 			kExtCallsignFilePathKey
 		};
 	}

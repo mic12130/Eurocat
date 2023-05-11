@@ -36,6 +36,12 @@ namespace Eurocat::Warning
 		manager.AddTimedEventHandler(shared_from_this());
 	}
 
+	void WarningManager::SubscribeToConfigEvents(Config::ConfigCollection& config, Config::ConfigEventManager& manager)
+	{
+		manager.AddConfigEventHandler(shared_from_this());
+		OnConfigUpdate(config);
+	}
+
 	std::shared_ptr<WarningData> WarningManager::MakeWarningData()
 	{
 		return std::make_shared<WarningData>(builtinWarningChecker, dupeSquawkChecker);
@@ -45,5 +51,9 @@ namespace Eurocat::Warning
 	{
 		dataProvider->UpdateFromPlugin();
 		builtinWarningChecker->Check();
+	}
+
+	void WarningManager::OnConfigUpdate(Config::ConfigCollection& config)
+	{
 	}
 }

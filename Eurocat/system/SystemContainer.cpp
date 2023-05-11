@@ -36,6 +36,7 @@ namespace Eurocat
 		spdlog::info("Starting warning manager");
 		warningManager = std::make_shared<WarningManager>();
 		warningManager->SubscribeToPluginEvents(*plugin->GetEventManager());
+		warningManager->SubscribeToConfigEvents(config, configManager->GetEventManager());
 		WarningData::SetupShared(warningManager->MakeWarningData());
 
 		spdlog::info("Starting hmi manager");

@@ -32,4 +32,27 @@ namespace Eurocat::Config
 		int maxValue;
 		int minValue;
 	};
+
+	class DoubleRangeValidator : public ISettingItemValidator<double>
+	{
+	public:
+		DoubleRangeValidator(double max, double min) : maxValue(max), minValue(min)
+		{
+		}
+
+		bool IsValid(double value, CString& error) override
+		{
+			if (value >= minValue && value <= maxValue)
+			{
+				return true;
+			}
+
+			error.Format("Value out of range (min: %d, max: %d)", minValue, maxValue);
+			return false;
+		}
+
+	private:
+		double maxValue;
+		double minValue;
+	};
 }
