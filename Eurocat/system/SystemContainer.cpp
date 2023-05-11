@@ -20,9 +20,6 @@ namespace Eurocat
 {
 	void SystemContainer::Startup()
 	{
-		// In this period, do not access the shared instance of system manager,
-		// because we cannot ensure the components to be accessed have been initialized
-
 		InitLogger();
 
 		spdlog::info("Starting system");
