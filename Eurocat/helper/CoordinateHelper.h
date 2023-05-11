@@ -38,5 +38,16 @@ namespace Eurocat::Helper
 
 			return _origin.DirectionTo(_dest);
 		}
+
+		static double DistanceToLine(Common::Coordinate origin, Common::Coordinate p1, Common::Coordinate p2)
+		{
+			double l1 = Distance(p1, p2);
+			double l2 = Distance(origin, p1);
+			double l3 = Distance(origin, p2);
+			double p = (l1 + l2 + l3) / 2;
+			double s = sqrt(p * (p - l1) * (p - l2) * (p - l3));
+
+			return s * 2 / l1;
+		}
 	};
 }
