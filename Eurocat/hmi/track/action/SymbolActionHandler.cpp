@@ -12,11 +12,8 @@ using namespace Eurocat::Hmi::Track;
 
 namespace Eurocat::Hmi::Track
 {
-	SymbolActionHandler::SymbolActionHandler(
-		TrackProfileManager& trackProfileManager, 
-		std::optional<CString>& repositioningProfileId)
-		: trackProfileManager(trackProfileManager),
-		repositioningProfileId(repositioningProfileId)
+	SymbolActionHandler::SymbolActionHandler(TrackProfileManager& trackProfileManager)
+		: trackProfileManager(trackProfileManager)
 	{
 	}
 
@@ -61,9 +58,7 @@ namespace Eurocat::Hmi::Track
 		{
 			TrackProfile updatedTrackProfile(trackProfile);
 			updatedTrackProfile.isTagRepositioning = true;
-
 			trackProfileManager.TryUpdateProfile(updatedTrackProfile);
-			repositioningProfileId = updatedTrackProfile.id;
 			CursorManager::shared->SetCursorType(CursorType::Interactive);
 		}
 	}

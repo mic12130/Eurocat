@@ -39,7 +39,7 @@ namespace Eurocat::Hmi::Track
 		: unitDisplayManager(unitDisplayManager)
 	{
 		actionHandlerMap = {
-			{ TrackObjectIdSuffix::kSymbol, std::make_shared<SymbolActionHandler>(trackProfileManager, repositioningProfileId) },
+			{ TrackObjectIdSuffix::kSymbol, std::make_shared<SymbolActionHandler>(trackProfileManager) },
 			{ TrackObjectIdSuffix::kAcidLabel, std::make_shared<AcidActionHandler>(trackProfileManager, option) },
 			{ TrackObjectIdSuffix::kCflLabel, std::make_shared<CflActionHandler>(unitDisplayManager) },
 			{ TrackObjectIdSuffix::kGroundSpeedLabel, std::make_shared<GroundSpeedActionHandler>(trackProfileManager, option) },
@@ -258,7 +258,7 @@ namespace Eurocat::Hmi::Track
 
 	bool TrackManager::InRange(POINT px, RECT rect)
 	{
-		return px.x > rect.left && px.x < rect.right&& px.y > rect.top && px.y < rect.bottom;
+		return px.x > rect.left && px.x < rect.right && px.y > rect.top && px.y < rect.bottom;
 	}
 
 	bool TrackManager::IsSelected(IRadarTargetDataProvider& rt)
@@ -295,18 +295,13 @@ namespace Eurocat::Hmi::Track
 
 	void TrackManager::FinishTagReposition(Screen::ScreenWrapper& screen)
 	{
-		if (repositioningProfileId.has_value() == false)
-		{
-			throw std::runtime_error("Couldn't apply tag reposition because repositioningProfileId is null");
-		}
-
 		EuroScopePlugIn::CPosition coord;
 		TrackProfile profile;
 
-		if (trackProfileManager.TryGetProfile(repositioningProfileId.value(), profile) == false)
-		{
+		if (auto optProfile = trackProfileManager.GetTagRepositioningProfile(); optProfile.has_value())
+			profile = *optProfile;
+		else
 			throw std::runtime_error("Profile not found");
-		}
 
 		// Even though the profile exists, the related rt or fp may has disconnected,
 		// so it is required to check the validity of rt or fp in the steps below
@@ -316,26 +311,18 @@ namespace Eurocat::Hmi::Track
 			auto fp = PluginAccess::Shared().GetPlugin().FlightPlanSelect(profile.flightPlanId.value());
 
 			if (fp.IsValid())
-			{
 				coord = fp.GetFPTrackPosition().GetPosition();
-			}
 			else
-			{
 				return;
-			}
 		}
 		else if (profile.trackType == TrackProfile::TrackType::Coupled || profile.trackType == TrackProfile::TrackType::Uncoupled)
 		{
 			auto rt = PluginAccess::Shared().GetPlugin().RadarTargetSelect(profile.radarTargetId.value());
 
 			if (rt.IsValid())
-			{
 				coord = rt.GetPosition().GetPosition();
-			}
 			else
-			{
 				return;
-			}
 		}
 
 		CPoint cursorPx;
@@ -348,8 +335,7 @@ namespace Eurocat::Hmi::Track
 		profile.tagOffsetX = closestPolarPx.x - targetPx.x;
 		profile.tagOffsetY = closestPolarPx.y - targetPx.y;
 		trackProfileManager.TryUpdateProfile(profile);
-
-		repositioningProfileId = std::nullopt;
+		trackProfileManager.ResetTagRepositioning();
 		CursorManager::shared->SetCursorType(CursorType::Normal);
 	}
 }

@@ -45,7 +45,6 @@ namespace Eurocat::Hmi::Track
 		TrackProfileManager trackProfileManager;
 		OptionData option;
 		Hmi::Unit::UnitDisplayManager& unitDisplayManager;
-		std::optional<CString> repositioningProfileId;
 		std::map<CString, std::shared_ptr<ITrackActionHandler>> actionHandlerMap;
 	};
 }

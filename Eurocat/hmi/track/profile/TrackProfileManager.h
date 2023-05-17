@@ -16,6 +16,8 @@ namespace Eurocat::Hmi::Track
 		bool TryUpdateProfile(const TrackProfile& profile);
 		void ResetUserSetVel();
 		void ResetUserSetExtended();
+		std::optional<TrackProfile> GetTagRepositioningProfile();
+		void ResetTagRepositioning();
 
 	private:
 		TrackProfile GetOrCreateProfile(

@@ -8,10 +8,7 @@ namespace Eurocat::Hmi::Track
 	class SymbolActionHandler : public ITrackActionHandler
 	{
 	public:
-		SymbolActionHandler(
-			TrackProfileManager& trackProfileManager,
-			std::optional<CString>& repositioningProfileId
-		);
+		SymbolActionHandler(TrackProfileManager& trackProfileManager);
 		void OnTriggerAction(
 			const TrackProfile& trackProfile,
 			Screen::ScreenWrapper& screen,
@@ -21,6 +18,5 @@ namespace Eurocat::Hmi::Track
 
 	private:
 		TrackProfileManager& trackProfileManager;
-		std::optional<CString>& repositioningProfileId;
 	};
 }

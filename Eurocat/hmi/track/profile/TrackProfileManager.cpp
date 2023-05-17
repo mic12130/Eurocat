@@ -66,6 +66,30 @@ namespace Eurocat::Hmi::Track
 		}
 	}
 
+	std::optional<TrackProfile> TrackProfileManager::GetTagRepositioningProfile()
+	{
+		// While repositioning a tag, if another track whose tag was previously repositioning
+		// back to the screen, then it may have two repositioning tag apeearing simultaneously.
+		// In this case, we will assume there is only one, then we will reset both when
+		// repositioning is finished.
+
+		for (const auto& p : profiles)
+		{
+			if (p.isTagRepositioning)
+				return p;
+		}
+
+		return std::nullopt;
+	}
+
+	void TrackProfileManager::ResetTagRepositioning()
+	{
+		for (auto& p : profiles)
+		{
+			p.isTagRepositioning = false;
+		}
+	}
+
 	TrackProfile TrackProfileManager::GetOrCreateProfile(TrackProfile::TrackType trackType, std::optional<CString> flightPlanId, std::optional<CString> radarTargetId)
 	{
 		TrackProfile profile;
