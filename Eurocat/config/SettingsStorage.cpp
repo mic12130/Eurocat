@@ -55,7 +55,7 @@ namespace Eurocat::Config
 			
 			// STCA
 			kStcaLowerAltKey,
-			kSctaLowerSpeedKey,
+			kStcaLowerSpeedKey,
 			kStcaLookAheadTimeAccKey,
 			kStcaPlanarSepAccKey,
 			kStcaAltSepLowAccKey,

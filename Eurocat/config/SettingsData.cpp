@@ -20,8 +20,8 @@ namespace Eurocat::Config
 		stcaLowerAlt = loader.Load<int>(
 			kStcaLowerAltKey, 0,
 			std::make_unique<IntegerRangeValidator>(-600, 600));
-		sctaLowerSpeed = loader.Load<int>(
-			kSctaLowerSpeedKey, 30,
+		stcaLowerSpeed = loader.Load<int>(
+			kStcaLowerSpeedKey, 30,
 			std::make_unique<IntegerRangeValidator>(0, 100));
 		stcaLookAheadTimeAcc = loader.Load<int>(
 			kStcaLookAheadTimeAccKey, 90,

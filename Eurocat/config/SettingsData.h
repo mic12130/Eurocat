@@ -18,7 +18,7 @@ namespace Eurocat::Config
 
 		// STCA
 		SettingItem<int> stcaLowerAlt;
-		SettingItem<int> sctaLowerSpeed;
+		SettingItem<int> stcaLowerSpeed;
 		SettingItem<int> stcaLookAheadTimeAcc;
 		SettingItem<double> stcaPlanarSepAcc;
 		SettingItem<int> stcaAltSepLowAcc;

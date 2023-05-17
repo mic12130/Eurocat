@@ -10,7 +10,7 @@ namespace Eurocat::Config
 
 	// STCA
 	const CString kStcaLowerAltKey = "STCA_LowerAlt";
-	const CString kSctaLowerSpeedKey = "STCA_LowerSpeed";
+	const CString kStcaLowerSpeedKey = "STCA_LowerSpeed";
 	const CString kStcaLookAheadTimeAccKey = "STCA_LookAheadTimeAcc";
 	const CString kStcaPlanarSepAccKey = "STCA_PlanarSepAcc";
 	const CString kStcaAltSepLowAccKey = "STCA_AltSepLowAcc";
